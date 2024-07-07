@@ -10,17 +10,16 @@ namespace AkarasDegenStuff
     {
         public static void DoIt()
         {
-            var input = @"C:\Users\fide_\Desktop\d2 items/6sl1.jpg";
+            var input = @"C:\Users\fide_\Desktop\d2 items/677.png";
 
-            
+            string item = null; 
             using (var stream = Tesseract.ImageToTxt(input, languages: new[] { Language.English, Language.French }))
             {
-                Console.Write(stream.ToString()); 
+             StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+             item = reader.ReadToEnd();
+             Console.Write(item);
             }
-
-            
             Console.ReadLine();
         }
-
     }
 }
