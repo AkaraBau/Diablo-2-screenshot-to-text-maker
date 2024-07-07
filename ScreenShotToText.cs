@@ -24,13 +24,12 @@ namespace AkarasDegenStuff
             }
 
             string[] splitItem = item.Split(new[] { '\n' }, StringSplitOptions.None);
-            splitItem = splitItem.Where(x => !String.IsNullOrEmpty(x)).ToArray();
+            splitItem = splitItem.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray();
             for (int i = 0; i < splitItem.Length-1; i++)
             {
-                 Console.WriteLine($"{splitItem[i]}");
+                
             }
 
-            var belt = new Belt();
             Console.ReadLine();
         }
     }
