@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Pipes;
 using System.Linq; //accessing case sensitive check
 using System.Runtime.InteropServices;
 using NLog.LayoutRenderers;
@@ -18,17 +19,16 @@ namespace AkarasDegenStuff
             string item = null; 
             using (var stream = Tesseract.ImageToTxt(input, languages: new[] { Language.English, Language.French }))
             {
-             StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
-             item = reader.ReadToEnd();
-             Console.Write(item); 
+             StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
+             item = reader.ReadToEnd(); //making stream -> string 
+             Console.Write(item); // controlling so output is correct.
             }
-
-            string[] splitItem = item.Split(new[] { '\n' }, StringSplitOptions.None);
-            splitItem = splitItem.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray();
-            for (int i = 0; i < splitItem.Length-1; i++)
-            {
-                
-            }
+            //split string into array of strings 
+            string[] data = item.Split(new[] { '\n' }, StringSplitOptions.None);
+            // removing whitespace
+            data = data.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray();
+            // creation of a Belt
+            Belt belt = new Belt(data);
 
             Console.ReadLine();
         }
