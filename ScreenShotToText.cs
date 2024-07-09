@@ -29,6 +29,12 @@ namespace AkarasDegenStuff
             data = data.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray();
             // creation of a Belt
             Belt belt = new Belt(data);
+            List<Belt> allBelts = new List<Belt>();
+            allBelts.Add(belt); 
+
+            foreach (var b in allBelts){
+                Console.WriteLine(allBelts);
+            }
 
             Console.ReadLine();
         }

@@ -64,6 +64,5 @@ namespace AkarasDegenStuff
                 throw new ArgumentException("The data array does not contain enough elements.");
             }
         }
-        
     }
 }
