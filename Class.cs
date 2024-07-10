@@ -23,9 +23,11 @@ namespace AkarasDegenStuff
         public string stat5 { get; set; }
         public string stat6 { get; set; }
         public string stat7 { get; set; }
+        public static List<Belt> allBelts = new List<Belt>();
 
-        public Belt (string[] data){
-             if (data.Length >= 14)
+        public Belt(string[] data)
+        {
+            if (data.Length >= 14)
             {
                 name = data[0];
                 type = data[1];
@@ -58,11 +60,21 @@ namespace AkarasDegenStuff
                 stat5 = data[11];
                 stat6 = data[12];
                 stat7 = " ";
-            }            
+            }
             else
             {
                 throw new ArgumentException("The data array does not contain enough elements.");
             }
         }
+        public string getItemsStats()
+            {
+                var item = new System.Text.StringBuilder(); // namespace.namespace.constructor
+                foreach (var b in allBelts )
+                {
+                    item.AppendLine($"{name}\n{req2}\n{stat1}\n{stat2}\n{stat3}\n{stat4}\n{stat5}\n{stat6}\n{stat7}");
+                    //look up how this works 
+                }
+                return item.ToString();
+            }
     }
 }

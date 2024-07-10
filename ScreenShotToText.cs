@@ -16,26 +16,22 @@ namespace AkarasDegenStuff
         public static void DoIt()
         {
             var input = @"C:\Users\fide_\Desktop\d2 items/677.png";
-            string item = null; 
+            string item = null;
             using (var stream = Tesseract.ImageToTxt(input, languages: new[] { Language.English, Language.French }))
             {
-             StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
-             item = reader.ReadToEnd(); //making stream -> string 
-             Console.Write(item); // controlling so output is correct.
-            }
-            //split string into array of strings 
-            string[] data = item.Split(new[] { '\n' }, StringSplitOptions.None);
-            // removing whitespace
-            data = data.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray();
-            // creation of a Belt
-            Belt belt = new Belt(data);
-            List<Belt> allBelts = new List<Belt>();
-            allBelts.Add(belt); 
-
-            foreach (var b in allBelts){
-                Console.WriteLine(allBelts);
+                StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
+                item = reader.ReadToEnd(); //making stream -> string 
+                Console.Write(item + "\n"); // controlling so output is correct.
             }
 
+            string[] data = item.Split(new[] { '\n' }, StringSplitOptions.None); //split string into array of strings   
+            data = data.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
+            
+            Belt belt = new Belt(data); // creation of a Belt
+            Belt.allBelts.Add(belt); //add belt to list
+
+            Console.Write(belt.getItemsStats()); //adding belt to list
+            
             Console.ReadLine();
         }
     }
