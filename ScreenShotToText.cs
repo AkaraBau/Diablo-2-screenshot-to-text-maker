@@ -15,6 +15,7 @@ namespace AkarasDegenStuff
     {
         public static void DoIt()
         {
+            List<Belt> allBelts = new List<Belt>();
             var input = @"C:\Users\fide_\Desktop\d2 items/677.png";
             string item = null;
             using (var stream = Tesseract.ImageToTxt(input, languages: new[] { Language.English, Language.French }))
@@ -28,9 +29,7 @@ namespace AkarasDegenStuff
             data = data.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
             
             Belt belt = new Belt(data); // creation of a Belt
-            Belt.allBelts.Add(belt); //add belt to list
-
-            Console.Write(belt.getItemsStats()); //adding belt to list
+            allBelts.Add(belt); //add belt to list
             
             Console.ReadLine();
         }
