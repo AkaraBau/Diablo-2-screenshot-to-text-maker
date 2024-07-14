@@ -13,5 +13,13 @@ namespace AkarasDegenStuff
 {
     public class Utils
     {
+        public static void PrintList(List<Belt>)
+        {
+            foreach (var l in List)
+            {
+            Console.WriteLine(l); 
+            }
+
+        }
     }
 }
