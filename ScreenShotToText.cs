@@ -15,7 +15,7 @@ namespace AkarasDegenStuff
     {
         public static void DoIt()
         {
-            List<Belt> allBelts = new List<Belt>();
+            List<Belt> allBelts = new List<Belt>(); // creation of a list
             var input = @"C:\Users\fide_\Desktop\d2 items/677.png";
             string item = null;
             using (var stream = Tesseract.ImageToTxt(input, languages: new[] { Language.English, Language.French }))
