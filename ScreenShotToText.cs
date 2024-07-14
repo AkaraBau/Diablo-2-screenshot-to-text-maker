@@ -27,10 +27,16 @@ namespace AkarasDegenStuff
 
             string[] data = item.Split(new[] { '\n' }, StringSplitOptions.None); //split string into array of strings   
             data = data.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
-            
+
             Belt belt = new Belt(data); // creation of a Belt
             allBelts.Add(belt); //add belt to list
-            
+
+            // Print the list
+            foreach (var a in allBelts)
+            {
+                Console.WriteLine(a);
+            }
+
             Console.ReadLine();
         }
     }

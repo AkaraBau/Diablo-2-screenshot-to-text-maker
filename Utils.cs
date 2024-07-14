@@ -13,9 +13,5 @@ namespace AkarasDegenStuff
 {
     public class Utils
     {
-        public static void PrintList(){
-            
-        }
-       
     }
 }

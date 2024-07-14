@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using NLog.LayoutRenderers;
 using TesseractSharp;
 using TesseractSharp.Hocr;
@@ -64,6 +65,10 @@ namespace AkarasDegenStuff
             {
                 throw new ArgumentException("The data array does not contain enough elements.");
             }
+        }
+        public override string ToString()
+        {
+            return $"{name}\n{type}\n{defense}\n{size}\n{durability}\n{req1}\n{req2}\n{stat1}\n{stat2}\n{stat3}\n{stat4}\n{stat5}\n{stat6}\n{stat7}";
         }
     }
 }
