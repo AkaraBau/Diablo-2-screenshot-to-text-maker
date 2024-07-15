@@ -22,9 +22,9 @@ namespace AkarasDegenStuff
             {
                 StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
                 item = reader.ReadToEnd(); //making stream -> string 
-                item = Utils.ChangeLetters(item); 
-
                 Console.Write(item + "\n"); // controlling so output is correct.
+                item = Utils.ChangeLetters(item); 
+                item = Utils.ShortenString(item);
             }
 
             string[] data = item.Split(new[] { '\n' }, StringSplitOptions.None); //split string into array of strings   

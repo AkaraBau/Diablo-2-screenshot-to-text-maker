@@ -50,7 +50,7 @@ namespace AkarasDegenStuff
         }
         public override string ToString()
         {
-            return $"{name}\n{type}\n{defense}\n{req1}\n{stat1}\n{stat2}\n{stat3}\n{stat4}\n{stat5}\n{stat6}\n{stat7}";
+            return $"{name}/{type}/{defense}/{req1}/{stat1}/{stat2}/{stat3}/{stat4}/{stat5}/{stat6}/{stat7}";
         }
     }
 }
