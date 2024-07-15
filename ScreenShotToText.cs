@@ -32,10 +32,7 @@ namespace AkarasDegenStuff
             allBelts.Add(belt); //add belt to list
 
             // Print the list
-            foreach (var a in allBelts)
-            {
-                Console.WriteLine(a);
-            }
+            Utils.PrintList(allBelts);
 
             Console.ReadLine();
         }
