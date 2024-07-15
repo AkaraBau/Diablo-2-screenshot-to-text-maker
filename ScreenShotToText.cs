@@ -22,9 +22,13 @@ namespace AkarasDegenStuff
             {
                 StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
                 item = reader.ReadToEnd(); //making stream -> string 
+                item = item.Replace('e', 'O')
+                           .Replace('®', 'O')
+                           .Replace('@', 'O')
+                           .Replace('o', 'O');
+
                 Console.Write(item + "\n"); // controlling so output is correct.
             }
-            item.Replace
 
             string[] data = item.Split(new[] { '\n' }, StringSplitOptions.None); //split string into array of strings   
             data = data.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
