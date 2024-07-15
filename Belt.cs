@@ -50,14 +50,12 @@ namespace AkarasDegenStuff
         }
         public override string ToString()
         {
-            if (stat7 == " ")
+            string result = $"{name}/{type}/{defense}/{req1}/{stat1}/{stat2}/{stat3}/{stat4}/{stat5}/{stat6}";
+            if (stat7 != " ")
             {
-                return $"{name}/{type}/{defense}/{req1}/{stat1}/{stat2}/{stat3}/{stat4}/{stat5}/{stat6}";
+                result += $"/{stat7}";
             }
-            else 
-            { 
-            return $"{name}/{type}/{defense}/{req1}/{stat1}/{stat2}/{stat3}/{stat4}/{stat5}/{stat6}/{stat7}"; 
-            }
+            return result; 
         }
     }
 }
