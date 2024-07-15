@@ -22,12 +22,7 @@ namespace AkarasDegenStuff
             {
                 StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
                 item = reader.ReadToEnd(); //making stream -> string 
-                item = item.Replace('e', 'O')
-                           .Replace('®', 'O')
-                           .Replace('@', 'O')
-                           .Replace('o', 'O')
-                           .Replace('[', ' ')
-                           .Replace('©','O');
+                item = Utils.ChangeLetters(item); 
 
                 Console.Write(item + "\n"); // controlling so output is correct.
             }

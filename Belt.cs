@@ -24,35 +24,26 @@ namespace AkarasDegenStuff
 
         public Belt(string[] data)
         {
-            if (data.Length >= 14)
+            name = data[0];
+            type = data[1];
+            defense = data[2];
+            req1 = data[6];
+            stat1 = data[7];
+            stat2 = data[8];
+            stat3 = data[9];
+            stat4 = data[10];
+            stat5 = data[11];
+            stat6 = data[12];
+
+            if (data.Length == 13)
             {
-                name = data[0];
-                type = data[1];
-                defense = data[2];
-                req1 = data[6];
-                stat1 = data[7]; 
-                stat2 = data[8];
-                stat3 = data[9];
-                stat4 = data[10];
-                stat5 = data[11];
-                stat6 = data[12];
-                stat7 = data[13];
-            }
-            else if (data.Length == 13)
-            {
-                name = data[0];
-                type = data[1];
-                defense = data[2];
-                req1 = data[6];
-                stat1 = data[7];
-                stat2 = data[8];
-                stat3 = data[9];
-                stat4 = data[10];
-                stat5 = data[11];
-                stat6 = data[12];
                 stat7 = " ";
             }
-            else
+            else if (data.Length == 14)
+            {
+                stat7 = data[13];
+            }
+            else if (data.Length < 13 || data.Length > 14)
             {
                 throw new ArgumentException("The data array does not contain enough elements.");
             }
