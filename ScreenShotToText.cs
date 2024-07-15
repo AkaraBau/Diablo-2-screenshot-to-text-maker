@@ -24,6 +24,7 @@ namespace AkarasDegenStuff
                 item = reader.ReadToEnd(); //making stream -> string 
                 Console.Write(item + "\n"); // controlling so output is correct.
             }
+            item.Replace
 
             string[] data = item.Split(new[] { '\n' }, StringSplitOptions.None); //split string into array of strings   
             data = data.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
