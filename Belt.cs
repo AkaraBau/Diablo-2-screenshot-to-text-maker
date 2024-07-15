@@ -24,7 +24,7 @@ namespace AkarasDegenStuff
 
         public Belt(string[] data)
         {
-            if (data.Length >= 13)
+            if (data.Length >= 14)
             {
                 name = data[0];
                 type = data[1];
@@ -38,7 +38,7 @@ namespace AkarasDegenStuff
                 stat6 = data[12];
                 stat7 = data[13];
             }
-            else if (data.Length == 12)
+            else if (data.Length == 13)
             {
                 name = data[0];
                 type = data[1];
