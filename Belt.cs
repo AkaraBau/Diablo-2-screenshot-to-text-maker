@@ -13,10 +13,7 @@ namespace AkarasDegenStuff
         public string name { get; set; }
         public string type { get; set; }
         public string defense { get; set; }
-        public string size { get; set; }
-        public string durability { get; set; }
         public string req1 { get; set; }
-        public string req2 { get; set; }
         public string stat1 { get; set; }
         public string stat2 { get; set; }
         public string stat3 { get; set; }
@@ -27,16 +24,13 @@ namespace AkarasDegenStuff
 
         public Belt(string[] data)
         {
-            if (data.Length >= 14)
+            if (data.Length >= 13)
             {
                 name = data[0];
                 type = data[1];
                 defense = data[2];
-                size = data[3];
-                durability = data[4];
-                req1 = data[5];
-                req2 = data[6];
-                stat1 = data[7];
+                req1 = data[6];
+                stat1 = data[7]; 
                 stat2 = data[8];
                 stat3 = data[9];
                 stat4 = data[10];
@@ -44,15 +38,12 @@ namespace AkarasDegenStuff
                 stat6 = data[12];
                 stat7 = data[13];
             }
-            else if (data.Length == 13)
+            else if (data.Length == 12)
             {
                 name = data[0];
                 type = data[1];
                 defense = data[2];
-                size = data[3];
-                durability = data[4];
-                req1 = data[5];
-                req2 = data[6];
+                req1 = data[6];
                 stat1 = data[7];
                 stat2 = data[8];
                 stat3 = data[9];
@@ -68,7 +59,7 @@ namespace AkarasDegenStuff
         }
         public override string ToString()
         {
-            return $"{name}\n{type}\n{defense}\n{size}\n{durability}\n{req1}\n{req2}\n{stat1}\n{stat2}\n{stat3}\n{stat4}\n{stat5}\n{stat6}\n{stat7}";
+            return $"{name}\n{type}\n{defense}\n{req1}\n{stat1}\n{stat2}\n{stat3}\n{stat4}\n{stat5}\n{stat6}\n{stat7}";
         }
     }
 }

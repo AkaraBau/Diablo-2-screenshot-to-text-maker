@@ -16,7 +16,7 @@ namespace AkarasDegenStuff
         public static void DoIt()
         {
             List<Belt> allBelts = new List<Belt>(); // creation of a list
-            var input = @"C:\Users\fide_\Desktop\d2 items/6sl1.jpg";
+            var input = @"C:\Users\fide_\Desktop\d2 items/677.png";
             string item = null;
             using (var stream = Tesseract.ImageToTxt(input, languages: new[] { Language.English, Language.French }))
             {
@@ -25,7 +25,9 @@ namespace AkarasDegenStuff
                 item = item.Replace('e', 'O')
                            .Replace('®', 'O')
                            .Replace('@', 'O')
-                           .Replace('o', 'O');
+                           .Replace('o', 'O')
+                           .Replace('[', ' ')
+                           .Replace('©','O');
 
                 Console.Write(item + "\n"); // controlling so output is correct.
             }
