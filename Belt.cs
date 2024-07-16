@@ -24,7 +24,7 @@ namespace AkarasDegenStuff
 
         public Belt(string[] data)
         {
-            name = data[0];
+            name = data[0].Trim();
             type = data[1];
             defense = data[2];
             req1 = data[6];
