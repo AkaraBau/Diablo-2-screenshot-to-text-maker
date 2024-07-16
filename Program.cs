@@ -4,7 +4,7 @@
     {
         public static void Main()
         {
-            ScreenShotToText.DoIt();
+            JPGtoTXT.DoIt();
         }
     }
 }
