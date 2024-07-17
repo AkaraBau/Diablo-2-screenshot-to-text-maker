@@ -71,7 +71,7 @@ namespace AkarasDegenStuff
                 }
                 else if (call == "s")
                 {
-                    sBelt.Sort((a,b)=>a.CompareTo(b));
+                sBelt.Sort((a,b)=>a.CompareTo(b));
                 }
                 else if (call == "q")
                 {
