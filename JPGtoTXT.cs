@@ -65,8 +65,11 @@ namespace AkarasDegenStuff
                 }
                 else if (call == "t")
                 {
+                    Console.WriteLine("What would you like to name the file?"); 
+                    String name = Console.ReadLine(); 
+                
                     sBelt = Utils.ObjectToString(allBelts);
-                    input = Path.Combine(input, "belts.txt");
+                    input = Path.Combine(input, name + ".txt");
                     File.WriteAllLines(input, sBelt);
                 }
                 else if (call == "s")
