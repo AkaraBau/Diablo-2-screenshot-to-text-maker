@@ -21,8 +21,21 @@ namespace AkarasDegenStuff
             string[] massInput = Utils.DetectFiles(input);
             string[] massOutput = new string[massInput.Length];
             string[] splitData = new string[14];
-            List<string> sBelt = new List<string>(); 
+            List<string> sBelt = new List<string>();
             List<Belt> allBelts = new List<Belt>(); // creation of a list
+
+            Console.WriteLine("Would you like to change directory for the ocr scan? y/n");
+            String call = Console.ReadLine();
+            if (call == "y")
+            {
+                Console.WriteLine("Your directory should look like this " + input);
+                input = Console.ReadLine();
+                Console.WriteLine("scan starting");
+            }
+            else if (call == "n")
+            {
+                Console.WriteLine("Scan starting.");
+            }
 
             for (int i = 0; i < massInput.Length; i++)
             {
@@ -41,16 +54,33 @@ namespace AkarasDegenStuff
             }
 
             Console.WriteLine("What would you like to do?");
-            Console.WriteLine("print[p] or txt[t]");
-            String call = Console.ReadLine();
-            if (call == "p")
+            Console.WriteLine("print[p], txt[t],sort(s) quit(q)");
+            call = null;
+            while (call != "q")
             {
-                Utils.PrintList(allBelts);
-            }
-            else if (call == "t")
-            {
-                sBelt = Utils.ObjectToString(allBelts);
-                File.WriteAllLines(input, sBelt);
+                call = Console.ReadLine();
+                if (call == "p")
+                {
+                    Utils.PrintList(allBelts);
+                }
+                else if (call == "t")
+                {
+                    sBelt = Utils.ObjectToString(allBelts);
+                    input = Path.Combine(input, "belts.txt");
+                    File.WriteAllLines(input, sBelt);
+                }
+                else if (call == "s")
+                {
+                    sBelt.Sort((a,b)=>a.CompareTo(b));
+                }
+                else if (call == "q")
+                {
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("wrong input try again");
+                }
             }
             Console.ReadLine();
         }

@@ -91,7 +91,7 @@ namespace AkarasDegenStuff
             List<string> list = new List<string>();
             foreach (var i in inputlist)
             {
-                list.Add(inputlist.ToString());
+                list.Add(i.ToString());
             }
             return list;
         }
