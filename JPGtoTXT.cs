@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.IO.Compression;
 using System.IO.Pipes;
@@ -20,6 +21,7 @@ namespace AkarasDegenStuff
             string[] massInput = Utils.DetectFiles(input);
             string[] massOutput = new string[massInput.Length];
             string[] splitData = new string[14];
+            List<string> sBelt = new List<string>(); 
             List<Belt> allBelts = new List<Belt>(); // creation of a list
 
             for (int i = 0; i < massInput.Length; i++)
@@ -28,17 +30,28 @@ namespace AkarasDegenStuff
                 {
                     StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
 
-                     massOutput[i] = reader.ReadToEnd(); //making stream -> string []
-                     massOutput[i] = Utils.ChangeLetters(massOutput[i]); //shorten method
-                     massOutput[i] = Utils.ShortenString(massOutput[i]); //shorten method
-                     splitData = massOutput[i].Split(new[] { '\n' }, StringSplitOptions.None); //splitting string into string []
-                     splitData = splitData.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
-                     Belt belt = new Belt(splitData);
-                     allBelts.Add(belt);
+                    massOutput[i] = reader.ReadToEnd(); //making stream -> string []
+                    massOutput[i] = Utils.ChangeLetters(massOutput[i]); //shorten method
+                    massOutput[i] = Utils.ShortenString(massOutput[i]); //shorten method
+                    splitData = massOutput[i].Split(new[] { '\n' }, StringSplitOptions.None); //splitting string into string []
+                    splitData = splitData.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
+                    Belt belt = new Belt(splitData);
+                    allBelts.Add(belt);
                 }
             }
-            Utils.PrintList(allBelts);
 
+            Console.WriteLine("What would you like to do?");
+            Console.WriteLine("print[p] or txt[t]");
+            String call = Console.ReadLine();
+            if (call == "p")
+            {
+                Utils.PrintList(allBelts);
+            }
+            else if (call == "t")
+            {
+                sBelt = Utils.ObjectToString(allBelts);
+                File.WriteAllLines(input, sBelt);
+            }
             Console.ReadLine();
         }
     }

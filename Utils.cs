@@ -17,7 +17,7 @@ namespace AkarasDegenStuff
         public static string[] DetectFiles(string input)
         {
             string[] allPaths = Directory.GetFiles(input);
-            return allPaths;   
+            return allPaths;
         }
         public static string ShortenString(string input)
         {
@@ -64,17 +64,19 @@ namespace AkarasDegenStuff
         public static string ChangeLetters(string input)
         {
             string result = input.ToUpper()
-                                 .Replace("1@","10")
+                                 .Replace("1@", "10")
                                  .Replace('®', 'O')
                                  .Replace('@', 'O')
                                  .Replace("[", "")
                                  .Replace('©', 'O')
                                  .Replace('£', 'E')
-                                 .Replace("#","")
-                                 .Replace("+","")
-                                 .Replace("@","")
-                                 .Replace("|","")
-                                 .Replace("*","");
+                                 .Replace("#", "")
+                                 .Replace("+", "")
+                                 .Replace("@", "")
+                                 .Replace("|", "")
+                                 .Replace("*", "")
+                                 .Replace("RR", "R")
+                                 .Replace("PP", "P");
             return result;
         }
         public static void PrintList(List<Belt> inputlist)
@@ -83,6 +85,15 @@ namespace AkarasDegenStuff
             {
                 Console.WriteLine(l);
             }
+        }
+        public static List<string> ObjectToString(List<Belt> inputlist)
+        {
+            List<string> list = new List<string>();
+            foreach (var i in inputlist)
+            {
+                list.Add(inputlist.ToString());
+            }
+            return list;
         }
     }
 }
