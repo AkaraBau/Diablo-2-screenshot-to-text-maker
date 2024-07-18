@@ -25,19 +25,25 @@ namespace AkarasDegenStuff
             //DPL
             string result = input.Replace("DEFENSEBASEDONCHARACTERLEVEL", "DPL")
                                  .Replace("DEFENSEBASEDONCHARACTERLEVEL", "DPL")
+                                 .Replace("DERENSEBASEDONCHARACTERLEVEL", "DPL")
                                  //ED
                                  .Replace("ENHANCEDDEFENSE", "ED")
                                  //defense
-                                 .Replace("DEFENSE:", "DEF:")
-                                 .Replace("DEFENSE", "DEF:")
+                                 .Replace("DEFENSE:", "DEF")
+                                 .Replace("DEFENSE", "DEF")
+                                 .Replace("DERENSE", "DEF")
+                                 .Replace("DERENSECT", "DEF")
                                  //req
-                                 .Replace("REQUIREDLEVEL:", "LREQ:")
-                                 .Replace("REQUIREDLEVET:", "LREQ:")
-                                 .Replace("REQUIREDLEVEL", "LREQ:")
-                                 .Replace("REQUIREDLEVET", "LREQ:")
+                                 .Replace("REQUIREDLEVEL:", "LREQ")
+                                 .Replace("REQUIREDLEVET:", "LREQ")
+                                 .Replace("REQUIREDLEVEL", "LREQ")
+                                 .Replace("REQUIREDLEVET", "LREQ")
                                  //base
                                  .Replace("VAMPIREFANGBELT", "VB")
+                                 .Replace("VANPIREFANGBELT", "VB")
+                                 .Replace("MANPIREFANGBELT", "VB")
                                  .Replace("SHARKSKINBELT", "SB")
+                                 .Replace("SHARESKINBELT", "SB")
                                  //stats craft roll 
                                  .Replace("FASTERCASTRATE", "FCR")
                                  //mana
@@ -48,17 +54,23 @@ namespace AkarasDegenStuff
                                  .Replace("T6IMANA", "MANA")
                                  .Replace("TEIMANA", "MANA")
                                  .Replace("TEINANA", "MANA")
+                                 .Replace("IREMANA", "MANA")
                                  //reg
                                  .Replace("REGENERATEMANA", "MREG")
                                  .Replace("REGENERATEIMANA", "MREG")
                                  .Replace("REGENERATEIMIANA", "MREG")
                                  .Replace("REGENERAMANA", "MREG")
+                                 .Replace("REGEMERAMANA", "MREG")
+                                 .Replace("REGENERATEMAMA", "MREG")
                                  //PLR
                                  .Replace("POISONLENGTHREDUCEDBY", "PLR")
+                                 .Replace("POISONLENGTH", "PLR")
                                  .Replace("PEISENLENGTHREDUCEDBY", "PLR")
                                  .Replace("POISENLENGTHREDUCEDBY", "PLR")
+                                 .Replace("PEISENLENGTHREDUCEDSV","PLR")
                                  //LR
                                  .Replace("LIGHTNINGRESIST", "LR")
+                                 .Replace("LIGHTHINGRESIST", "LR")
                                  //FR
                                  .Replace("FIRERESIST", "FR")
                                  //PR
@@ -72,9 +84,13 @@ namespace AkarasDegenStuff
                                  .Replace("COLDRESIST", "CR")
                                  .Replace("CORPRESIST", "CR")
                                  .Replace("CERLPRESIST", "CR")
+                                 .Replace("CELDRESIST", "CR")
+                                 .Replace("CELNRESIST", "CR")
                                  .Replace("CELPRESIST", "CR")
                                  .Replace("CERPRESIST", "CR")
+                                 .Replace("CERPDRESIST", "CR")
                                  .Replace("COLDR&SIST", "CR")
+                                 .Replace("COLORESIST", "CR")
                                  //str
                                  .Replace("TOSTRENGTH", "STR")
                                  .Replace("TESTRENGTH", "STR")
@@ -85,12 +101,15 @@ namespace AkarasDegenStuff
                                  .Replace("T0OLIFE", "LIFE")
                                  .Replace("TELIFO", "LIFE")
                                  .Replace("TELIFE", "LIFE")
+                                 .Replace("TAELIFE", "LIFE")
                                  //rep 
                                  .Replace("REPLENISHLIFE", "REP")
                                  .Replace("REPLENISHLIFO ", "REP")
                                  //fhr
                                  .Replace("FASTERHITRECOVERY", "FHR")
                                  .Replace("FASTERHITRECOVER", "FHR")
+                                 .Replace("FASTERHIFRECOVERY", "FHR")
+                                 .Replace("FASTERHITRECEVERY", "FHR")
                                  //EG
                                  .Replace("EXTRAGOLDFROMMONSTERS", "EG")
                                  .Replace("EXTRAGOLDFROMMONSTERS", "EG")
@@ -143,7 +162,10 @@ namespace AkarasDegenStuff
                                  .Replace("]", "")
                                  .Replace("'", "")
                                  .Replace(":", "")
-                                 .Replace("%", "");
+                                 .Replace("%", "")
+                                 .Replace("«","")
+                                 .Replace("-","")
+                                 .Replace("“","");
             return result;
         }
         public static void PrintList(List<string> inputlist)

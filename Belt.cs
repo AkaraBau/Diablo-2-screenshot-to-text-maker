@@ -13,6 +13,7 @@ namespace AkarasDegenStuff
         public string name { get; set; }
         public string type { get; set; }
         public string defense { get; set; }
+        public int defenseAmount { get; set; }
         public string req1 { get; set; }
         public int level { get; set; }
         public string stat1 { get; set; }
@@ -35,8 +36,12 @@ namespace AkarasDegenStuff
             string newName = data[1] + data[7].Substring(0, 1) + Utils.GetFirstLetter(data[8]) + Utils.GetFirstLetter(data[9]) + Utils.GetFirstLetter(data[10]) + Utils.GetFirstLetter(data[11]) + Utils.GetFirstLetter(data[12]);
             name = newName;
             type = data[1];
-            defense = data[2];
-            req1 = data[6];
+
+            defenseAmount = Utils.ExtractIntFromString(data[2]);
+            defense = Utils.RemoveNumbers(data[2]);
+
+            level = Utils.ExtractIntFromString(data[6]);
+            req1 = Utils.RemoveNumbers(data[6]);
 
             amount1 = Utils.ExtractIntFromString(data[7]);
             stat1 = Utils.RemoveNumbers(data[7]);
@@ -73,7 +78,7 @@ namespace AkarasDegenStuff
         }
         public override string ToString()
         {
-            string result = $"{name}/{type}/{defense}/{req1}\t{amount1}{stat1}/{amount2}{stat2}/{amount3}{stat3}/{amount4}{stat4}/{amount5}{stat5}/{amount6}{stat6}";
+            string result = $"{name}/{type}/{defenseAmount}{defense}/{level}{req1}\t{amount1}{stat1}/{amount2}{stat2}/{amount3}{stat3}/{amount4}{stat4}/{amount5}{stat5}/{amount6}{stat6}";
             if (stat7 != " ")
             {
                 result += $"/{amount7}{stat7}";

@@ -17,33 +17,17 @@ namespace AkarasDegenStuff
     {
         public static void DoIt()
         {
-            var input = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new\Cbelt-B";
-            string[] massInput = Utils.DetectFiles(input); //array of strings containing input to tessaract.
+            var input = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
+            
             string[] splitData = new string[14]; // array of strings. Array which goes into the class Belt
             List<string> sBelt = new List<string>(); //list of <String>
             List<Belt> allBelts = new List<Belt>(); // list of <Belt>
             
-            Console.WriteLine("Would you like to change directory for the ocr scan? y/n");
-
-            String call = Console.ReadLine();
+            Console.WriteLine("What directory would you like to scan?");
+            Console.WriteLine("This is the format which should be used: \n" + input); 
+            input = Console.ReadLine();
             
-            if (call == "y")
-            {
-                Console.WriteLine("Your directory should look like this " + input);
-                input = Console.ReadLine();
-                massInput = Utils.DetectFiles(input); 
-                Console.WriteLine("Reading the files.");
-            }
-            else if (call == "n")
-            {
-                Console.WriteLine("Reading the files.");
-            }
-            else
-            {
-                Console.WriteLine("Wrong input try again.");
-                call = Console.ReadLine();
-            }
-
+            string[] massInput = Utils.DetectFiles(input);
             string[] massOutput = new string[massInput.Length]; //array of strings containing output from tessaract 
 
             for (int i = 0; i < massInput.Length; i++)
@@ -65,7 +49,7 @@ namespace AkarasDegenStuff
             sBelt = Utils.ObjectToString(allBelts); // convert <object> to string
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("print[p], txt[t],sort(s) quit(q)");
-            call = null;
+            String call = null;
             while (call != "q")
             {
                 call = Console.ReadLine();
