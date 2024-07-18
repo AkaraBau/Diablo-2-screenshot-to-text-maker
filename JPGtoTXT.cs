@@ -32,11 +32,11 @@ namespace AkarasDegenStuff
                 Console.WriteLine("Your directory should look like this " + input);
                 input = Console.ReadLine();
                 massInput = Utils.DetectFiles(input); 
-                Console.WriteLine("scan starting");
+                Console.WriteLine("Reading the files.");
             }
             else if (call == "n")
             {
-                Console.WriteLine("Scan starting.");
+                Console.WriteLine("Reading the files.");
             }
             else
             {

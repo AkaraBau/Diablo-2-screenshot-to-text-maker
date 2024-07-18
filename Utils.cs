@@ -22,7 +22,7 @@ namespace AkarasDegenStuff
         }
         public static string ShortenString(string input)
         {
-                                 //DPL
+            //DPL
             string result = input.Replace("DEFENSEBASEDONCHARACTERLEVEL", "DPL")
                                  .Replace("DEFENSEBASEDONCHARACTERLEVEL", "DPL")
                                  //ED
@@ -34,6 +34,7 @@ namespace AkarasDegenStuff
                                  .Replace("REQUIREDLEVEL:", "LREQ:")
                                  .Replace("REQUIREDLEVET:", "LREQ:")
                                  .Replace("REQUIREDLEVEL", "LREQ:")
+                                 .Replace("REQUIREDLEVET", "LREQ:")
                                  //base
                                  .Replace("VAMPIREFANGBELT", "VB")
                                  .Replace("SHARKSKINBELT", "SB")
@@ -48,32 +49,32 @@ namespace AkarasDegenStuff
                                  .Replace("TEIMANA", "MANA")
                                  .Replace("TEINANA", "MANA")
                                  //reg
-                                 .Replace("REGENERATEMANA", "MREG:")
-                                 .Replace("REGENERATEIMANA", "MREG:")
-                                 .Replace("REGENERATEIMIANA", "MREG:")
-                                 .Replace("REGENERAMANA", "MREG:")
+                                 .Replace("REGENERATEMANA", "MREG")
+                                 .Replace("REGENERATEIMANA", "MREG")
+                                 .Replace("REGENERATEIMIANA", "MREG")
+                                 .Replace("REGENERAMANA", "MREG")
                                  //PLR
                                  .Replace("POISONLENGTHREDUCEDBY", "PLR")
                                  .Replace("PEISENLENGTHREDUCEDBY", "PLR")
                                  .Replace("POISENLENGTHREDUCEDBY", "PLR")
                                  //LR
-                                 .Replace("LIGHTNINGRESIST", "LR:")
+                                 .Replace("LIGHTNINGRESIST", "LR")
                                  //FR
-                                 .Replace("FIRERESIST", "FR:")
+                                 .Replace("FIRERESIST", "FR")
                                  //PR
-                                 .Replace("POISONRESIST", "PR:")
-                                 .Replace("POISENRESIST", "PR:")
-                                 .Replace("PEISENRESIST", "PR:")
-                                 .Replace("POISONROSIST", "PR:")
-                                 .Replace("PERSONRESIST", "PR:")
-                                 .Replace("PÆISENRESIST", "PR:")
+                                 .Replace("POISONRESIST", "PR")
+                                 .Replace("POISENRESIST", "PR")
+                                 .Replace("PEISENRESIST", "PR")
+                                 .Replace("POISONROSIST", "PR")
+                                 .Replace("PERSONRESIST", "PR")
+                                 .Replace("PÆISENRESIST", "PR")
                                  //cold resist
-                                 .Replace("COLDRESIST", "CR:")
-                                 .Replace("CORPRESIST", "CR:")
-                                 .Replace("CERLPRESIST", "CR:")
-                                 .Replace("CELPRESIST", "CR:")
-                                 .Replace("CERPRESIST", "CR:")
-                                 .Replace("COLDR&SIST", "CR:")
+                                 .Replace("COLDRESIST", "CR")
+                                 .Replace("CORPRESIST", "CR")
+                                 .Replace("CERLPRESIST", "CR")
+                                 .Replace("CELPRESIST", "CR")
+                                 .Replace("CERPRESIST", "CR")
+                                 .Replace("COLDR&SIST", "CR")
                                  //str
                                  .Replace("TOSTRENGTH", "STR")
                                  .Replace("TESTRENGTH", "STR")
@@ -85,8 +86,8 @@ namespace AkarasDegenStuff
                                  .Replace("TELIFO", "LIFE")
                                  .Replace("TELIFE", "LIFE")
                                  //rep 
-                                 .Replace("REPLENISHLIFE", "REP:")
-                                 .Replace("REPLENISHLIFO ", "REP:")
+                                 .Replace("REPLENISHLIFE", "REP")
+                                 .Replace("REPLENISHLIFO ", "REP")
                                  //fhr
                                  .Replace("FASTERHITRECOVERY", "FHR")
                                  .Replace("FASTERHITRECOVER", "FHR")
@@ -109,7 +110,7 @@ namespace AkarasDegenStuff
         }
         public static string RemoveAllWhiteSpace(string input)
         {
-             return Regex.Replace(input, @"[ \t\r\f\v]", "");
+            return Regex.Replace(input, @"[ \t\r\f\v]", "");
         }
         public static string ChangeLetters(string input)
         {
@@ -141,7 +142,8 @@ namespace AkarasDegenStuff
                                  .Replace(",", "")
                                  .Replace("]", "")
                                  .Replace("'", "")
-                                 .Replace(":", "");
+                                 .Replace(":", "")
+                                 .Replace("%", "");
             return result;
         }
         public static void PrintList(List<string> inputlist)
@@ -163,6 +165,26 @@ namespace AkarasDegenStuff
         public static char GetFirstLetter(string input)
         {
             return input.FirstOrDefault(char.IsLetter);
+        }
+        public static int ExtractIntFromString(string input)
+        {
+            string pattern = @"\d+";
+            string combinedNumbers = "";
+            MatchCollection matches = Regex.Matches(input, pattern);
+
+            foreach (Match match in matches)
+            {
+                combinedNumbers += match.Value;
+            }
+            int.TryParse(combinedNumbers, out int result);
+            
+            return result;
+            
+        }
+        public static string RemoveNumbers(string input){
+        string pattern = @"\d";
+        string result = Regex.Replace(input, pattern, "");
+        return result;
         }
     }
 }
