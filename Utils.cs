@@ -9,6 +9,7 @@ using NLog.LayoutRenderers;
 using TesseractSharp;
 using TesseractSharp.Core;
 using TesseractSharp.Hocr;
+using System.Text.RegularExpressions;
 
 namespace AkarasDegenStuff
 {
@@ -16,50 +17,98 @@ namespace AkarasDegenStuff
     {
         public static string[] DetectFiles(string input)
         {
-            string[] allPaths = Directory.GetFiles(input,".PNG" + ".JPG" + ".JPEG");
+            string[] allPaths = Directory.GetFiles(input);
             return allPaths;
         }
         public static string ShortenString(string input)
         {
-            //base type/stats
-            string result = input.Replace("DEFENSE: ", "DEF:")
-                                 .Replace("REQUIRED LEVEL: ", "LREQ:")
-                                 .Replace("VAMPIREFANG BELT", "VB")
-                                 .Replace("SHARKSKIN BELT", "SB")
+                                 //DPL
+            string result = input.Replace("DEFENSEBASEDONCHARACTERLEVEL", "DPL")
+                                 .Replace("DEFENSEBASEDONCHARACTERLEVEL", "DPL")
+                                 //ED
+                                 .Replace("ENHANCEDDEFENSE", "ED")
+                                 //defense
+                                 .Replace("DEFENSE:", "DEF:")
+                                 .Replace("DEFENSE", "DEF:")
+                                 //req
+                                 .Replace("REQUIREDLEVEL:", "LREQ:")
+                                 .Replace("REQUIREDLEVET:", "LREQ:")
+                                 .Replace("REQUIREDLEVEL", "LREQ:")
+                                 //base
+                                 .Replace("VAMPIREFANGBELT", "VB")
+                                 .Replace("SHARKSKINBELT", "SB")
                                  //stats craft roll 
-                                 .Replace(" FASTER CAST RATE", "FCR")
-                                 .Replace(" TO MANA", "MANA")
-                                 .Replace(" TE MANA", "MANA")
-                                 .Replace(" T6 MANA", "MANA")
-                                 .Replace("REGENERATE MANA ", "MREG:")
-                                 //suffixes resistance
-                                 .Replace(" POISON LENGTH REDUCED BY", "PLR")
-                                 .Replace("LIGHTNING RESIST ", "LR:")
-                                 .Replace("FIRE RESIST ", "FR:")
-                                 .Replace("POISON RESIST ", "PR:")
-                                 .Replace("PEISENN RESIST ", "PR:")
-                                 .Replace("POISON ROSIST ", "PR:")
-                                 .Replace("COLD RESIST ", "CR:")
-                                 .Replace("CORP RESIST ", "CR:")
-                                 //suffixes stat/life/mana/rep
-                                 .Replace(" TO STRENGTH", "STR")
-                                 .Replace(" TE STRENGTH", "STR")
-                                 .Replace(" TO LIFO", "LIFE")
-                                 .Replace("REPLENISH LIFE ", "REP:")
-                                 .Replace("REPLENISH LIFO ", "REP:")
-                                 //suffixes other
-                                 .Replace(" FASTER HIT RECOVERY", "FHR")
-                                 .Replace(" ENHANCED DEFENSE", "ED")
-                                 .Replace(" EXTRA GOLD FROM  MONSTERS", "EG")
-                                 .Replace(" EXTRA GOLD FROM MONSTERS", "EG")
-                                 .Replace("ATTACKER TAKES DAMAGE OF ", "ATDO")
-                                 .Replace(" TE LIGHT RADIUS", "LIGHTRADIUS")
-                                 .Replace(" CHANCE TO CAST LEVEL ", "CTCLVL")
-                                 .Replace(" WHEN STRUCK", "")
-                                 .Replace("WHEN STRUCK", "WS")
-                                 .Replace("DEFENSE (BASED ON CHARACTER LEVEL) ", "DPL")
-                                 .Replace(" MAXIMUM STAMINA", "MS");
+                                 .Replace("FASTERCASTRATE", "FCR")
+                                 //mana
+                                 .Replace("TOMANA", "MANA")
+                                 .Replace("TOIMANA", "MANA")
+                                 .Replace("TEMANA", "MANA")
+                                 .Replace("T6MANA", "MANA")
+                                 .Replace("T6IMANA", "MANA")
+                                 .Replace("TEIMANA", "MANA")
+                                 .Replace("TEINANA", "MANA")
+                                 //reg
+                                 .Replace("REGENERATEMANA", "MREG:")
+                                 .Replace("REGENERATEIMANA", "MREG:")
+                                 .Replace("REGENERATEIMIANA", "MREG:")
+                                 .Replace("REGENERAMANA", "MREG:")
+                                 //PLR
+                                 .Replace("POISONLENGTHREDUCEDBY", "PLR")
+                                 .Replace("PEISENLENGTHREDUCEDBY", "PLR")
+                                 .Replace("POISENLENGTHREDUCEDBY", "PLR")
+                                 //LR
+                                 .Replace("LIGHTNINGRESIST", "LR:")
+                                 //FR
+                                 .Replace("FIRERESIST", "FR:")
+                                 //PR
+                                 .Replace("POISONRESIST", "PR:")
+                                 .Replace("POISENRESIST", "PR:")
+                                 .Replace("PEISENRESIST", "PR:")
+                                 .Replace("POISONROSIST", "PR:")
+                                 .Replace("PERSONRESIST", "PR:")
+                                 .Replace("PÆISENRESIST", "PR:")
+                                 //cold resist
+                                 .Replace("COLDRESIST", "CR:")
+                                 .Replace("CORPRESIST", "CR:")
+                                 .Replace("CERLPRESIST", "CR:")
+                                 .Replace("CELPRESIST", "CR:")
+                                 .Replace("CERPRESIST", "CR:")
+                                 .Replace("COLDR&SIST", "CR:")
+                                 //str
+                                 .Replace("TOSTRENGTH", "STR")
+                                 .Replace("TESTRENGTH", "STR")
+                                 //life
+                                 .Replace("TOLIFO", "LIFE")
+                                 .Replace("TOLIFE", "LIFE")
+                                 .Replace("JLIFE", "LIFE")
+                                 .Replace("T0OLIFE", "LIFE")
+                                 .Replace("TELIFO", "LIFE")
+                                 .Replace("TELIFE", "LIFE")
+                                 //rep 
+                                 .Replace("REPLENISHLIFE", "REP:")
+                                 .Replace("REPLENISHLIFO ", "REP:")
+                                 //fhr
+                                 .Replace("FASTERHITRECOVERY", "FHR")
+                                 .Replace("FASTERHITRECOVER", "FHR")
+                                 //EG
+                                 .Replace("EXTRAGOLDFROMMONSTERS", "EG")
+                                 .Replace("EXTRAGOLDFROMMONSTERS", "EG")
+                                 //ATDO
+                                 .Replace("ATTACKERTAKESDAMAGEOF", "ATDO")
+                                 //Light radius
+                                 .Replace("TELIGHTRADIUS", "LIGHTRADIUS")
+                                 //Ctc ws
+                                 .Replace("CHANCETOCASTLEVEL", "CTCLVL")
+                                 .Replace("WHENSTRUCK", "")
+                                 //stamina 
+                                 .Replace("MAXIMUMSTAMINA", "MS")
+                                 .Replace("LEAS", "7%")
+                                 .Replace("REPAIRSDURABILITYIN33SECONDS", "REPAIR");
             return result;
+        }
+        public static string RemoveAllWhiteSpace(string input)
+        {
+             return Regex.Replace(input, @"[ \t\r\f\v]", "");
         }
         public static string ChangeLetters(string input)
         {
@@ -76,7 +125,22 @@ namespace AkarasDegenStuff
                                  .Replace("|", "")
                                  .Replace("*", "")
                                  .Replace("RR", "R")
-                                 .Replace("PP", "P");
+                                 .Replace("PP", "P")
+                                 .Replace("SS", "S")
+                                 .Replace("NN", "N")
+                                 .Replace("II", "I")
+                                 .Replace("EE", "E")
+                                 .Replace("É", "E")
+                                 .Replace("(", "")
+                                 .Replace(")", "")
+                                 .Replace(".", "")
+                                 .Replace(";", "")
+                                 .Replace("}", "")
+                                 .Replace("/", "")
+                                 .Replace(",", "")
+                                 .Replace("]", "")
+                                 .Replace("'", "")
+                                 .Replace(":", "");
             return result;
         }
         public static void PrintList(List<string> inputlist)
@@ -94,6 +158,10 @@ namespace AkarasDegenStuff
                 list.Add(i.ToString());
             }
             return list;
+        }
+        public static char GetFirstLetter(string input)
+        {
+            return input.FirstOrDefault(char.IsLetter);
         }
     }
 }

@@ -24,7 +24,8 @@ namespace AkarasDegenStuff
 
         public Belt(string[] data)
         {
-            name = data[0].Trim();
+            string newName = data[1] + data[7].Substring(0,1) + Utils.GetFirstLetter(data[8]) + Utils.GetFirstLetter(data[9]) + Utils.GetFirstLetter(data[10]) + Utils.GetFirstLetter(data[11]) + Utils.GetFirstLetter(data[12]); 
+            name = newName; 
             type = data[1];
             defense = data[2];
             req1 = data[6];
@@ -50,7 +51,7 @@ namespace AkarasDegenStuff
         }
         public override string ToString()
         {
-            string result = $"{name}/{type}/{defense}/{req1}/{stat1}/{stat2}/{stat3}/{stat4}/{stat5}/{stat6}";
+            string result = $"{name}/{type}/{defense}/{req1}\t{stat1}/{stat2}/{stat3}/{stat4}/{stat5}/{stat6}";
             if (stat7 != " ")
             {
                 result += $"/{stat7}";
