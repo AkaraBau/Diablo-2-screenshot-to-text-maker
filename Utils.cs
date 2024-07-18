@@ -103,7 +103,8 @@ namespace AkarasDegenStuff
                                  //stamina 
                                  .Replace("MAXIMUMSTAMINA", "MS")
                                  .Replace("LEAS", "7%")
-                                 .Replace("REPAIRSDURABILITYIN33SECONDS", "REPAIR");
+                                 .Replace("REPAIRSDURABILITYIN33SECONDS", "REPAIR")
+                                 .Replace("N0", "26%");
             return result;
         }
         public static string RemoveAllWhiteSpace(string input)
