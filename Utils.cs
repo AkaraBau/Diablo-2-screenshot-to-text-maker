@@ -16,7 +16,7 @@ namespace AkarasDegenStuff
     {
         public static string[] DetectFiles(string input)
         {
-            string[] allPaths = Directory.GetFiles(input);
+            string[] allPaths = Directory.GetFiles(input,".PNG" + ".JPG" + ".JPEG");
             return allPaths;
         }
         public static string ShortenString(string input)
@@ -79,7 +79,7 @@ namespace AkarasDegenStuff
                                  .Replace("PP", "P");
             return result;
         }
-        public static void PrintList(List<Belt> inputlist)
+        public static void PrintList(List<string> inputlist)
         {
             foreach (var l in inputlist)
             {

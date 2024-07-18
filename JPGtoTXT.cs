@@ -18,14 +18,16 @@ namespace AkarasDegenStuff
         public static void DoIt()
         {
             var input = @"C:\Users\fide_\Desktop\Programmering\Tessaract\";
-            string[] massInput = Utils.DetectFiles(input);
-            string[] massOutput = new string[massInput.Length];
-            string[] splitData = new string[14];
-            List<string> sBelt = new List<string>();
-            List<Belt> allBelts = new List<Belt>(); // creation of a list
+            string[] massInput = Utils.DetectFiles(input); //array of strings containing input to tessaract. 
+            string[] massOutput = new string[massInput.Length]; //array of strings containing output from tessaract 
+            string[] splitData = new string[14]; // array of strings. Array which goes into the class Belt
+            List<string> sBelt = new List<string>(); //list of <String>
+            List<Belt> allBelts = new List<Belt>(); // list of <Belt>
 
             Console.WriteLine("Would you like to change directory for the ocr scan? y/n");
+
             String call = Console.ReadLine();
+            
             if (call == "y")
             {
                 Console.WriteLine("Your directory should look like this " + input);
@@ -48,11 +50,11 @@ namespace AkarasDegenStuff
                     massOutput[i] = Utils.ShortenString(massOutput[i]); //shorten method
                     splitData = massOutput[i].Split(new[] { '\n' }, StringSplitOptions.None); //splitting string into string []
                     splitData = splitData.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
-                    Belt belt = new Belt(splitData);
-                    allBelts.Add(belt);
+                    Belt belt = new Belt(splitData); //Creation of belt
+                    allBelts.Add(belt); //adding belt to list 
                 }
             }
-
+            sBelt = Utils.ObjectToString(allBelts); // convert <object> to string
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("print[p], txt[t],sort(s) quit(q)");
             call = null;
@@ -61,20 +63,18 @@ namespace AkarasDegenStuff
                 call = Console.ReadLine();
                 if (call == "p")
                 {
-                    Utils.PrintList(allBelts);
+                    Utils.PrintList(sBelt);
                 }
                 else if (call == "t")
                 {
                     Console.WriteLine("What would you like to name the file?"); 
                     String name = Console.ReadLine(); 
-                
-                    sBelt = Utils.ObjectToString(allBelts);
                     input = Path.Combine(input, name + ".txt");
                     File.WriteAllLines(input, sBelt);
                 }
                 else if (call == "s")
                 {
-                sBelt.Sort((a,b)=>a.CompareTo(b));
+                sBelt.Sort();
                 }
                 else if (call == "q")
                 {
