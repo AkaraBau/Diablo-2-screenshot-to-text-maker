@@ -244,6 +244,7 @@ namespace AkarasDegenStuff
                 item = Utils.ShortenString(item);
                 data = item.Split(new[] { '\n' }, StringSplitOptions.None); //split string into array of strings 
                 data = data.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
+                Console.WriteLine("item added");
                 return data;
             }
         }
@@ -259,6 +260,8 @@ namespace AkarasDegenStuff
             {
                 using (var stream = Tesseract.ImageToTxt(massInput[i], languages: new[] { Language.English, Language.French }))
                 {
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                    Console.Write( $"{i + 1}/{massInput.Length}");
                     StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
                     massOutput[i] = reader.ReadToEnd(); //making stream -> string []
 
@@ -273,6 +276,7 @@ namespace AkarasDegenStuff
                     beltList.Add(belt); //adding belt to list 
                 }
             }
+            Console.WriteLine("\nDone.");
             stringList = Utils.ObjectToString(beltList);
             return stringList; 
         }
