@@ -230,5 +230,51 @@ namespace AkarasDegenStuff
             string result = Regex.Replace(input, pattern, "");
             return result;
         }
+        public static string[] SingleBeltOcr(string input)
+        {
+            string item = null;
+            string[] data = new string[14];
+            using (var stream = Tesseract.ImageToTxt(input, languages: new[] { Language.English, Language.French }))
+            {
+                StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
+
+                item = reader.ReadToEnd(); //making stream -> string 
+                item = Utils.RemoveAllWhiteSpace(item);
+                item = Utils.ChangeLetters(item);
+                item = Utils.ShortenString(item);
+                data = item.Split(new[] { '\n' }, StringSplitOptions.None); //split string into array of strings 
+                data = data.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
+                return data;
+            }
+        }
+        public static List<string> MultiBeltOcr(string input)
+        {
+            List<Belt> beltList = new List<Belt>();
+            var stringList = new List<string>(); //list of <String>
+            string[] splitData = new string[14];
+            string[] massInput = Utils.DetectFiles(input);
+            string[] massOutput = new string[massInput.Length]; //array of strings containing output from tessaract 
+
+            for (int i = 0; i < massInput.Length; i++)
+            {
+                using (var stream = Tesseract.ImageToTxt(massInput[i], languages: new[] { Language.English, Language.French }))
+                {
+                    StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
+                    massOutput[i] = reader.ReadToEnd(); //making stream -> string []
+
+                    massOutput[i] = Utils.RemoveAllWhiteSpace(massOutput[i]); // remove all whitespace
+                    massOutput[i] = Utils.ChangeLetters(massOutput[i]); //shorten method
+                    massOutput[i] = Utils.ShortenString(massOutput[i]); //shorten method
+
+                    splitData = massOutput[i].Split(new[] { '\n' }, StringSplitOptions.None); //splitting string into string []
+                    splitData = splitData.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
+
+                    Belt belt = new Belt(splitData); //Creation of belt
+                    beltList.Add(belt); //adding belt to list 
+                }
+            }
+            stringList = Utils.ObjectToString(beltList);
+            return stringList; 
+        }
     }
 }

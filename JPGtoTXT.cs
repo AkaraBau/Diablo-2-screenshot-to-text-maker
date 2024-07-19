@@ -48,7 +48,7 @@ namespace AkarasDegenStuff
             }
             sBelt = Utils.ObjectToString(allBelts); // convert <object> to string
             Console.WriteLine("What would you like to do?");
-            Console.WriteLine("print[p], txt[t],sort(s) quit(q)");
+            Console.WriteLine("print[p], txt[t],sort(s), add(a), remove(r) quit(q)");
             String call = null;
             while (call != "q")
             {
@@ -67,6 +67,21 @@ namespace AkarasDegenStuff
                 else if (call == "s")
                 {
                 sBelt.Sort();
+                }
+                else if (call == "a")
+                {
+                 Console.WriteLine("Write out your desired. ex." + input + @"\sln.PNG"); 
+                 input = Console.ReadLine(); 
+                 Belt belt = new Belt(Utils.SingleBeltOcr(input));
+                 allBelts.Add(belt); 
+                 sBelt = Utils.ObjectToString(allBelts);
+                }
+                else if (call == "r")
+                {
+                    Console.WriteLine("Which belt would you like to remove?");
+                    Console.WriteLine("Format for input: SB1ASLMM/SB/34DEF/63LREQ	10FCR/16ADDSCOLDDAMAGE/0STR/581LIFE/38MANA/4MREG");
+                    string remove = Console.ReadLine();
+                    sBelt.Remove(remove);
                 }
                 else if (call == "q")
                 {
