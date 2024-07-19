@@ -17,7 +17,27 @@ namespace AkarasDegenStuff
     {
         public static string[] DetectFiles(string input)
         {
-            string[] allPaths = Directory.GetFiles(input);
+            string[] allPaths = null;
+            bool directoryExists = false;
+
+            while (!directoryExists)
+            {
+                try
+                {
+                    allPaths = Directory.GetFiles(input);
+                    directoryExists = true; // Exit the loop if the directory exists
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    Console.WriteLine("Cant find the directory try again.");
+                    input = Console.ReadLine(); // Prompt user for new input
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                    break; // Exit the loop if an unexpected error occurs
+                }
+            }
             return allPaths;
         }
         public static string ShortenString(string input)
@@ -67,7 +87,7 @@ namespace AkarasDegenStuff
                                  .Replace("POISONLENGTH", "PLR")
                                  .Replace("PEISENLENGTHREDUCEDBY", "PLR")
                                  .Replace("POISENLENGTHREDUCEDBY", "PLR")
-                                 .Replace("PEISENLENGTHREDUCEDSV","PLR")
+                                 .Replace("PEISENLENGTHREDUCEDSV", "PLR")
                                  //LR
                                  .Replace("LIGHTNINGRESIST", "LR")
                                  .Replace("LIGHTHINGRESIST", "LR")
@@ -163,9 +183,9 @@ namespace AkarasDegenStuff
                                  .Replace("'", "")
                                  .Replace(":", "")
                                  .Replace("%", "")
-                                 .Replace("«","")
-                                 .Replace("-","")
-                                 .Replace("“","");
+                                 .Replace("«", "")
+                                 .Replace("-", "")
+                                 .Replace("“", "");
             return result;
         }
         public static void PrintList(List<string> inputlist)
@@ -199,14 +219,15 @@ namespace AkarasDegenStuff
                 combinedNumbers += match.Value;
             }
             int.TryParse(combinedNumbers, out int result);
-            
+
             return result;
-            
+
         }
-        public static string RemoveNumbers(string input){
-        string pattern = @"\d";
-        string result = Regex.Replace(input, pattern, "");
-        return result;
+        public static string RemoveNumbers(string input)
+        {
+            string pattern = @"\d";
+            string result = Regex.Replace(input, pattern, "");
+            return result;
         }
     }
 }
