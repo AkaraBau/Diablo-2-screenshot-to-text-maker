@@ -25,6 +25,7 @@ namespace AkarasDegenStuff
                 try
                 {
                     allPaths = Directory.GetFiles(input);
+                    Console.WriteLine("Loading input. Please wait.");
                     directoryExists = true; // Exit the loop if the directory exists
                 }
                 catch (DirectoryNotFoundException)
