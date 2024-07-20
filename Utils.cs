@@ -260,8 +260,10 @@ namespace AkarasDegenStuff
             {
                 using (var stream = Tesseract.ImageToTxt(massInput[i], languages: new[] { Language.English, Language.French }))
                 {
-                    Console.SetCursorPosition(0, Console.CursorTop);
-                    Console.Write( $"{i + 1}/{massInput.Length}");
+
+                    //loading bar
+                    Utils.PenisProgressBar(i + 1, massInput.Length, 10);
+                    //ocr function
                     StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
                     massOutput[i] = reader.ReadToEnd(); //making stream -> string []
 
@@ -278,7 +280,30 @@ namespace AkarasDegenStuff
             }
             Console.WriteLine("\nDone.");
             stringList = Utils.ObjectToString(beltList);
-            return stringList; 
+            return stringList;
+        }
+        public static void PenisProgressBar(int progress, int total, int width)
+        {
+
+            int progressWidth = (int)((double)progress / total * width);
+            Console.CursorVisible = false;
+            Console.SetCursorPosition(0, Console.CursorTop);
+
+            Console.Write("[");
+            if (progressWidth > 0)
+            {
+                Console.Write('C');
+                if (progressWidth > 1)
+                {
+                    Console.Write(new string('=', progressWidth - 2));
+                    if (progressWidth == 10)
+                    {
+                        Console.Write("3");
+                    }
+                }
+            }
+            Console.Write(new string(' ', width - progressWidth));
+            Console.Write($"]{progress}/{total}");
         }
     }
 }
