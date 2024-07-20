@@ -33,8 +33,7 @@ namespace AkarasDegenStuff
 
         public Belt(string[] data)
         {
-            string newName = data[1] + data[7].Substring(0, 1) + Utils.GetFirstLetter(data[8]) + Utils.GetFirstLetter(data[9]) + Utils.GetFirstLetter(data[10]) + Utils.GetFirstLetter(data[11]) + Utils.GetFirstLetter(data[12]);
-            name = newName;
+            name = "Belt";
             type = data[1];
 
             defenseAmount = Utils.ExtractIntFromString(data[2]);
