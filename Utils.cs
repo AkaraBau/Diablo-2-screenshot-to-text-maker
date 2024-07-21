@@ -143,6 +143,8 @@ namespace AkarasDegenStuff
                                  .Replace("WHENSTRUCK", "")
                                  //stamina 
                                  .Replace("MAXIMUMSTAMINA", "MS")
+                                 .Replace("ADDS", "")
+                                 .Replace("COLDDAMAGE", "CDMG")
                                  .Replace("LEAS", "7%")
                                  .Replace("REPAIRSDURABILITYIN33SECONDS", "REPAIR")
                                  .Replace("N0", "26%");
@@ -295,12 +297,12 @@ namespace AkarasDegenStuff
             if (progressWidth > 0)
             {
                 Console.Write('C');
-                
+
                 if (progressWidth > 1)
                 {
 
-                    Console.Write(new string('=', progressWidth - 2));
-                    if (progressWidth == 10)
+                    Console.Write(new string('=', progressWidth - 2)); // Console.Write(new string('#', progressWidth));
+                    if (progressWidth == width)
                     {
                         Console.Write("3");
                     }
@@ -309,6 +311,23 @@ namespace AkarasDegenStuff
             Console.Write(new string(' ', width - progressWidth));
             Console.Write($"]{progress}/{total}");
 
+        }
+        public static List<string> SortBy(List<string> inputlist, string input)
+        {
+
+            for (int i = 0; i < inputlist.Count; i++)
+            {
+                for (int j = i; j < inputlist.Count; j++)
+                {
+                    if (inputlist[i].Contains(input))
+                    {
+                        string swap = inputlist[i];
+                        inputlist[i] = inputlist[j];
+                        inputlist[j] = swap;
+                    }
+                }
+            }
+            return inputlist;
         }
     }
 }

@@ -33,7 +33,6 @@ namespace AkarasDegenStuff
 
         public Belt(string[] data)
         {
-            name = "Belt";
             type = data[1];
 
             defenseAmount = Utils.ExtractIntFromString(data[2]);
@@ -59,6 +58,16 @@ namespace AkarasDegenStuff
             
             amount6 = Utils.ExtractIntFromString(data[12]);
             stat6 = Utils.RemoveNumbers(data[12]);
+
+            string newName = $"{amount1}{stat1}{stat2}{stat3}{stat4}{stat5}{stat6}"; 
+            if (stat2 == "FCR" || stat2 == "OFCR" ){
+                newName = $"{amount2}{stat2}{stat3}{stat4}{stat5}{stat6}";
+            }
+            else if (stat2 == "CDMG")
+            {
+                newName =  $"{amount1}{stat1}{stat3}{stat4}{stat5}{stat6}"; 
+            }
+            name = newName;
 
             if (data.Length == 13)
             {
