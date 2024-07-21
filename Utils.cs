@@ -319,7 +319,7 @@ namespace AkarasDegenStuff
             {
                 for (int j = i; j < inputlist.Count; j++)
                 {
-                    if (inputlist[i].Contains(input))
+                    if (inputlist[j].Contains(input))
                     {
                         string swap = inputlist[i];
                         inputlist[i] = inputlist[j];
