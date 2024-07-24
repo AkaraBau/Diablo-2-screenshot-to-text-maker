@@ -60,7 +60,7 @@ namespace AkarasDegenStuff
 
                     Belt belt = new Belt(Utils.SingleBeltOcr(input));
                     allBelts.Add(belt); 
-                    var mergeList = Utils.ObjectToString(allBelts);
+                    var mergeList = Utils.BeltToString(allBelts);
                     sBelt.AddRange(mergeList);
                 }
                 else if (call == "am")

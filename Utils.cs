@@ -198,7 +198,16 @@ namespace AkarasDegenStuff
                 Console.WriteLine(l);
             }
         }
-        public static List<string> ObjectToString(List<Belt> inputlist)
+        public static List<string> BeltToString(List<Belt> inputlist)
+        {
+            List<string> list = new List<string>();
+            foreach (var i in inputlist)
+            {
+                list.Add(i.ToString());
+            }
+            return list;
+        }
+        public static List<string> StatsToString(List<Stats> inputlist)
         {
             List<string> list = new List<string>();
             foreach (var i in inputlist)
@@ -281,7 +290,7 @@ namespace AkarasDegenStuff
                 }
             }
             Console.WriteLine("\nDone.");
-            stringList = Utils.ObjectToString(beltList);
+            stringList = Utils.BeltToString(beltList);
             return stringList;
         }
         public static void ProgressBar(int progress, int total, int width)
