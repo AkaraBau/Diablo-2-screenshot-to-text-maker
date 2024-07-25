@@ -13,20 +13,22 @@ using System.Text.RegularExpressions;
 
 namespace AkarasDegenStuff
 {
-    public enum ItemName
+    public enum ItemType
     {
-     Belt,
-     Ring,
-     Amulet,
-     Jewel,
-     Armor,
-     Weapon,
-     Circlet,
-     Coronet,
-     Diadem,
-     Shield, 
-     Boots,
-     Gloves,
-     Helm
+
+
+        Belt,
+        Ring,
+        Amulet,
+        Jewel,
+        Armor,
+        Weapon,
+        Coronet,
+        Shield,
+        Boots,
+        Gloves,
+        Helm,
+        Orb
+
     }
 }

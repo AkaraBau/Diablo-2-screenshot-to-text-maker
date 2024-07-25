@@ -65,6 +65,9 @@ namespace AkarasDegenStuff
                                  .Replace("MANPIREFANGBELT", "VB")
                                  .Replace("SHARKSKINBELT", "SB")
                                  .Replace("SHARESKINBELT", "SB")
+                                 .Replace("SPIDERWEBSASH", "SPS")
+                                 .Replace("MITHRILCOIL", "MC")
+                                 .Replace("DEMONHIDESASH", "DHS")
                                  //stats craft roll 
                                  .Replace("FASTERCASTRATE", "FCR")
                                  //mana
