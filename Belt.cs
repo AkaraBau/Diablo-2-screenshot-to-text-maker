@@ -13,7 +13,7 @@ namespace AkarasDegenStuff
 {
     public class Belt
     {
-        public string name { get; set; }
+        public ItemType name { get; set; }
         public string type { get; set; }
         public string defense { get; set; }
         public int defenseAmount { get; set; }
@@ -23,22 +23,12 @@ namespace AkarasDegenStuff
 
         public Belt(string[] data)
         {
+            name = ItemTypeLookup.GetTypeFromDictionary(data[1]); 
             type = data[1];
             defenseAmount = Utils.ExtractIntFromString(data[2]);
             defense = Utils.RemoveNumbers(data[2]);
             level = Utils.ExtractIntFromString(data[6]);
             req1 = Utils.RemoveNumbers(data[6]);
-            string newName;
-
-            if (type == "SB" || type == "VB")
-            {
-                newName = "BELT";
-                name = newName;
-            }
-            else
-            {
-                name = "Can't identify";
-            }
 
 
             for (int i = 7; i < data.Length; i++)

@@ -8,6 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Xml.XPath;
 using Microsoft.VisualBasic;
 using NLog.LayoutRenderers;
+using NLog.Targets;
 using TesseractSharp;
 using TesseractSharp.Hocr;
 
@@ -23,7 +24,7 @@ namespace AkarasDegenStuff
 
                      {"SPS", ItemType.Belt},
                      {"DHS", ItemType.Belt},
-                     {"DHS", ItemType.Belt},
+                     {"BELT", ItemType.Belt},
 
                      {"MC", ItemType.Belt},
                      {"MESHBELT", ItemType.Belt},
@@ -44,19 +45,19 @@ namespace AkarasDegenStuff
                      {"WYRMHIDEBOOTS", ItemType.Boots},
                      {"DEMONHIDEBOOTS", ItemType.Boots},
                      {"BOOTS", ItemType.Boots},
-                     
+
                      {"SCARABSHELLBOOTS", ItemType.Boots},
                      {"HEAVYBOOTS", ItemType.Boots},
                      {"SHARKSKINBOOTS", ItemType.Boots},
-                     
+
                      {"BONEWEAVEBOOTS", ItemType.Boots},
                      {"MESHBOOTS", ItemType.Boots},
                      {"CHAINBOOTS", ItemType.Boots},
-                     
+
                      {"MIRROREDBOOTS", ItemType.Boots},
                      {"BATTLEBOOTS", ItemType.Boots},
                      {"LIGHTPLATEDBOOTS", ItemType.Boots},
-                     
+
                      {"MYRMIDONGREAVES", ItemType.Boots},
                      {"WARBOOTS", ItemType.Boots},
                      {"GREAVES", ItemType.Boots},
@@ -81,7 +82,7 @@ namespace AkarasDegenStuff
                      {"WARGAUNTLETS", ItemType.Gloves},
                      {"GAUNTLETS", ItemType.Gloves},
                      //armor 
-                     /*{"SACREDARMOR", ItemType.Armor},
+                     {"SACREDARMOR", ItemType.Armor},
                      {"ANCIENTARMOR", ItemType.Armor},
                      {"ORNATEPLATE", ItemType.Armor},
 
@@ -95,19 +96,21 @@ namespace AkarasDegenStuff
 
                      {"GREATHAUBERK", ItemType.Armor},
                      {"CUIRASS", ItemType.Armor},
-                     {"BREASTPLATE", ItemType.Armor},*/
+                     {"BREASTPLATE", ItemType.Armor},
 
 
 
         };
 
 
-        public static ItemType GetTypeFromSubtype(string input)
+        public static ItemType GetTypeFromDictionary(string input)
         {
-           var output = _ConvertItemName[input];
-             
 
-           return output;
+            if (_ConvertItemName.TryGetValue(input, out var output))
+            {
+                output = _ConvertItemName[input];
+            }
+            return output;
         }
     }
 }
