@@ -18,18 +18,18 @@ namespace AkarasDegenStuff
         public static void DoIt()
         {
             var input = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
-            var sBelt = new List<string>(); //list of <String>
-            var allBelts = new List<Belt>(); //list of <Belt>
+            var sItems = new List<string>(); //list of <String>
+            var allItems = new List<Item>(); //list of <Belt>
             
             Console.WriteLine("What would you like to do?");
-            Console.WriteLine("print[p], txt[t],sort[s], sortby[sb] add[a], remove[r], add multiple[am], quit[q]");
+            Console.WriteLine("print[p], txt[t],genericsort[gs], sortby[sb] add[a], remove[r], add multiple[am], quit[q]");
             String call = null;
             while (call != "q")
             {
                 call = Console.ReadLine();
                 if (call == "p")
                 {
-                    Utils.PrintList(sBelt);
+                    Utils.PrintList(sItems);
                 }
                 else if (call == "t")
                 {
@@ -41,27 +41,27 @@ namespace AkarasDegenStuff
                     input = Console.ReadLine(); 
 
                     input = Path.Combine(input, name + ".txt");
-                    File.WriteAllLines(input, sBelt);
+                    File.WriteAllLines(input, sItems);
                 }
-                else if (call == "s")
+                else if (call == "gs")
                 {
-                    sBelt.Sort();
+                    sItems.Sort();
                 }
                 else if (call == "sb") 
                 {
                     Console.WriteLine("What keyword do you want to sort by? ex FHR or STR"); 
                     string input1 = Console.ReadLine();
-                    sBelt = Utils.SortBy(sBelt, input1);
+                    sItems = Utils.SortBy(sItems, input1);
                 }
                 else if (call == "a")
                 {
                     Console.WriteLine("What image would you like to add?\n" + input + @"sln.PNG");
                     input = Console.ReadLine();
 
-                    Belt belt = new Belt(Utils.SingleBeltOcr(input));
-                    allBelts.Add(belt); 
-                    var mergeList = Utils.BeltToString(allBelts);
-                    sBelt.AddRange(mergeList);
+                    Item item = new Item(Utils.SingleBeltOcr(input));
+                    allItems.Add(item); 
+                    var mergeList = Utils.ItemToString(allItems);
+                    sItems.AddRange(mergeList);
                 }
                 else if (call == "am")
                 {
@@ -69,14 +69,14 @@ namespace AkarasDegenStuff
                     input = Console.ReadLine();
 
                     var mergeList = Utils.MultiBeltOcr(input); //multi scan method
-                    sBelt.AddRange(mergeList); //adding output to list
+                    sItems.AddRange(mergeList); //adding output to list
                 }
                 else if (call == "r")
                 {
                     Console.WriteLine("Which belt would you like to remove?");
                     Console.WriteLine("Format for input: SB1ASLMM/SB/34DEF/63LREQ	10FCR/16ADDSCOLDDAMAGE/0STR/581LIFE/38MANA/4MREG");
                     string remove = Console.ReadLine();
-                    sBelt.Remove(remove);
+                    sItems.Remove(remove);
                 }
                 else if (call == "q")
                 {

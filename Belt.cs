@@ -11,7 +11,7 @@ using TesseractSharp.Hocr;
 
 namespace AkarasDegenStuff
 {
-    public class Belt
+    public class Item
     {
         public ItemType name { get; set; }
         public string type { get; set; }
@@ -21,7 +21,7 @@ namespace AkarasDegenStuff
         public int level { get; set; }
         public List<Stats> ListOfStats = new List<Stats>();
 
-        public Belt(string[] data)
+        public Item(string[] data)
         {
             name = ItemTypeLookup.GetTypeFromDictionary(data[1]); 
             type = data[1];

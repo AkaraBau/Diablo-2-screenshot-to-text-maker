@@ -201,7 +201,7 @@ namespace AkarasDegenStuff
                 Console.WriteLine(l);
             }
         }
-        public static List<string> BeltToString(List<Belt> inputlist)
+        public static List<string> ItemToString(List<Item> inputlist)
         {
             List<string> list = new List<string>();
             foreach (var i in inputlist)
@@ -264,7 +264,7 @@ namespace AkarasDegenStuff
         }
         public static List<string> MultiBeltOcr(string input)
         {
-            List<Belt> beltList = new List<Belt>();
+            List<Item> itemList = new List<Item>();
             var stringList = new List<string>(); //list of <String>
             string[] splitData = new string[14];
             string[] massInput = Utils.DetectFiles(input);
@@ -288,12 +288,12 @@ namespace AkarasDegenStuff
                     splitData = massOutput[i].Split(new[] { '\n' }, StringSplitOptions.None); //splitting string into string []
                     splitData = splitData.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
 
-                    Belt belt = new Belt(splitData); //Creation of belt
-                    beltList.Add(belt); //adding belt to list 
+                    Item belt = new Item(splitData); //Creation of belt
+                    itemList.Add(belt); //adding belt to list 
                 }
             }
             Console.WriteLine("\nDone.");
-            stringList = Utils.BeltToString(beltList);
+            stringList = Utils.ItemToString(itemList);
             return stringList;
         }
         public static void ProgressBar(int progress, int total, int width)
@@ -326,7 +326,7 @@ namespace AkarasDegenStuff
         }
         public static List<string> SortBy(List<string> inputlist, string input)
         {
-
+            //TODO a better sort method
             for (int i = 0; i < inputlist.Count; i++)
             {
                 for (int j = i; j < inputlist.Count; j++)
