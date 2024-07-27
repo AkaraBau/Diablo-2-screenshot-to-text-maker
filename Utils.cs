@@ -262,7 +262,7 @@ namespace AkarasDegenStuff
                 return data;
             }
         }
-        public static List<string> MultiBeltOcr(string input)
+        public static List<Item> MultiBeltOcr(string input)
         {
             List<Item> itemList = new List<Item>();
             var stringList = new List<string>(); //list of <String>
@@ -293,8 +293,7 @@ namespace AkarasDegenStuff
                 }
             }
             Console.WriteLine("\nDone.");
-            stringList = Utils.ItemToString(itemList);
-            return stringList;
+            return itemList;
         }
         public static void ProgressBar(int progress, int total, int width)
         {

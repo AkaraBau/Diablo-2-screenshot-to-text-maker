@@ -45,23 +45,24 @@ namespace AkarasDegenStuff
                 }
                 else if (call == "gs")
                 {
-                    sItems.Sort();
+                    allItems.Sort();
+                    sItems.Sort(); 
                 }
                 else if (call == "sb") 
                 {
+                    //TODO fix the sort after finishing allItems add to all funcs
                     Console.WriteLine("What keyword do you want to sort by? ex FHR or STR"); 
                     string input1 = Console.ReadLine();
                     sItems = Utils.SortBy(sItems, input1);
                 }
                 else if (call == "a")
                 {
-                    Console.WriteLine("What image would you like to add?\n" + input + @"sln.PNG");
+                    Console.WriteLine("What image would you like to add?\n" + @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new\sln.PNG");
                     input = Console.ReadLine();
 
                     Item item = new Item(Utils.SingleBeltOcr(input));
                     allItems.Add(item); 
-                    var mergeList = Utils.ItemToString(allItems);
-                    sItems.AddRange(mergeList);
+                    sItems.Add(item.ToString());
                 }
                 else if (call == "am")
                 {
@@ -69,10 +70,13 @@ namespace AkarasDegenStuff
                     input = Console.ReadLine();
 
                     var mergeList = Utils.MultiBeltOcr(input); //multi scan method
-                    sItems.AddRange(mergeList); //adding output to list
+                    allItems.AddRange(mergeList); //adding output to list
+                    var mergeList2 = Utils.ItemToString(mergeList);
+                    sItems.AddRange(mergeList2);
                 }
                 else if (call == "r")
                 {
+                    //TODO FIX REMOVE AFTER IMPLEMENTING OF list<item> as list 
                     Console.WriteLine("Which belt would you like to remove?");
                     Console.WriteLine("Format for input: SB1ASLMM/SB/34DEF/63LREQ	10FCR/16ADDSCOLDDAMAGE/0STR/581LIFE/38MANA/4MREG");
                     string remove = Console.ReadLine();
