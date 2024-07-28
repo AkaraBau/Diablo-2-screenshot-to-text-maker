@@ -15,22 +15,22 @@ namespace AkarasDegenStuff
 {
     public class Stats : IComparable<Stats>
     {
-        public string stat { get; set; }
+        public string name { get; set; }
         public int? amount { get; set; }
 
         public Stats(string data)
         {
             amount = Utils.ExtractIntFromString(data);
-            stat = Utils.RemoveNumbers(data);
+            name = Utils.RemoveNumbers(data);
 
         }
         public int CompareTo(Stats other)
         {
-            if (this.amount > other.amount && this.stat == other.stat)
+            if (this.amount > other.amount && this.name == other.name)
             {
                 return 1;
             }
-            else if (this.amount < other.amount || this.stat != other.stat)
+            else if (this.amount < other.amount || this.name != other.name)
             {
                 return -1;
             }
@@ -41,7 +41,7 @@ namespace AkarasDegenStuff
         }
         public override string ToString()
         {
-            string result = $"{amount}{stat}";
+            string result = $"{amount}{name}";
             return result;
         }
     }

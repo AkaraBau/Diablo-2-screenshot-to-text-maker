@@ -37,9 +37,8 @@ namespace AkarasDegenStuff
                 ListOfStats.Add(stats);
             }
         }
-        public int CompareTo(Item other, Stats other1) 
-        {
-          Stats.CompareTo(other1); 
+        public int CompareTo(Item other) 
+        { 
           if (this.name == other.name)
           {
             return +1;
