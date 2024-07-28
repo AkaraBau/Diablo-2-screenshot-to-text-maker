@@ -11,7 +11,7 @@ using TesseractSharp.Hocr;
 
 namespace AkarasDegenStuff
 {
-    public class Item
+    public class Item : IComparable<Item>
     {
         public ItemType name { get; set; }
         public string type { get; set; }
@@ -36,6 +36,18 @@ namespace AkarasDegenStuff
                 Stats stats = new Stats(data[i]);
                 ListOfStats.Add(stats);
             }
+        }
+        public int CompareTo(Item other, Stats other1) 
+        {
+          Stats.CompareTo(other1); 
+          if (this.name == other.name)
+          {
+            return +1;
+          }
+          else 
+          {
+            return -1;
+          }
         }
         public override string ToString()
         {

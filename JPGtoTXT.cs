@@ -22,7 +22,7 @@ namespace AkarasDegenStuff
             var allItems = new List<Item>(); //list of <Belt>
             
             Console.WriteLine("What would you like to do?");
-            Console.WriteLine("print[p], txt[t],genericsort[gs], sortby[sb] add[a], remove[r], add multiple[am], quit[q]");
+            Console.WriteLine("print[p], txt[t], sort[s], sortby[sb] add[a], add multiple[am], quit[q]");
             String call = null;
             while (call != "q")
             {
@@ -43,10 +43,10 @@ namespace AkarasDegenStuff
                     input = Path.Combine(input, name + ".txt");
                     File.WriteAllLines(input, sItems);
                 }
-                else if (call == "gs")
+                else if (call == "s")
                 {
                     allItems.Sort();
-                    sItems.Sort(); 
+                    sItems = Utils.ItemToString(allItems);
                 }
                 else if (call == "sb") 
                 {
@@ -73,14 +73,6 @@ namespace AkarasDegenStuff
                     allItems.AddRange(mergeList); //adding output to list
                     var mergeList2 = Utils.ItemToString(mergeList);
                     sItems.AddRange(mergeList2);
-                }
-                else if (call == "r")
-                {
-                    //TODO FIX REMOVE AFTER IMPLEMENTING OF list<item> as list 
-                    Console.WriteLine("Which belt would you like to remove?");
-                    Console.WriteLine("Format for input: SB1ASLMM/SB/34DEF/63LREQ	10FCR/16ADDSCOLDDAMAGE/0STR/581LIFE/38MANA/4MREG");
-                    string remove = Console.ReadLine();
-                    sItems.Remove(remove);
                 }
                 else if (call == "q")
                 {
