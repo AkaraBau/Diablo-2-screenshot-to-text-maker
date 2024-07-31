@@ -102,8 +102,10 @@ namespace AkarasDegenStuff
                                  .Replace("POISENRESIST", "PR")
                                  .Replace("PEISENRESIST", "PR")
                                  .Replace("POISONROSIST", "PR")
+                                 .Replace("PEISONRESIST", "PR")
                                  .Replace("PERSONRESIST", "PR")
                                  .Replace("PÆISENRESIST", "PR")
+                                 .Replace("PERSENRESIST", "PR")
                                  //cold resist
                                  .Replace("COLDRESIST", "CR")
                                  .Replace("CORPRESIST", "CR")
@@ -115,9 +117,18 @@ namespace AkarasDegenStuff
                                  .Replace("CERPDRESIST", "CR")
                                  .Replace("COLDR&SIST", "CR")
                                  .Replace("COLORESIST", "CR")
+                                 .Replace("COLPRESIST", "CR")
+                                 //all res 
+                                 .Replace("ALLRESISTANCES", "@res")
+                                 .Replace("ALLRESISTANCES", "@res") 
+                                 .Replace("AELRESISTANCES", "@res") 
+                                 // dex 
+                                 .Replace("TEDEXTERITY", "DEX")
                                  //str
                                  .Replace("TOSTRENGTH", "STR")
                                  .Replace("TESTRENGTH", "STR")
+                                 .Replace("TOOSTRENGTH", "STR")
+                                 .Replace("7OSTRENGTH", "STR")
                                  //life
                                  .Replace("TOLIFO", "LIFE")
                                  .Replace("TOLIFE", "LIFE")
@@ -126,6 +137,8 @@ namespace AkarasDegenStuff
                                  .Replace("TELIFO", "LIFE")
                                  .Replace("TELIFE", "LIFE")
                                  .Replace("TAELIFE", "LIFE")
+                                 .Replace("TELIRE", "LIFE")
+                                 .Replace("10YLIFE", "LIFE")
                                  //rep 
                                  .Replace("REPLENISHLIFE", "REP")
                                  .Replace("REPLENISHLIFO ", "REP")
@@ -141,6 +154,7 @@ namespace AkarasDegenStuff
                                  .Replace("ATTACKERTAKESDAMAGEOF", "ATDO")
                                  //Light radius
                                  .Replace("TELIGHTRADIUS", "LIGHTRADIUS")
+                                 .Replace("TOLIGHTRADIUS", "LIGHTRADIUS")
                                  //Ctc ws
                                  .Replace("CHANCETOCASTLEVEL", "CTCLVL")
                                  .Replace("WHENSTRUCK", "")
@@ -148,9 +162,33 @@ namespace AkarasDegenStuff
                                  .Replace("MAXIMUMSTAMINA", "MS")
                                  .Replace("ADDS", "")
                                  .Replace("COLDDAMAGE", "CDMG")
+                                 .Replace("DAMAGEREDUCEDBY", "DR")
                                  .Replace("LEAS", "7%")
-                                 .Replace("REPAIRSDURABILITYIN33SECONDS", "REPAIR")
-                                 .Replace("N0", "26%");
+                                 .Replace("REPAIRSDURABILITYIN33SECONDS", "BENUSTEATTACKRATING")
+                                 .Replace("N0", "26%")
+                                 //attack raiting 
+                                 .Replace("TOATTACKRATING", "AR")
+                                 .Replace("TEATTACKRATING", "AR")
+                                 .Replace("BONUSAR", "%AR")
+                                 .Replace("BENUSAR", "%AR")
+                                 //damage
+                                 .Replace("TEMINIMUMDAMAGE", "MIN")
+                                 .Replace("TEMAXIMUMDAMAGE", "MAX")
+                                 //mf
+                                 .Replace("BETTERCHANCEOFGETTINGMAGICITEMS", "MF")
+                                 .Replace("BETTERCHANCEOFGETTINGMACICITEMS", "MF")
+                                 .Replace("BETTERCHANCEOFGETTINGMAAGICITEMS", "MF")
+                                 .Replace("BETTERCHANCEOFGETTINGMACGICITEMS", "MF")
+                                 //ll ml 
+                                 .Replace("LIFESTOLENPERHIT", "LL")
+                                 .Replace("MANAAFTEREACHKILL" , "MAEK")
+                                 .Replace("MANASTOLENPERHIT" , "ML")
+                                 .Replace("INANASTOLENPERHIT" , "ML")
+                                 //charges 
+                                 .Replace("LEVELCHARGEDBOLTCHARGES", "CHARGES")
+                                 //other
+                                 .Replace("127", "27");
+
             return result;
         }
         public static string RemoveAllWhiteSpace(string input)
@@ -191,7 +229,10 @@ namespace AkarasDegenStuff
                                  .Replace("%", "")
                                  .Replace("«", "")
                                  .Replace("-", "")
-                                 .Replace("“", "");
+                                 .Replace("“", "")
+                                 .Replace("<", "")
+                                 .Replace(">", "")
+                                 .Replace("-", "");
             return result;
         }
         public static void PrintList(List<string> inputlist)
@@ -323,22 +364,22 @@ namespace AkarasDegenStuff
             Console.Write($"]{progress}/{total}");
 
         }
-        public static List<string> SortBy(List<string> inputlist, string input)
-        {
-            //TODO a better sort method
-            for (int i = 0; i < inputlist.Count; i++)
-            {
-                for (int j = i; j < inputlist.Count; j++)
-                {
-                    if (inputlist[j].Contains(input))
-                    {
-                        string swap = inputlist[i];
-                        inputlist[i] = inputlist[j];
-                        inputlist[j] = swap;
-                    }
-                }
-            }
-            return inputlist;
-        }
+        //public static List<string> SortBy(List<string> inputlist, string input)
+        //  {
+        //    //TODO remove if not needed not in use 
+        //    for (int i = 0; i < inputlist.Count; i++)
+        //    {
+        //        for (int j = i; j < inputlist.Count; j++)
+        //        {
+        //            if (inputlist[j].Contains(input))
+        //            {
+        //                string swap = inputlist[i];
+        //                inputlist[i] = inputlist[j];
+        //                inputlist[j] = swap;
+        //            }
+        //        }
+        //    }
+        //    return inputlist;
+        //}
     }
 }

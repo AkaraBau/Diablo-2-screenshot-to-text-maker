@@ -30,7 +30,7 @@ namespace AkarasDegenStuff
             {
                 return 1;
             }
-            else if (this.amount < other.amount || this.name != other.name)
+            else if (this.name != other.name)
             {
                 return -1;
             }

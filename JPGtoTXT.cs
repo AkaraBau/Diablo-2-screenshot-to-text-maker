@@ -22,7 +22,7 @@ namespace AkarasDegenStuff
             var allItems = new List<Item>(); //list of <Belt>
             
             Console.WriteLine("What would you like to do?");
-            Console.WriteLine("print[p], txt[t], sort[s], sortby[sb] add[a], add multiple[am], quit[q]");
+            Console.WriteLine("print[p], txt[t], sort[s], add[a], add multiple[am], quit[q]");
             String call = null;
             while (call != "q")
             {
@@ -47,13 +47,6 @@ namespace AkarasDegenStuff
                 {
                     allItems.Sort();
                     sItems = Utils.ItemToString(allItems);
-                }
-                else if (call == "sb") 
-                {
-                    //TODO fix the sort after finishing allItems add to all funcs
-                    Console.WriteLine("What keyword do you want to sort by? ex FHR or STR"); 
-                    string input1 = Console.ReadLine();
-                    sItems = Utils.SortBy(sItems, input1);
                 }
                 else if (call == "a")
                 {

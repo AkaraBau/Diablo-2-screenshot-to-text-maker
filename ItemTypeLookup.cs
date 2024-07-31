@@ -37,10 +37,6 @@ namespace AkarasDegenStuff
                      {"COLOSSUSGIRDLE", ItemType.Belt},
                      {"WARBELT", ItemType.Belt},
                      {"PLATEDBELT", ItemType.Belt},
-                     
-                     //jewelry
-                     {"AMULET", ItemType.Amulet},
-                     {"RING", ItemType.Ring},
                      //boots
                      {"WYRMHIDEBOOTS", ItemType.Boots},
                      {"DEMONHIDEBOOTS", ItemType.Boots},
@@ -97,9 +93,10 @@ namespace AkarasDegenStuff
                      {"GREATHAUBERK", ItemType.Armor},
                      {"CUIRASS", ItemType.Armor},
                      {"BREASTPLATE", ItemType.Armor},
-
-
-
+                     // jewelry 
+                     {"JEWEL", ItemType.Jewel},
+                     {"RING", ItemType.Ring},
+                     {"AMULET", ItemType.Amulet},
         };
 
 
