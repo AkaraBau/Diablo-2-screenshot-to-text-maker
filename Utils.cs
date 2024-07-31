@@ -106,6 +106,7 @@ namespace AkarasDegenStuff
                                  .Replace("PERSONRESIST", "PR")
                                  .Replace("PÆISENRESIST", "PR")
                                  .Replace("PERSENRESIST", "PR")
+                                 .Replace("PE1ISONRESIST", "PR")
                                  //cold resist
                                  .Replace("COLDRESIST", "CR")
                                  .Replace("CORPRESIST", "CR")
