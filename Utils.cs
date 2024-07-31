@@ -24,13 +24,28 @@ namespace AkarasDegenStuff
             {
                 try
                 {
-                    allPaths = Directory.GetFiles(input);
-                    Console.WriteLine("Loading input. Please wait.");
-                    directoryExists = true; // Exit the loop if the directory exists
+                    // Using Directory.EnumerateFiles to filter by file extensions
+                    var validExtensions = new[] { ".png", ".jpeg", ".jpg" };
+                    allPaths = Directory.EnumerateFiles(input)
+                                        .Where(file => validExtensions.Contains(Path.GetExtension(file).ToLower()))
+                                        .ToArray();
+
+                    if (allPaths.Length > 0)
+                    {
+                        Console.WriteLine("Loading input. Please wait.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No valid files found. Please enter a directory with .PNG, .JPEG, or .JPG files.");
+                        input = Console.ReadLine(); // Prompt user for new input
+                        continue;
+                    }
+
+                    directoryExists = true; // Exit the loop if the directory exists and contains valid files
                 }
                 catch (DirectoryNotFoundException)
                 {
-                    Console.WriteLine("Cant find the directory try again.");
+                    Console.WriteLine("Can't find the directory, try again.");
                     input = Console.ReadLine(); // Prompt user for new input
                 }
                 catch (Exception ex)
@@ -114,6 +129,7 @@ namespace AkarasDegenStuff
                                  .Replace("CELDRESIST", "CR")
                                  .Replace("CELNRESIST", "CR")
                                  .Replace("CELPRESIST", "CR")
+                                 .Replace("1CERPRESIST", "CR")
                                  .Replace("CERPRESIST", "CR")
                                  .Replace("CERPDRESIST", "CR")
                                  .Replace("COLDR&SIST", "CR")
@@ -121,10 +137,11 @@ namespace AkarasDegenStuff
                                  .Replace("COLPRESIST", "CR")
                                  //all res 
                                  .Replace("ALLRESISTANCES", "@res")
-                                 .Replace("ALLRESISTANCES", "@res") 
-                                 .Replace("AELRESISTANCES", "@res") 
+                                 .Replace("ALLRESISTANCES", "@res")
+                                 .Replace("AELRESISTANCES", "@res")
                                  // dex 
                                  .Replace("TEDEXTERITY", "DEX")
+                                 .Replace("TODEXTERITY", "DEX")
                                  //str
                                  .Replace("TOSTRENGTH", "STR")
                                  .Replace("TESTRENGTH", "STR")
@@ -140,6 +157,7 @@ namespace AkarasDegenStuff
                                  .Replace("TAELIFE", "LIFE")
                                  .Replace("TELIRE", "LIFE")
                                  .Replace("10YLIFE", "LIFE")
+                                 .Replace("TOLRFE", "LIFE")
                                  //rep 
                                  .Replace("REPLENISHLIFE", "REP")
                                  .Replace("REPLENISHLIFO ", "REP")
@@ -164,6 +182,7 @@ namespace AkarasDegenStuff
                                  .Replace("ADDS", "")
                                  .Replace("COLDDAMAGE", "CDMG")
                                  .Replace("DAMAGEREDUCEDBY", "DR")
+                                 .Replace("DAMACEREDUCEDBY", "DR")
                                  .Replace("LEAS", "7%")
                                  .Replace("REPAIRSDURABILITYIN33SECONDS", "BENUSTEATTACKRATING")
                                  .Replace("N0", "26%")
@@ -182,13 +201,13 @@ namespace AkarasDegenStuff
                                  .Replace("BETTERCHANCEOFGETTINGMACGICITEMS", "MF")
                                  //ll ml 
                                  .Replace("LIFESTOLENPERHIT", "LL")
-                                 .Replace("MANAAFTEREACHKILL" , "MAEK")
-                                 .Replace("MANASTOLENPERHIT" , "ML")
-                                 .Replace("INANASTOLENPERHIT" , "ML")
+                                 .Replace("MANAAFTEREACHKILL", "MAEK")
+                                 .Replace("MANASTOLENPERHIT", "ML")
+                                 .Replace("INANASTOLENPERHIT", "ML")
                                  //charges 
                                  .Replace("LEVELCHARGEDBOLTCHARGES", "CHARGES")
                                  //other
-                                 .Replace("127", "27");
+                                 .Replace("MACICDR", "MDR");
 
             return result;
         }
@@ -217,6 +236,7 @@ namespace AkarasDegenStuff
                                  .Replace("II", "I")
                                  .Replace("EE", "E")
                                  .Replace("É", "E")
+                                 .Replace("1O", "10")
                                  .Replace("(", "")
                                  .Replace(")", "")
                                  .Replace(".", "")
@@ -233,7 +253,9 @@ namespace AkarasDegenStuff
                                  .Replace("“", "")
                                  .Replace("<", "")
                                  .Replace(">", "")
-                                 .Replace("-", "");
+                                 .Replace("-", "")
+                                 .Replace("—", "")
+                                 .Replace("=", "");
             return result;
         }
         public static void PrintList(List<string> inputlist)
