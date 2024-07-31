@@ -207,7 +207,8 @@ namespace AkarasDegenStuff
                                  //charges 
                                  .Replace("LEVELCHARGEDBOLTCHARGES", "CHARGES")
                                  //other
-                                 .Replace("MACICDR", "MDR");
+                                 .Replace("MACICDR", "MDR")
+                                 .Replace("MAACICDAMACEREPUCEBY","MDR");
 
             return result;
         }
@@ -237,6 +238,8 @@ namespace AkarasDegenStuff
                                  .Replace("EE", "E")
                                  .Replace("É", "E")
                                  .Replace("1O", "10")
+                                 .Replace("10O", "100")
+                                 .Replace("1O0", "100")
                                  .Replace("(", "")
                                  .Replace(")", "")
                                  .Replace(".", "")
@@ -366,8 +369,6 @@ namespace AkarasDegenStuff
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, Console.CursorTop);
 
-
-
             Console.Write("[");
             if (progressWidth > 0)
             {
@@ -387,22 +388,5 @@ namespace AkarasDegenStuff
             Console.Write($"]{progress}/{total}");
 
         }
-        //public static List<string> SortBy(List<string> inputlist, string input)
-        //  {
-        //    //TODO remove if not needed not in use 
-        //    for (int i = 0; i < inputlist.Count; i++)
-        //    {
-        //        for (int j = i; j < inputlist.Count; j++)
-        //        {
-        //            if (inputlist[j].Contains(input))
-        //            {
-        //                string swap = inputlist[i];
-        //                inputlist[i] = inputlist[j];
-        //                inputlist[j] = swap;
-        //            }
-        //        }
-        //    }
-        //    return inputlist;
-        //}
     }
 }
