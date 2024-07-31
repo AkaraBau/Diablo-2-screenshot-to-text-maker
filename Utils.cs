@@ -158,6 +158,7 @@ namespace AkarasDegenStuff
                                  .Replace("TELIRE", "LIFE")
                                  .Replace("10YLIFE", "LIFE")
                                  .Replace("TOLRFE", "LIFE")
+                                 .Replace("10LIFE", "LIFE")
                                  //rep 
                                  .Replace("REPLENISHLIFE", "REP")
                                  .Replace("REPLENISHLIFO ", "REP")
@@ -220,16 +221,13 @@ namespace AkarasDegenStuff
         {
             string result = input.ToUpper()
                                  .Replace("1@", "10")
+                                 .Replace("1O", "10")
+                                 .Replace("10O", "100")
+                                 .Replace("1O0", "100")
                                  .Replace('®', 'O')
                                  .Replace('@', 'O')
-                                 .Replace("[", "")
                                  .Replace('©', 'O')
                                  .Replace('£', 'E')
-                                 .Replace("#", "")
-                                 .Replace("+", "")
-                                 .Replace("@", "")
-                                 .Replace("|", "")
-                                 .Replace("*", "")
                                  .Replace("RR", "R")
                                  .Replace("PP", "P")
                                  .Replace("SS", "S")
@@ -237,9 +235,12 @@ namespace AkarasDegenStuff
                                  .Replace("II", "I")
                                  .Replace("EE", "E")
                                  .Replace("É", "E")
-                                 .Replace("1O", "10")
-                                 .Replace("10O", "100")
-                                 .Replace("1O0", "100")
+                                 .Replace("[", "")
+                                 .Replace("#", "")
+                                 .Replace("+", "")
+                                 .Replace("@", "")
+                                 .Replace("|", "")
+                                 .Replace("*", "")
                                  .Replace("(", "")
                                  .Replace(")", "")
                                  .Replace(".", "")
@@ -258,7 +259,8 @@ namespace AkarasDegenStuff
                                  .Replace(">", "")
                                  .Replace("-", "")
                                  .Replace("—", "")
-                                 .Replace("=", "");
+                                 .Replace("=", "")
+                                 .Replace("°","");
             return result;
         }
         public static void PrintList(List<string> inputlist)
