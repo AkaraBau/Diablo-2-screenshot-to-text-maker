@@ -209,7 +209,7 @@ namespace AkarasDegenStuff
                                  .Replace("LEVELCHARGEDBOLTCHARGES", "CHARGES")
                                  //other
                                  .Replace("MACICDR", "MDR")
-                                 .Replace("MAACICDAMACEREPUCEBY","MDR");
+                                 .Replace("MAACICDAMACEREPUCEBY", "MDR");
 
             return result;
         }
@@ -260,7 +260,7 @@ namespace AkarasDegenStuff
                                  .Replace("-", "")
                                  .Replace("—", "")
                                  .Replace("=", "")
-                                 .Replace("°","");
+                                 .Replace("°", "");
             return result;
         }
         public static void PrintList(List<string> inputlist)

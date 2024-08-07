@@ -70,6 +70,18 @@ namespace AkarasDegenStuff
             }
 
         }
+        public Stats getStat(string inputString)
+        {
+            Stats result = null;
+            for (int i = 0; i < ListOfStats.Count; i++)
+            {
+                if (ListOfStats[i].name.Contains(inputString))
+                {
+                    result = ListOfStats[i];
+                }
+            }
+            return result; 
+        }
         public override string ToString()
         {
             string result = $"{name}/{type}/{defenseAmount}{defense}/{level}{req1}\t";

@@ -17,19 +17,10 @@ namespace AkarasDegenStuff
     {
         public int Compare(Item left, Item right)
         {
-            var shortestList = Math.Min(left.ListOfStats.Count, right.ListOfStats.Count); 
+        Stats strA = left.getStat("STR");
+        Stats strB = right.getStat("STR");
 
-          for (int i = 0; i < shortestList; i++)
-          {
-            for (int j = 0; j < shortestList; j++)
-            {
-                if (left.ListOfStats[i].name.Contains("STR") && right.ListOfStats[j].name.Contains("STR"))
-                {
-                return (int)left.ListOfStats[i].amount - (int)right.ListOfStats[j].amount; 
-                }
-            }
-          }
-        return 0; 
+        return strA.name.CompareTo(strB.name); 
         }
     }
 }
