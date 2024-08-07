@@ -13,23 +13,11 @@ using System.Text.RegularExpressions;
 
 namespace AkarasDegenStuff
 {
-    class ItemComparer : IComparer<Item>
-    {
-        public int Compare(Item left, Item right)
-        {
-        Stats strA = left.getStat("STR");
-        Stats strB = right.getStat("STR");
-
-        if (strA == null)
-        {
-          return 1; 
-        }
-        else if (strB == null)
-        {
-          return -1; 
-        }
-
-        return strA.name.CompareTo(strB.name); 
-        }
+  class ItemComparer : IComparer<Item>
+  {
+    public int Compare(Item left, Item right)
+    {    
+      return Utils.compareStat(left,right,"STR"); 
     }
+  }
 }

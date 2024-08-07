@@ -143,10 +143,10 @@ namespace AkarasDegenStuff
                                  .Replace("TEDEXTERITY", "DEX")
                                  .Replace("TODEXTERITY", "DEX")
                                  //str
-                                 .Replace("TOSTRENGTH", "STR")
-                                 .Replace("TESTRENGTH", "STR")
-                                 .Replace("TOOSTRENGTH", "STR")
-                                 .Replace("7OSTRENGTH", "STR")
+                                 .Replace("TOSTRENGTH", input)
+                                 .Replace("TESTRENGTH", input)
+                                 .Replace("TOOSTRENGTH", input)
+                                 .Replace("7OSTRENGTH", input)
                                  //life
                                  .Replace("TOLIFO", "LIFE")
                                  .Replace("TOLIFE", "LIFE")
@@ -389,6 +389,34 @@ namespace AkarasDegenStuff
             Console.Write(new string(' ', width - progressWidth));
             Console.Write($"]{progress}/{total}");
 
+        }
+        public static int CheckForNull(Stats inputA, Stats inputB)
+        {
+            int? result = null;
+            if (inputA == null && inputB == null)
+            {
+                result = 0;
+            }
+            else if (inputA == null)
+            {
+                result = 1;
+            }
+            else if (inputB == null)
+            {
+                result = -1;
+            }
+
+            return (int)result;
+        }
+        public static int compareStat(Item left, Item right, string input)
+        {
+            Stats statLeft = left.getStat(input);
+            Stats statRight = right.getStat(input);
+            if (statLeft == null || statRight == null)
+            {
+                return Utils.CheckForNull(statLeft, statRight);
+            }
+            return statLeft.name.CompareTo(statRight.name);
         }
     }
 }
