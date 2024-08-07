@@ -45,7 +45,7 @@ namespace AkarasDegenStuff
                 }
                 else if (call == "s")
                 {
-                    allItems.Sort();
+                    allItems.Sort(new ItemComparer());
                     sItems = Utils.ItemToString(allItems);
                 }
                 else if (call == "a")

@@ -13,7 +13,7 @@ using TesseractSharp.Hocr;
 
 namespace AkarasDegenStuff
 {
-    public class Stats : IComparable<Stats>
+    public class Stats
     {
         public string name { get; set; }
         public int? amount { get; set; }
@@ -23,21 +23,6 @@ namespace AkarasDegenStuff
             amount = Utils.ExtractIntFromString(data);
             name = Utils.RemoveNumbers(data);
 
-        }
-        public int CompareTo(Stats other)
-        {
-            if (this.amount > other.amount && this.name == other.name)
-            {
-                return 1;
-            }
-            else if (this.name != other.name)
-            {
-                return -1;
-            }
-            else
-            {
-                return 0;
-            }
         }
         public override string ToString()
         {

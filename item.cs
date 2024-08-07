@@ -12,7 +12,7 @@ using TesseractSharp.Hocr;
 
 namespace AkarasDegenStuff
 {
-    public class Item : IComparable<Item>
+    public class Item
     {
         public ItemType name { get; set; }
         public string type { get; set; }
@@ -69,29 +69,6 @@ namespace AkarasDegenStuff
                 }
             }
 
-        }
-        public int CompareTo(Item other)
-        {
-            if (other == null) return 1;
-            // First compare by name
-            int nameComparison = this.name.CompareTo(other.name);
-            if (nameComparison != 0)
-            {
-                return nameComparison;
-            }
-
-            // If names are the same, compare by ListOfStats
-            int minLength = Math.Min(this.ListOfStats.Count, other.ListOfStats.Count); //gets the lowest count out of both lists using math.min
-            for (int i = 0; i < minLength; i++)
-            {
-                int statComparison = this.ListOfStats[i].CompareTo(other.ListOfStats[i]); // creates a int which contains value from the CompareTo() method
-                if (statComparison != 0)
-                {
-                    return statComparison;
-                }
-            }
-
-            return 0;
         }
         public override string ToString()
         {
