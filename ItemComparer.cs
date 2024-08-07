@@ -17,33 +17,19 @@ namespace AkarasDegenStuff
     {
         public int Compare(Item left, Item right)
         {
-            // First, compare the overall item names and types.
-            if (left.type != right.type)
-            {
-                return string.Compare(left.type, right.type);
-            }
-            int shortestList = Math.Min(left.ListOfStats.Count, right.ListOfStats.Count); // get the lowest count out of both lists 
-            for (int i = 0; i < shortestList; i++)
-            {
-                var leftStat = left.ListOfStats[i];
-                var rightStat = right.ListOfStats[i];
+            var shortestList = Math.Min(left.ListOfStats.Count, right.ListOfStats.Count); 
 
-                // Compare stats by name first to ensure correct stat matching
-                int statNameComparison = string.Compare(leftStat.name, rightStat.name);
-                if (statNameComparison != 0)
+          for (int i = 0; i < shortestList; i++)
+          {
+            for (int j = 0; j < shortestList; j++)
+            {
+                if (left.ListOfStats[i].name.Contains("STR") && right.ListOfStats[j].name.Contains("STR"))
                 {
-                    return statNameComparison;
-                }
-
-                // If stat names are equal, compare their amounts
-                if (leftStat.amount != rightStat.amount)
-                {
-                    return (int)leftStat.amount - (int)rightStat.amount;
+                return (int)left.ListOfStats[i].amount - (int)right.ListOfStats[j].amount; 
                 }
             }
-              // If all compared stats are equal, compare by the number of stats
-            return left.ListOfStats.Count.CompareTo(right.ListOfStats.Count);
-
+          }
+        return 0; 
         }
     }
 }
