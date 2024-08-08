@@ -34,7 +34,9 @@ namespace AkarasDegenStuff
                 req1 = Utils.RemoveNumbers(data[2]);
                 for (int i = 3; i < data.Length; i++)
                 {
-                    if (data[i].Contains("CHARGES") == false)
+                    if (data[i].Contains("CHARGES") ||
+                        data[i].Contains("CTC") ||
+                        data[i].Contains("CDMG") == false)
                     {
                         Stats stats = new Stats(data[i]);
                         ListOfStats.Add(stats);
@@ -63,9 +65,14 @@ namespace AkarasDegenStuff
 
                 for (int i = 7; i < data.Length; i++)
                 {
-                    Stats stats = new Stats(data[i]);
-
-                    ListOfStats.Add(stats);
+                    if (data[i].Contains("CHARGES") ||
+                       data[i].Contains("CTC") ||
+                       data[i].Contains("CDMG") ||
+                       data[i].Contains("ATDO") == false)
+                    {
+                        Stats stats = new Stats(data[i]);
+                        ListOfStats.Add(stats);
+                    }
                 }
             }
 
@@ -80,7 +87,7 @@ namespace AkarasDegenStuff
                     result = ListOfStats[i];
                 }
             }
-            return result; 
+            return result;
         }
         public override string ToString()
         {

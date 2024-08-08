@@ -143,10 +143,10 @@ namespace AkarasDegenStuff
                                  .Replace("TEDEXTERITY", "DEX")
                                  .Replace("TODEXTERITY", "DEX")
                                  //str
-                                 .Replace("TOSTRENGTH", input)
-                                 .Replace("TESTRENGTH", input)
-                                 .Replace("TOOSTRENGTH", input)
-                                 .Replace("7OSTRENGTH", input)
+                                 .Replace("TOSTRENGTH", "STR")
+                                 .Replace("TESTRENGTH", "STR")
+                                 .Replace("TOOSTRENGTH", "STR")
+                                 .Replace("7OSTRENGTH", "STR")
                                  //life
                                  .Replace("TOLIFO", "LIFE")
                                  .Replace("TOLIFE", "LIFE")
@@ -408,15 +408,19 @@ namespace AkarasDegenStuff
 
             return (int)result;
         }
-        public static int compareStat(Item left, Item right, string input)
+        public static int compareStat(Item left, Item right)
         {
+            var input = "STR"; 
+
             Stats statLeft = left.getStat(input);
             Stats statRight = right.getStat(input);
+
             if (statLeft == null || statRight == null)
             {
                 return Utils.CheckForNull(statLeft, statRight);
             }
-            return statLeft.name.CompareTo(statRight.name);
+
+            return (int)statLeft.amount - (int)statRight.amount;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace AkarasDegenStuff
   {
     public int Compare(Item left, Item right)
     {    
-      return Utils.compareStat(left,right,"STR"); 
+      return Utils.compareStat(left,right); 
     }
   }
 }
