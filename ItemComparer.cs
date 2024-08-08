@@ -13,11 +13,22 @@ using System.Text.RegularExpressions;
 
 namespace AkarasDegenStuff
 {
-  class ItemComparer : IComparer<Item>
+  class SortItemBy : IComparer<Item>
   {
-    public int Compare(Item left, Item right)
-    {    
-      return Utils.compareStat(left,right); 
+    public string sortCall { get; set; }
+
+    public SortItemBy(string input)
+    {
+      sortCall = input;
     }
+
+    public int Compare(Item left, Item right)
+    {
+      return Utils.compareStat(left, right, sortCall);
+    }
+  }
+  class GenereicItemSort
+  {
+
   }
 }

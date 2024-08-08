@@ -408,10 +408,8 @@ namespace AkarasDegenStuff
 
             return (int)result;
         }
-        public static int compareStat(Item left, Item right)
+        public static int compareStat(Item left, Item right,string input)
         {
-            var input = "STR"; 
-
             Stats statLeft = left.getStat(input);
             Stats statRight = right.getStat(input);
 
@@ -420,7 +418,7 @@ namespace AkarasDegenStuff
                 return Utils.CheckForNull(statLeft, statRight);
             }
 
-            return (int)statLeft.amount - (int)statRight.amount;
+            return (int)statRight.amount - (int)statLeft.amount;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace AkarasDegenStuff
             var allItems = new List<Item>(); //list of <Belt>
             
             Console.WriteLine("What would you like to do?");
-            Console.WriteLine("print[p], txt[t], sort[s], add[a], add multiple[am], quit[q]");
+            Console.WriteLine("print[p], txt[t], sortby[sb], add[a], add multiple[am], quit[q]");
             String call = null;
             while (call != "q")
             {
@@ -43,9 +43,11 @@ namespace AkarasDegenStuff
                     input = Path.Combine(input, name + ".txt");
                     File.WriteAllLines(input, sItems);
                 }
-                else if (call == "s")
+                else if (call == "sb")
                 {
-                    allItems.Sort(new ItemComparer());
+                    Console.WriteLine("What stat would you like to sort by? ");
+                    var sortCall = Console.ReadLine();
+                    allItems.Sort(new SortItemBy(sortCall));
                     sItems = Utils.ItemToString(allItems);
                 }
                 else if (call == "a")
