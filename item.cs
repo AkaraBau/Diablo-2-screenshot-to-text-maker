@@ -83,7 +83,11 @@ namespace AkarasDegenStuff
             
             if (type == "SB" || type == "VB" )
             {
-                ListOfStats = Utils.BeltFormatting(ListOfStats); 
+                ListOfStats = Utils.ChangeFormatStats(ListOfStats, 1 , "FHR"); 
+                ListOfStats = Utils.ChangeFormatStats(ListOfStats, 2 , "STR"); 
+                ListOfStats = Utils.ChangeFormatStats(ListOfStats, 3 , "LIFE"); 
+                ListOfStats = Utils.ChangeFormatStats(ListOfStats, ListOfStats.Count-2 , "MANA"); 
+                ListOfStats = Utils.ChangeFormatStats(ListOfStats, ListOfStats.Count-1 , "MREG"); 
             }
 
         }

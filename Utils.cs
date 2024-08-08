@@ -422,38 +422,14 @@ namespace AkarasDegenStuff
 
             return (int)statRight.amount - (int)statLeft.amount;
         }
-        public static List<Stats> BeltFormatting(List<Stats> inputList)
+        public static List<Stats> ChangeFormatStats(List<Stats> inputList, int x, string input)
         {
             for (int i = 0; i < inputList.Count; i++)
             {
-                if (inputList[i].name.Contains("FHR"))
+                if (inputList[i].name.Contains(input))
                 {
-                    Stats swap = inputList[1];
-                    inputList[1] = inputList[i];
-                    inputList[i] = swap;
-                }
-                else if (inputList[i].name.Contains("STR"))
-                {
-                    Stats swap = inputList[2];
-                    inputList[2] = inputList[i];
-                    inputList[i] = swap;
-                }
-                else if (inputList[i].name.Contains("LIFE"))
-                {
-                    Stats swap = inputList[3];
-                    inputList[3] = inputList[i];
-                    inputList[i] = swap;
-                }
-                else if (inputList[i].name.Contains("MREG"))
-                {
-                    Stats swap = inputList[inputList.Count - 1];
-                    inputList[inputList.Count - 1] = inputList[i];
-                    inputList[i] = swap;
-                }
-                else if (inputList[i].name.Contains("MANA"))
-                {
-                    Stats swap = inputList[inputList.Count - 2];
-                    inputList[inputList.Count - 2] = inputList[i];
+                    Stats swap = inputList[x];
+                    inputList[x] = inputList[i];
                     inputList[i] = swap;
                 }
             }
