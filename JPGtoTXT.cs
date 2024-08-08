@@ -46,7 +46,7 @@ namespace AkarasDegenStuff
                 else if (call == "sb")
                 {
                     Console.WriteLine("What stat would you like to sort by? ");
-                    var sortCall = Console.ReadLine();
+                    var sortCall = Console.ReadLine().ToUpper().Trim();
                     allItems.Sort(new SortItemBy(sortCall));
                     sItems = Utils.ItemToString(allItems);
                 }
