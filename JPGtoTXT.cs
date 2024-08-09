@@ -20,6 +20,7 @@ namespace AkarasDegenStuff
             var input = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
             var sItems = new List<string>(); //list of <String>
             var allItems = new List<Item>(); //list of <Belt>
+            var beltSortParameters = new List<string>() { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" }; 
             
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("print[p], txt[t], sortby[sb], add[a], add multiple[am], quit[q]");
@@ -47,7 +48,7 @@ namespace AkarasDegenStuff
                 {
                     Console.WriteLine("What stat would you like to sort by? ");
                     var sortCall = Console.ReadLine().ToUpper().Trim();
-                    allItems.Sort(new SortItemBy(sortCall));
+                    allItems.Sort(new SortByStat(sortCall));
                     sItems = Utils.ItemToString(allItems);
                 }
                 else if (call == "a")
@@ -68,6 +69,12 @@ namespace AkarasDegenStuff
                     allItems.AddRange(mergeList); //adding output to list
                     var mergeList2 = Utils.ItemToString(mergeList);
                     sItems.AddRange(mergeList2);
+                }
+                else if (call == "gbs")
+                {
+                    allItems.Sort(new GenericBeltSort(beltSortParameters));
+                    sItems = Utils.ItemToString(allItems);
+                    Console.WriteLine("Sorted"); 
                 }
                 else if (call == "q")
                 {

@@ -69,27 +69,13 @@ namespace AkarasDegenStuff
                        data[i].Contains("CTC") ||
                        data[i].Contains("CDMG") ||
                        data[i].Contains("ATDO") ||
-                       data[i].Contains("DPL")  == false)
+                       data[i].Contains("DPL") == false)
                     {
                         Stats stats = new Stats(data[i]);
                         ListOfStats.Add(stats);
                     }
                 }
             }
-
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
-            /////////////////////////////////////////Item formatting based off stat//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            
-            if (type == "SB" || type == "VB" )
-            {
-                ListOfStats = Utils.ChangeFormatStats(ListOfStats, 1 , "FHR"); 
-                ListOfStats = Utils.ChangeFormatStats(ListOfStats, 2 , "STR"); 
-                ListOfStats = Utils.ChangeFormatStats(ListOfStats, 3 , "LIFE"); 
-                ListOfStats = Utils.ChangeFormatStats(ListOfStats, ListOfStats.Count-2 , "MANA"); 
-                ListOfStats = Utils.ChangeFormatStats(ListOfStats, ListOfStats.Count-1 , "MREG"); 
-            }
-
         }
         public Stats getStat(string inputString)
         {
@@ -107,19 +93,55 @@ namespace AkarasDegenStuff
         {
             string result = $"{name}/{type}/{defenseAmount}{defense}/{level}{req1}\t";
             var StringOfStats = Utils.StatsToString(ListOfStats);
+            List<string> statNamesForPrint = new List<string>();
+            string[] statNamesBelt = new string[] { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
 
             if (type == "RING" || type == "AMULET" || type == "JEWEL")
             {
                 result = $"{name}/{level}{req1}\t";
-            }
-            for (int i = 0; i < StringOfStats.Count; i++)
-            {
-                if (i >= 1 && i < StringOfStats.Count)
+                for (int i = 0; i < StringOfStats.Count; i++)
                 {
-                    result += "/";
+                    if (i >= 1 && i < StringOfStats.Count)
+                    {
+                        result += "/";
+                    }
+
+                    result += $"{StringOfStats[i]}";
                 }
-                result += $"{StringOfStats[i]}";
             }
+            else if (type == "SB" || type == "VB")
+            {
+                for (int i = 0; i < statNamesBelt.Length; i++)
+                {
+                    var stats = getStat(statNamesBelt[i]);
+                    if (stats != null)
+                    {
+                        statNamesForPrint.Add(stats.ToString());
+                    }
+                }
+                for (int i = 0; i < statNamesForPrint.Count; i++)
+                {
+                    if (i >= 1 && i < statNamesForPrint.Count)
+                    {
+                    result += "/"; 
+                    }
+                    
+                    result += statNamesForPrint[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < StringOfStats.Count; i++)
+                {
+                    if (i >= 1 && i < StringOfStats.Count)
+                    {
+                        result += "/";
+                    }
+
+                    result += $"{StringOfStats[i]}";
+                }
+            }
+
 
             return result;
         }

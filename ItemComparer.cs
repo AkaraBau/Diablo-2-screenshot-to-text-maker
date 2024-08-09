@@ -13,13 +13,13 @@ using System.Text.RegularExpressions;
 
 namespace AkarasDegenStuff
 {
-  class SortItemBy : IComparer<Item>
+  class SortByStat : IComparer<Item>
   {
     public string sortCall { get; set; }
 
-    public SortItemBy(string input)
+    public SortByStat(string sortInput)
     {
-      sortCall = input;
+      sortCall = sortInput;
     }
 
     public int Compare(Item left, Item right)
@@ -27,8 +27,21 @@ namespace AkarasDegenStuff
       return Utils.compareStat(left, right, sortCall);
     }
   }
-  class GenericItemSort
-  {
 
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  class GenericBeltSort : IComparer<Item>
+  {
+    public List<string> beltSortCalls { get; set; }
+
+    public GenericBeltSort(List<string> beltSortInputs)
+    {
+      beltSortCalls = beltSortInputs;
+    }
+
+    public int Compare(Item left, Item right)
+    {
+      return 0;
+    }
   }
 }

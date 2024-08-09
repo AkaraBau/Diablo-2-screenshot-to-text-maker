@@ -169,8 +169,8 @@ namespace AkarasDegenStuff
                                  .Replace("FASTERHIFRECOVERY", "FHR")
                                  .Replace("FASTERHITRECEVERY", "FHR")
                                  //EG
-                                 .Replace("EXTRAGOLDFROMMONSTERS", "EG")
-                                 .Replace("EXTRAGOLDFROMMONSTERS", "EG")
+                                 .Replace("EXTRAGOLDFROMMONSTERS", "GOLD")
+                                 .Replace("EXTRAGOLDFROMMONSTERS", "GOLD")
                                  //ATDO
                                  .Replace("ATTACKERTAKESDAMAGEOF", "ATDO")
                                  //Light radius
@@ -211,7 +211,8 @@ namespace AkarasDegenStuff
                                  .Replace("LEVELCHARGEDBOLTCHARGES", "CHARGES")
                                  //other
                                  .Replace("MACICDR", "MDR")
-                                 .Replace("MAACICDAMACEREPUCEBY", "MDR");
+                                 .Replace("MAACICDAMACEREPUCEBY", "MDR")
+                                 .Replace("QDPL", "DPL");
 
             return result;
         }
@@ -422,18 +423,28 @@ namespace AkarasDegenStuff
 
             return (int)statRight.amount - (int)statLeft.amount;
         }
-        public static List<Stats> ChangeFormatStats(List<Stats> inputList, int x, string input)
+        public static int compareBelts(Item left, Item right, List<string> beltSortCalls)
         {
-            for (int i = 0; i < inputList.Count; i++)
+            Stats statLeft = null;
+            Stats statRight = null;
+            int? result = null; 
+
+            for (int i = 0; i < beltSortCalls.Count; i++)
             {
-                if (inputList[i].name.Contains(input))
+                statLeft = left.getStat(beltSortCalls[i]);
+                statRight = right.getStat(beltSortCalls[i]);
+
+                if (statLeft == null || statRight == null)
                 {
-                    Stats swap = inputList[x];
-                    inputList[x] = inputList[i];
-                    inputList[i] = swap;
+                    return Utils.CheckForNull(statLeft, statRight);
+                }
+                else 
+                {
+                    result += (int)statRight.amount - (int)statLeft.amount;   
                 }
             }
-            return inputList;
+            
+            return (int)result;
         }
     }
 }
