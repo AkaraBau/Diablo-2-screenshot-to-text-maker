@@ -27,7 +27,7 @@ namespace AkarasDegenStuff
       return Utils.compareStat(left, right, sortCall);
     }
   }
-  class GenereicItemSort
+  class GenericItemSort
   {
 
   }
