@@ -17,13 +17,13 @@ namespace AkarasDegenStuff
     {
         public static void DoIt()
         {
-            var input = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
-            var sItems = new List<string>(); //list of <String>
-            var allItems = new List<Item>(); //list of <Belt>
-            var beltSortParameters = new List<string>() { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" }; 
-            
+            string input = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
+            List <string> sItems = new List<string>(); //list of <String>
+            List<Item> allItems = new List<Item>(); //list of <Belt>
+            List <string> beltSortParameters = new List<string>() { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
+
             Console.WriteLine("What would you like to do?");
-            Console.WriteLine("print[p], txt[t], sortby[sb], add[a], add multiple[am], quit[q]");
+            Console.WriteLine("print[p], txt[t], sortby[sb], generic belt sort[gbs], add[a], add multiple[am], quit[q]");
             String call = null;
             while (call != "q")
             {
@@ -37,9 +37,9 @@ namespace AkarasDegenStuff
                     Console.WriteLine("What would you like to name the file?");
                     String name = Console.ReadLine();
 
-                    Console.WriteLine("What directory should the file get created in?"); 
-                    Console.WriteLine("Format:" + @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have"); 
-                    input = Console.ReadLine(); 
+                    Console.WriteLine("What directory should the file get created in?");
+                    Console.WriteLine("Format:" + @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have");
+                    input = Console.ReadLine();
 
                     input = Path.Combine(input, name + ".txt");
                     File.WriteAllLines(input, sItems);
@@ -57,7 +57,7 @@ namespace AkarasDegenStuff
                     input = Console.ReadLine();
 
                     Item item = new Item(Utils.SingleBeltOcr(input));
-                    allItems.Add(item); 
+                    allItems.Add(item);
                     sItems.Add(item.ToString());
                 }
                 else if (call == "am")
@@ -72,9 +72,12 @@ namespace AkarasDegenStuff
                 }
                 else if (call == "gbs")
                 {
-                    allItems.Sort(new GenericBeltSort(beltSortParameters));
+                    for (int i = 0; i < beltSortParameters.Count; i++)
+                    {
+                        allItems.Sort(new SortByStat(beltSortParameters[i]));
+                    }
                     sItems = Utils.ItemToString(allItems);
-                    Console.WriteLine("Sorted"); 
+                    Console.WriteLine("Sorted");
                 }
                 else if (call == "q")
                 {

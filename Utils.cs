@@ -423,28 +423,5 @@ namespace AkarasDegenStuff
 
             return (int)statRight.amount - (int)statLeft.amount;
         }
-        public static int compareBelts(Item left, Item right, List<string> beltSortCalls)
-        {
-            Stats statLeft = null;
-            Stats statRight = null;
-            int? result = null; 
-
-            for (int i = 0; i < beltSortCalls.Count; i++)
-            {
-                statLeft = left.getStat(beltSortCalls[i]);
-                statRight = right.getStat(beltSortCalls[i]);
-
-                if (statLeft == null || statRight == null)
-                {
-                    return Utils.CheckForNull(statLeft, statRight);
-                }
-                else 
-                {
-                    result += (int)statRight.amount - (int)statLeft.amount;   
-                }
-            }
-            
-            return (int)result;
-        }
     }
 }
