@@ -423,5 +423,26 @@ namespace AkarasDegenStuff
 
             return (int)statRight.amount - (int)statLeft.amount;
         }
+        public static int compareMultipleStats(Item left, Item right, string[] inputStrings)
+        {
+            int? result = null;
+            for (int i = 0; i < inputStrings.Length; i++)
+            {
+                Stats statLeft = left.getStat(inputStrings[i]);
+                Stats statRight = right.getStat(inputStrings[i]);
+
+                if (statLeft == null || statRight == null)
+                {
+                    return Utils.CheckForNull(statLeft, statRight);
+                }
+                else if (statLeft.amount == statRight.amount && statLeft.name == statRight.name)
+                {
+                
+                }
+            }
+
+
+            return (int)result;
+        }
     }
 }
