@@ -187,7 +187,7 @@ namespace AkarasDegenStuff
                                  .Replace("DAMAGEREDUCEDBY", "DR")
                                  .Replace("DAMACEREDUCEDBY", "DR")
                                  .Replace("LEAS", "7%")
-                                 .Replace("REPAIRSDURABILITYIN33SECONDS", "BENUSTEATTACKRATING")
+                                 .Replace("REPAIRSDURABILITYIN33SECONDS", "")
                                  .Replace("N0", "26%")
                                  //attack raiting 
                                  .Replace("TOATTACKRATING", "AR")
