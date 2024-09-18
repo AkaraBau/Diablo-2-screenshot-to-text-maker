@@ -20,7 +20,7 @@ namespace AkarasDegenStuff
             string input = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
             List <string> sItems = new List<string>(); //list of <String>
             List<Item> allItems = new List<Item>(); //list of <Belt>
-            List <string> beltSortParameters = new List<string>() { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
+            string [] beltSortParameters = new string[] { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
 
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("print[p], txt[t], sortby[sb], generic belt sort[gbs], add[a], add multiple[am], quit[q]");
@@ -72,10 +72,9 @@ namespace AkarasDegenStuff
                 }
                 else if (call == "gbs")
                 {
-                    for (int i = 0; i < beltSortParameters.Count; i++)
-                    {
-                        allItems.Sort(new SortByStat(beltSortParameters[i]));
-                    }
+                    
+                        allItems.Sort(new GenericBeltSort(beltSortParameters));
+                    
                     sItems = Utils.ItemToString(allItems);
                     Console.WriteLine("Sorted");
                 }

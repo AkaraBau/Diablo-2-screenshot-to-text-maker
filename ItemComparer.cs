@@ -27,4 +27,19 @@ namespace AkarasDegenStuff
       return Utils.compareStat(left, right, sortCall);
     }
   }
+  class GenericBeltSort : IComparer<Item>
+  {
+    public string[] sortParameters { get; set; }
+
+    public GenericBeltSort(string[] inputParameters)
+    {
+    sortParameters = inputParameters; 
+    }
+
+    public int Compare(Item left, Item right)
+    {
+      return Utils.compareMultipleStats(left, right, sortParameters);
+    }
+
+  }
 }

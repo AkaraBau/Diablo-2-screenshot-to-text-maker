@@ -373,24 +373,7 @@ namespace AkarasDegenStuff
             int progressWidth = (int)((double)progress / total * width);
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, Console.CursorTop);
-
-            Console.Write("[");
-            if (progressWidth > 0)
-            {
-                Console.Write('C');
-
-                if (progressWidth > 1)
-                {
-
-                    Console.Write(new string('=', progressWidth - 2)); // Console.Write(new string('#', progressWidth));
-                    if (progressWidth == width)
-                    {
-                        Console.Write("3");
-                    }
-                }
-            }
-            Console.Write(new string(' ', width - progressWidth));
-            Console.Write($"]{progress}/{total}");
+            Console.Write($"{progress}/{total}");
 
         }
         public static int CheckForNull(Stats inputA, Stats inputB)
@@ -422,6 +405,31 @@ namespace AkarasDegenStuff
             }
 
             return (int)statRight.amount - (int)statLeft.amount;
+        }
+        public static int compareMultipleStats(Item left, Item right, string[] sortParameters)
+        {
+            int? result = null;
+
+            for (int i = 0; i < sortParameters.Length; i++)
+            {
+                Stats statLeft = left.getStat(sortParameters[i]);
+                Stats statRight = right.getStat(sortParameters[i]);
+
+                if (statLeft == null || statRight == null)
+                {
+                    return Utils.CheckForNull(statLeft, statRight);
+                }
+                else if (statLeft != null && statRight != null)
+                {
+                    result = (int)statRight.amount - (int)statLeft.amount;
+
+                    if (result != 0)
+                    {
+                        return (int)result;
+                    }
+                }
+            }
+            return (int)result;
         }
     }
 }

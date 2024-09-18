@@ -14,6 +14,7 @@ namespace AkarasDegenStuff
 {
     public class Item
     {
+        public int itemID = 0; 
         public ItemType name { get; set; }
         public string type { get; set; }
         public string defense { get; set; }
@@ -24,6 +25,8 @@ namespace AkarasDegenStuff
 
         public Item(string[] data)
         {
+            itemID++;
+            
             name = ItemTypeLookup.GetTypeFromDictionary(data[1]);
             type = data[1];
             if (type == "RING" || type == "AMULET")
