@@ -417,7 +417,7 @@ namespace AkarasDegenStuff
 
                 if (statLeft == null || statRight == null)
                 {
-                    return Utils.CheckForNull(statLeft, statRight);
+                    return Utils.CheckForNull(statLeft, statRight); 
                 }
                 else if (statLeft != null && statRight != null)
                 {
