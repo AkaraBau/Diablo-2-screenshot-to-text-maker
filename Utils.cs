@@ -395,26 +395,11 @@ namespace AkarasDegenStuff
             {
                 result = (int)inputA.amount - (int)inputB.amount;
 
-
                 return result;
-
             }
 
             return 0;
         }
-        /*public static int compareStat(Item left, Item right, string input)
-        {
-            Stats statLeft = left.getStat(input);
-            Stats statRight = right.getStat(input);
-
-            if (statLeft == null || statRight == null)
-            {
-                return Utils.CheckForNull(statLeft, statRight);
-            }
-
-            return (int)statRight.amount - (int)statLeft.amount;
-        }
-        */
         public static int compareMultipleStats(Item left, Item right, string[] sortParameters)
         {
 

@@ -24,7 +24,10 @@ namespace AkarasDegenStuff
 
     public int Compare(Item left, Item right)
     {
-      return Utils.compareStat(left, right, sortCall);
+      Stats statsLeft = left.getStat(sortCall);
+      Stats statsRight = right.getStat(sortCall);
+      
+      return Utils.compareStat(statsLeft, statsRight);
     }
   }
   class GenericBeltSort : IComparer<Item>
