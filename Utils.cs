@@ -376,9 +376,9 @@ namespace AkarasDegenStuff
             Console.Write($"{progress}/{total}");
 
         }
-        public static int CheckForNull(Stats inputA, Stats inputB)
+        public static int compareStat(Stats inputA, Stats inputB)
         {
-            int? result = null;
+            int result = 0;
             if (inputA == null && inputB == null)
             {
                 result = 0;
@@ -391,10 +391,18 @@ namespace AkarasDegenStuff
             {
                 result = -1;
             }
+            else if (inputA != null && inputB != null)
+            {
+                result = (int)inputA.amount - (int)inputB.amount;
 
-            return (int)result;
+
+                return result;
+
+            }
+
+            return 0;
         }
-        public static int compareStat(Item left, Item right, string input)
+        /*public static int compareStat(Item left, Item right, string input)
         {
             Stats statLeft = left.getStat(input);
             Stats statRight = right.getStat(input);
@@ -406,30 +414,25 @@ namespace AkarasDegenStuff
 
             return (int)statRight.amount - (int)statLeft.amount;
         }
+        */
         public static int compareMultipleStats(Item left, Item right, string[] sortParameters)
         {
-            int? result = null;
+
 
             for (int i = 0; i < sortParameters.Length; i++)
             {
                 Stats statLeft = left.getStat(sortParameters[i]);
                 Stats statRight = right.getStat(sortParameters[i]);
 
-                if (statLeft == null || statRight == null)
-                {
-                    return Utils.CheckForNull(statLeft, statRight); 
-                }
-                else if (statLeft != null && statRight != null)
-                {
-                    result = (int)statRight.amount - (int)statLeft.amount;
+                int result = Utils.compareStat(statLeft, statRight);
 
-                    if (result != 0)
-                    {
-                        return (int)result;
-                    }
+                if (result != 0)
+                {
+                    return result;
                 }
+
             }
-            return (int)result;
+            return 0;
         }
     }
 }
