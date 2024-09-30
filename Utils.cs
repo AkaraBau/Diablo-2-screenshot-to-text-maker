@@ -385,7 +385,7 @@ namespace AkarasDegenStuff
             }
             else if (inputA == null)
             {
-                result = 1;
+                result = -1;
             }
             else if (inputB == null)
             {
@@ -393,7 +393,7 @@ namespace AkarasDegenStuff
             }
             else if (inputA != null && inputB != null)
             {
-                result = (int)inputA.amount - (int)inputB.amount;
+                result = (int)inputB.amount - (int)inputA.amount;
 
                 return result;
             }
