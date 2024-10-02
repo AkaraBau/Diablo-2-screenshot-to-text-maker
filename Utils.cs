@@ -378,22 +378,22 @@ namespace AkarasDegenStuff
         }
         public static int compareStat(Stats inputA, Stats inputB)
         {
-            int result = 0;
+            
             if (inputA == null && inputB == null)
             {
-                result = 0;
+                return 0;
             }
             else if (inputA == null)
             {
-                result = 1;
+                return 1;
             }
             else if (inputB == null)
             {
-                result = 1;
+                return -1;
             }
             else if (inputA != null && inputB != null)
             {
-                result = (int)inputB.amount - (int)inputA.amount;
+                var result = (int)inputB.amount - (int)inputA.amount;
 
                 return result;
             }
