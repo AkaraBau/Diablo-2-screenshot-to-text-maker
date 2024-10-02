@@ -385,11 +385,11 @@ namespace AkarasDegenStuff
             }
             else if (inputA == null)
             {
-                result = -1;
+                result = 1;
             }
             else if (inputB == null)
             {
-                result = -1;
+                result = 1;
             }
             else if (inputA != null && inputB != null)
             {
