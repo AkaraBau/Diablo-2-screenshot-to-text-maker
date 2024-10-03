@@ -94,7 +94,7 @@ namespace AkarasDegenStuff
         }
         public override string ToString()
         {
-            string result = $"{name}/{type}/{defenseAmount}{defense}/{level}{req1}\t";
+            string result = $"{itemID}/{name}/{type}/{defenseAmount}{defense}/{level}{req1}\t";
             var StringOfStats = Utils.StatsToString(ListOfStats);
             List<string> statNamesForPrint = new List<string>();
             string[] statNamesBelt = new string[] { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
