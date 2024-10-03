@@ -13,7 +13,7 @@ using TesseractSharp.Hocr;
 
 namespace AkarasDegenStuff
 {
-    public class JPGtoTXT
+    public class Main
     {
         public static void DoIt()
         {
@@ -73,7 +73,7 @@ namespace AkarasDegenStuff
                 else if (call == "gbs")
                 {
                     
-                        allItems.Sort(new GenericBeltSort(beltSortParameters));
+                    allItems.Sort(new GenericBeltSort(beltSortParameters));
                     
                     sItems = Utils.ItemToString(allItems);
                     Console.WriteLine("Sorted");

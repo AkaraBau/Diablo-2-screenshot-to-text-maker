@@ -4,7 +4,7 @@
     {
         public static void Main()
         {
-            JPGtoTXT.DoIt();
+            AkarasDegenStuff.Main.DoIt();
         }
     }
 }
