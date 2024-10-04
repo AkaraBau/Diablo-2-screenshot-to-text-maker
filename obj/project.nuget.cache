@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "ZNjp2WCPO80=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\fide_\\source\\repos\\AkaraBau\\Diablo-2-screenshot-to-text-maker\\Programming.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\fide_\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.8\\microsoft.net.illink.tasks.8.0.8.nupkg.sha512",
+    "C:\\Users\\fide_\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
+    "C:\\Users\\fide_\\.nuget\\packages\\nlog\\4.6.7\\nlog.4.6.7.nupkg.sha512",
+    "C:\\Users\\fide_\\.nuget\\packages\\system.drawing.common\\8.0.1\\system.drawing.common.8.0.1.nupkg.sha512",
+    "C:\\Users\\fide_\\.nuget\\packages\\tesseractsharp\\1.1.9\\tesseractsharp.1.1.9.nupkg.sha512"
+  ],
+  "logs": []
+}

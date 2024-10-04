@@ -1,0 +1,6 @@
+C:\Users\fide_\source\repos\AkaraBau\Diablo-2-screenshot-to-text-maker\obj\Debug\net8.0\Programming.csproj.AssemblyReference.cache
+C:\Users\fide_\source\repos\AkaraBau\Diablo-2-screenshot-to-text-maker\obj\Debug\net8.0\Programming.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fide_\source\repos\AkaraBau\Diablo-2-screenshot-to-text-maker\obj\Debug\net8.0\Programming.AssemblyInfoInputs.cache
+C:\Users\fide_\source\repos\AkaraBau\Diablo-2-screenshot-to-text-maker\obj\Debug\net8.0\Programming.AssemblyInfo.cs
+C:\Users\fide_\source\repos\AkaraBau\Diablo-2-screenshot-to-text-maker\obj\Debug\net8.0\Programming.csproj.CoreCompileInputs.cache
+C:\Users\fide_\source\repos\AkaraBau\Diablo-2-screenshot-to-text-maker\obj\Debug\net8.0\Programming.sourcelink.json
