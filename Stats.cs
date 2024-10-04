@@ -11,7 +11,7 @@ using TesseractSharp;
 using TesseractSharp.Core;
 using TesseractSharp.Hocr;
 
-namespace AkarasDegenStuff
+namespace Programming
 {
     public class Stats
     {

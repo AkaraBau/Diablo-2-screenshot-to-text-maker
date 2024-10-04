@@ -1,10 +1,10 @@
-﻿namespace AkarasDegenStuff
+﻿namespace Programming
 {
     public class Program
     {
         public static void Main()
         {
-            AkarasDegenStuff.Main.DoIt();
+            Programming.Main.DoIt();
         }
     }
 }

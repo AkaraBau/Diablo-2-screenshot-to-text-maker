@@ -11,7 +11,7 @@ using TesseractSharp.Core;
 using TesseractSharp.Hocr;
 using System.Text.RegularExpressions;
 
-namespace AkarasDegenStuff
+namespace Programming
 {
   class SortByStat : IComparer<Item>
   {
@@ -32,16 +32,16 @@ namespace AkarasDegenStuff
   }
   class GenericBeltSort : IComparer<Item>
   {
-    public string[] sortParameters { get; set; }
+    public string[] SortParameters { get; set; }
 
     public GenericBeltSort(string[] inputParameters)
     {
-    sortParameters = inputParameters; 
+    SortParameters = inputParameters; 
     }
 
     public int Compare(Item left, Item right)
     {
-      return Utils.compareMultipleStats(left, right, sortParameters);
+      return Utils.compareMultipleStats(left, right, SortParameters);
     }
 
   }

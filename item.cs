@@ -10,31 +10,31 @@ using NLog.LayoutRenderers;
 using TesseractSharp;
 using TesseractSharp.Hocr;
 
-namespace AkarasDegenStuff
+namespace Programming
 {
     public class Item
     {
         public int itemID = 0; 
-        public ItemType name { get; set; }
-        public string type { get; set; }
-        public string defense { get; set; }
-        public int? defenseAmount { get; set; }
-        public string req1 { get; set; }
-        public int level { get; set; }
+        public ItemType Name { get; set; }
+        public string Type { get; set; }
+        public string Defense { get; set; }
+        public int? DefenseAmount { get; set; }
+        public string LevelRequirement { get; set; }
+        public int Level { get; set; }
         public List<Stats> ListOfStats = new List<Stats>();
 
         public Item(string[] data)
         {
             itemID++;
             
-            name = ItemTypeLookup.GetTypeFromDictionary(data[1]);
-            type = data[1];
-            if (type == "RING" || type == "AMULET")
+            Name = ItemTypeLookup.GetTypeFromDictionary(data[1]);
+            Type = data[1];
+            if (Type == "RING" || Type == "AMULET")
             {
-                defenseAmount = null;
-                defense = null;
-                level = Utils.ExtractIntFromString(data[2]);
-                req1 = Utils.RemoveNumbers(data[2]);
+                DefenseAmount = null;
+                Defense = null;
+                Level = Utils.ExtractIntFromString(data[2]);
+                LevelRequirement = Utils.RemoveNumbers(data[2]);
                 for (int i = 3; i < data.Length; i++)
                 {
                     if (data[i].Contains("CHARGES") ||
@@ -46,12 +46,12 @@ namespace AkarasDegenStuff
                     }
                 }
             }
-            else if (type == "JEWEL")
+            else if (Type == "JEWEL")
             {
-                defenseAmount = null;
-                defense = null;
-                level = Utils.ExtractIntFromString(data[3]);
-                req1 = Utils.RemoveNumbers(data[3]);
+                DefenseAmount = null;
+                Defense = null;
+                Level = Utils.ExtractIntFromString(data[3]);
+                LevelRequirement = Utils.RemoveNumbers(data[3]);
                 for (int i = 4; i < data.Length; i++)
                 {
                     Stats stats = new Stats(data[i]);
@@ -60,10 +60,10 @@ namespace AkarasDegenStuff
             }
             else
             {
-                defenseAmount = Utils.ExtractIntFromString(data[2]);
-                defense = Utils.RemoveNumbers(data[2]);
-                level = Utils.ExtractIntFromString(data[6]);
-                req1 = Utils.RemoveNumbers(data[6]);
+                DefenseAmount = Utils.ExtractIntFromString(data[2]);
+                Defense = Utils.RemoveNumbers(data[2]);
+                Level = Utils.ExtractIntFromString(data[6]);
+                LevelRequirement = Utils.RemoveNumbers(data[6]);
 
 
                 for (int i = 7; i < data.Length; i++)
@@ -94,14 +94,14 @@ namespace AkarasDegenStuff
         }
         public override string ToString()
         {
-            string result = $"{itemID}/{name}/{type}/{defenseAmount}{defense}/{level}{req1}\t";
+            string result = $"{itemID}/{Name}/{Type}/{DefenseAmount}{Defense}/{Level}{LevelRequirement}\t";
             var StringOfStats = Utils.StatsToString(ListOfStats);
             List<string> statNamesForPrint = new List<string>();
             string[] statNamesBelt = new string[] { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
 
-            if (type == "RING" || type == "AMULET" || type == "JEWEL")
+            if (Type == "RING" || Type == "AMULET" || Type == "JEWEL")
             {
-                result = $"{name}/{level}{req1}\t";
+                result = $"{Name}/{Level}{LevelRequirement}\t";
                 for (int i = 0; i < StringOfStats.Count; i++)
                 {
                     if (i >= 1 && i < StringOfStats.Count)
@@ -112,7 +112,7 @@ namespace AkarasDegenStuff
                     result += $"{StringOfStats[i]}";
                 }
             }
-            else if (type == "SB" || type == "VB")
+            else if (Type == "SB" || Type == "VB")
             {
                 for (int i = 0; i < statNamesBelt.Length; i++)
                 {

@@ -12,7 +12,7 @@ using NLog.Targets;
 using TesseractSharp;
 using TesseractSharp.Hocr;
 
-namespace AkarasDegenStuff
+namespace Programming
 {
     public static class ItemTypeLookup
     {
