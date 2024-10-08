@@ -30,7 +30,7 @@ namespace Programming
       return Utils.compareStat(statsLeft, statsRight);
     }
   }
-  class GenericBeltSort : IComparer<Item>
+  public class GenericBeltSort : IComparer<Item>
   {
     public string[] SortParameters { get; set; }
 

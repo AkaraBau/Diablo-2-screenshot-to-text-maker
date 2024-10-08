@@ -76,6 +76,7 @@ namespace Programming
                     allItems.Sort(new GenericBeltSort(beltSortParameters));
                     
                     sItems = Utils.ItemToString(allItems);
+
                     Console.WriteLine("Sorted");
                 }
                 else if (call == "q")
