@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Formats.Asn1;
 using System.IO;
 using System.Linq;
@@ -85,7 +86,7 @@ namespace Programming
             Stats result = null;
             for (int i = 0; i < ListOfStats.Count; i++)
             {
-                if (ListOfStats[i].name.Contains(inputString))
+                if (ListOfStats[i].Name.Contains(inputString))
                 {
                     result = ListOfStats[i];
                 }
@@ -147,6 +148,34 @@ namespace Programming
 
 
             return result;
+        }
+
+        public override bool Equals(object obj)
+        {
+            Item other = obj as Item; 
+
+            if (other == null) return false;    
+
+            else if (   this.itemID == other.itemID 
+                && this.Name == other.Name 
+                && this.Type == other.Type 
+                && this.Defense == other.Defense 
+                && this.DefenseAmount == other.DefenseAmount 
+                && this.LevelRequirement == other.LevelRequirement 
+                && this.Level == other.Level
+                && this.ListOfStats.Equals(other.ListOfStats)) 
+            { 
+                return true; 
+            }
+            else 
+            { 
+                return false; 
+            } 
+        }
+
+        public override int GetHashCode()
+        {
+            return this.itemID.GetHashCode() ^ this.Name.GetHashCode() ^ this.Type.GetHashCode() ^ this.Defense.GetHashCode() ^ this.DefenseAmount.GetHashCode() ^ this.LevelRequirement.GetHashCode() ^ this.Level.GetHashCode() ^ this.ListOfStats.GetHashCode();
         }
     }
 }

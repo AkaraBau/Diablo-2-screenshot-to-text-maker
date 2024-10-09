@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.IO;
 using System.IO.Pipes;
 using System.Linq; //accessing case sensitive check
@@ -15,19 +16,39 @@ namespace Programming
 {
     public class Stats
     {
-        public string name { get; set; }
-        public int? amount { get; set; }
+        public string Name { get; set; }
+        public int? Amount { get; set; }
 
         public Stats(string data)
         {
-            amount = Utils.ExtractIntFromString(data);
-            name = Utils.RemoveNumbers(data);
+            Amount = Utils.ExtractIntFromString(data);
+            Name = Utils.RemoveNumbers(data);
 
         }
         public override string ToString()
         {
-            string result = $"{amount}{name}";
+            string result = $"{Amount}{Name}";
             return result;
         }
+
+        public override bool Equals(object obj)
+        {
+            Stats other = obj as Stats;
+
+            if (other == null) return false;
+
+            else if (this.Name == other.Name && this.Amount == other.Amount)
+            {
+                return true;
+            }
+
+            else return false; 
+             
+
+        }
+        public override int GetHashCode() 
+            { 
+            return this.Amount.GetHashCode() ^ this.Name.GetHashCode(); 
+        }   
     }
 }

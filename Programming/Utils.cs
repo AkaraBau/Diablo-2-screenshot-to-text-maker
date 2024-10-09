@@ -393,7 +393,7 @@ namespace Programming
             }
             else if (inputA != null && inputB != null)
             {
-                var result = (int)inputB.amount - (int)inputA.amount;
+                var result = (int)inputB.Amount - (int)inputA.Amount;
 
                 return result;
             }
