@@ -419,5 +419,24 @@ namespace Programming
             }
             return 0;
         }
+        public static bool CheckEqualStats ( List<Stats> left, List <Stats> right)
+        {
+
+
+            if (left.Count == right.Count)
+            {
+                for (int i = 0; i < left.Count - 1; i++)
+                {
+                    if (!left[i].Equals(right[i]))
+                    {
+                        return false;
+                    }
+                }
+            }
+            else return false; 
+
+            return true;
+            
+        }
     }
 }

@@ -163,7 +163,7 @@ namespace Programming
                 && this.DefenseAmount == other.DefenseAmount 
                 && this.LevelRequirement == other.LevelRequirement 
                 && this.Level == other.Level
-                && this.ListOfStats.Equals(other.ListOfStats)) 
+                && Utils.CheckEqualStats(this.ListOfStats,other.ListOfStats) ) 
             { 
                 return true; 
             }
