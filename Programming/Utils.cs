@@ -378,7 +378,7 @@ namespace Programming
         }
         public static int compareStat(Stats inputA, Stats inputB)
         {
-            
+
             if (inputA == null && inputB == null)
             {
                 return 0;
@@ -419,24 +419,25 @@ namespace Programming
             }
             return 0;
         }
-        public static bool CheckEqualStats ( List<Stats> left, List <Stats> right)
+        public static bool CheckEqualStats(List<Stats> left, List<Stats> right)
         {
 
 
-            if (left.Count == right.Count)
+
+            if (left.Count != right.Count) return false;
+
+            for (int i = 0; i < left.Count - 1; i++)
             {
-                for (int i = 0; i < left.Count - 1; i++)
+                if (!left[i].Equals(right[i]))
                 {
-                    if (!left[i].Equals(right[i]))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
-            else return false; 
+
+
 
             return true;
-            
+
         }
     }
 }

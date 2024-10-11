@@ -15,7 +15,7 @@ namespace Programming
 {
     public class Item
     {
-        public int itemID = 0; 
+        public int itemID = 0001; //TODO NOT WORKING 
         public ItemType Name { get; set; }
         public string Type { get; set; }
         public string Defense { get; set; }
@@ -26,8 +26,8 @@ namespace Programming
 
         public Item(string[] data)
         {
-            itemID++;
-            
+
+            itemID = itemID++; //TODO NOT WORKING 
             Name = ItemTypeLookup.GetTypeFromDictionary(data[1]);
             Type = data[1];
             if (Type == "RING" || Type == "AMULET")
