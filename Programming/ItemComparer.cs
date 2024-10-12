@@ -24,8 +24,8 @@ namespace Programming
 
     public int Compare(Item left, Item right)
     {
-      Stats statsLeft = left.getStat(sortCall);
-      Stats statsRight = right.getStat(sortCall);
+      Stats statsLeft = left.GetStat(sortCall);
+      Stats statsRight = right.GetStat(sortCall);
       
       return Utils.compareStat(statsLeft, statsRight);
     }

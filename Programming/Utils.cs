@@ -406,8 +406,8 @@ namespace Programming
 
             for (int i = 0; i < sortParameters.Length; i++)
             {
-                Stats statLeft = left.getStat(sortParameters[i]);
-                Stats statRight = right.getStat(sortParameters[i]);
+                Stats statLeft = left.GetStat(sortParameters[i]);
+                Stats statRight = right.GetStat(sortParameters[i]);
 
                 int result = Utils.compareStat(statLeft, statRight);
 
@@ -438,6 +438,24 @@ namespace Programming
 
             return true;
 
+        }
+        public static List<Item> SearchForStatAndAmount (List<Item> items, string searchStat, int bot, int top) 
+        {
+            List<Item> result = new List<Item>();
+            Stats stat = null; 
+            for (int i = 0; i < items.Count-1; i++)
+            {
+                stat = items[i].GetStat(searchStat);
+                if (stat != null) 
+                {
+                    if (items[i].GetAmount(bot, top, stat) != null) 
+                    { 
+                    result.Add(items[i]);
+                    }
+                }
+                
+            }
+            return result; 
         }
     }
 }

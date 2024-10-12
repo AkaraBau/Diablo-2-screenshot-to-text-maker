@@ -81,7 +81,10 @@ namespace Programming
                 }
             }
         }
-        public Stats getStat(string inputString)
+        /// <summary>
+        /// GetStat and GetAmount instance methods on type Item 
+        /// </summary>
+        public Stats GetStat(string inputString)
         {
             Stats result = null;
             for (int i = 0; i < ListOfStats.Count; i++)
@@ -93,6 +96,18 @@ namespace Programming
             }
             return result;
         }
+        public Stats GetAmount(int bot, int top, Stats inputStats)
+        {
+            Stats result = null; 
+            if (inputStats.Amount > bot && inputStats.Amount < top) 
+            {
+                result = inputStats;
+            }
+            return result;
+        }
+        /// <summary>
+        /// String override and equals/gethaschcode override 
+        /// </summary>
         public override string ToString()
         {
             string result = $"{itemID}/{Name}/{Type}/{DefenseAmount}{Defense}/{Level}{LevelRequirement}\t";
@@ -117,7 +132,7 @@ namespace Programming
             {
                 for (int i = 0; i < statNamesBelt.Length; i++)
                 {
-                    var stats = getStat(statNamesBelt[i]);
+                    var stats = GetStat(statNamesBelt[i]);
                     if (stats != null)
                     {
                         statNamesForPrint.Add(stats.ToString());

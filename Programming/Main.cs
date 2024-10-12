@@ -23,7 +23,7 @@ namespace Programming
             string [] beltSortParameters = new string[] { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
 
             Console.WriteLine("What would you like to do?");
-            Console.WriteLine("print[p], txt[t], sortby[sb], generic belt sort[gbs], add[a], add multiple[am], quit[q]");
+            Console.WriteLine("print[p], txt[t], sortby[sb], generic belt sort[gbs], add[a], add multiple[am],search for stat and specific amount [sss] quit[q]");
             String call = null;
             while (call != "q")
             {
@@ -78,6 +78,22 @@ namespace Programming
                     sItems = Utils.ItemToString(allItems);
 
                     Console.WriteLine("Sorted");
+                }
+                else if (call == "sss")
+                {
+                    Console.WriteLine("Set a bottom range"); 
+                    int bottom = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Set a top range");
+                    int top = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("set which stat to search for"); 
+                    string statForSearch = Console.ReadLine();
+
+                    List<Item> searchedList = Utils.SearchForStatAndAmount(allItems, statForSearch, bottom, top);
+
+                    List<string>stringSearchedList = Utils.ItemToString(searchedList);
+
+                    Utils.PrintList(stringSearchedList);
+                    
                 }
                 else if (call == "q")
                 {
