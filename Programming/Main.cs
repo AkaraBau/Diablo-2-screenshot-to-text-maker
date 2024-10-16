@@ -15,12 +15,13 @@ namespace Programming
 {
     public class Main
     {
-        public static void DoIt()
+        public static void DoIt(string[]args)
         {
+            
             string input = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
-            List <string> sItems = new List<string>(); //list of <String>
+            List<string> sItems = new List<string>(); //list of <String>
             List<Item> allItems = new List<Item>(); //list of <Belt>
-            string [] beltSortParameters = new string[] { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
+            string[] beltSortParameters = new string[] { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
 
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("print[p], txt[t], sortby[sb], generic belt sort[gbs], add[a], add multiple[am],search for stat and specific amount [sss] quit[q]");
@@ -72,28 +73,48 @@ namespace Programming
                 }
                 else if (call == "gbs")
                 {
-                    
+
                     allItems.Sort(new GenericBeltSort(beltSortParameters));
-                    
+
                     sItems = Utils.ItemToString(allItems);
 
                     Console.WriteLine("Sorted");
                 }
                 else if (call == "sss")
                 {
-                    Console.WriteLine("Set a bottom range"); 
-                    int bottom = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("Set a top range");
-                    int top = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine("set which stat to search for"); 
-                    string statForSearch = Console.ReadLine();
+                    Console.WriteLine("How many different stats would you like to search for?");
+                    int howManyStats = Convert.ToInt32(Console.ReadLine());
+                    int top = 0;
+                    int bottom = 0;
+                    string statForSearch = null;
+                    List<Item> searchedList = new List<Item>();
 
-                    List<Item> searchedList = Utils.SearchForStatAndAmount(allItems, statForSearch, bottom, top);
 
-                    List<string>stringSearchedList = Utils.ItemToString(searchedList);
+                    for (int i = 0; i < howManyStats; i++)
+                    {
 
-                    Utils.PrintList(stringSearchedList);
-                    
+
+                        Console.WriteLine("Set a bottom range");
+                        bottom = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Set a top range");
+                        top = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("set which stat to search for");
+                        statForSearch = Console.ReadLine();
+                        if (i == 1)
+                        {
+                            searchedList = Utils.SearchForStatAndAmount(allItems, statForSearch, bottom, top);
+                        }
+                        if (i >= 2)
+                        {
+                            searchedList = Utils.SearchForStatAndAmount(searchedList, statForSearch, bottom, top);
+                        }
+                        if (i == howManyStats)
+                        {
+                            List<string> stringSearchedList = Utils.ItemToString(searchedList);
+                            Utils.PrintList(stringSearchedList);
+                        }
+                    }
+
                 }
                 else if (call == "q")
                 {

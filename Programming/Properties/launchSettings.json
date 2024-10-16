@@ -1,0 +1,12 @@
+{
+  "profiles": {    
+    "OCR": {
+      "commandName": "Project",
+      "commandLineArgs": "ocr"
+    },
+    "PARSE": {
+      "commandName": "Project",
+      "commandLineArgs": "parse"
+    }
+  }
+}

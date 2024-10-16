@@ -2,9 +2,9 @@
 {
     public class Program
     {
-        public static void Main()
+        public static void Main(string[] args)
         {
-            Programming.Main.DoIt();
+            Programming.Main.DoIt(args);
         }
     }
 }
