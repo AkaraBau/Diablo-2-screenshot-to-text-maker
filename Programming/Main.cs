@@ -11,17 +11,44 @@ using TesseractSharp;
 using TesseractSharp.Core;
 using TesseractSharp.Hocr;
 
-namespace Programming
+namespace DiabloItemMuleSystem
 {
     public class Main
     {
         public static void DoIt(string[]args)
         {
-            
             string input = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
             List<string> sItems = new List<string>(); //list of <String>
             List<Item> allItems = new List<Item>(); //list of <Belt>
             string[] beltSortParameters = new string[] { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
+            string filePath = null;
+            string command = null;
+
+            if (args.Length == 0) return;
+            else if (args.Length <= 2)
+            {
+                command = args[0];
+                filePath = args[1];
+            }
+
+
+            if (command == "ocr")
+            {
+                allItems = Utils.MultiBeltOcr(filePath);
+                sItems = Utils.ItemToString(allItems);
+
+            }
+            else if (command == "parse")
+            {
+                string txtFile = File.ReadAllText(filePath);
+                string[] txtFileSplitOnNewline = txtFile.Split("\n");
+                for (int i = 0;  i < txtFileSplitOnNewline.Length;  i++)
+                {
+                    string[] txtFileSplitBeforeItemCreation = txtFileSplitOnNewline[i].Split('/', '\t');
+                }
+            }
+
+
 
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("print[p], txt[t], sortby[sb], generic belt sort[gbs], add[a], add multiple[am],search for stat and specific amount [sss] quit[q]");
@@ -44,6 +71,8 @@ namespace Programming
 
                     input = Path.Combine(input, name + ".txt");
                     File.WriteAllLines(input, sItems);
+
+                    Console.WriteLine("Txt file created"); 
                 }
                 else if (call == "sb")
                 {

@@ -1,10 +1,10 @@
-﻿namespace Programming
+﻿namespace DiabloItemMuleSystem
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            Programming.Main.DoIt(args);
+            DiabloItemMuleSystem.Main.DoIt(args);
         }
     }
 }

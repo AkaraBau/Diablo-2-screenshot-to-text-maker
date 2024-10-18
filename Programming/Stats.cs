@@ -12,7 +12,7 @@ using TesseractSharp;
 using TesseractSharp.Core;
 using TesseractSharp.Hocr;
 
-namespace Programming
+namespace DiabloItemMuleSystem
 {
     public class Stats
     {

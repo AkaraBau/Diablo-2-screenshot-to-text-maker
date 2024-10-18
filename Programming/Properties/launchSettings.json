@@ -1,12 +1,12 @@
 {
-  "profiles": {    
+  "profiles": {
     "OCR": {
       "commandName": "Project",
-      "commandLineArgs": "ocr"
+      "commandLineArgs": "ocr C:\\Users\\fide_\\Desktop\\d2items\\Crafted\\casterbelts\\Have\\Cbelt-A"
     },
     "PARSE": {
       "commandName": "Project",
-      "commandLineArgs": "parse"
+      "commandLineArgs": "parse C:\\Users\\fide_\\Desktop\\d2items\\Crafted\\casterbelts\\Have\\Cbelt-A\\cbelt-A.txt"
     }
   }
 }

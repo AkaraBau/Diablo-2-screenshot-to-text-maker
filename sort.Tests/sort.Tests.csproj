@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Programming\Programming.csproj" />
+    <ProjectReference Include="..\Programming\DiabloItemMuleSystem.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,7 +11,7 @@ using TesseractSharp.Core;
 using TesseractSharp.Hocr;
 using System.Text.RegularExpressions;
 
-namespace Programming
+namespace DiabloItemMuleSystem
 {
   class SortByStat : IComparer<Item>
   {

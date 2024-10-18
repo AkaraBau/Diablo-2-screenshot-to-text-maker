@@ -11,7 +11,7 @@ using NLog.LayoutRenderers;
 using TesseractSharp;
 using TesseractSharp.Hocr;
 
-namespace Programming
+namespace DiabloItemMuleSystem
 {
     public class Item
     {
