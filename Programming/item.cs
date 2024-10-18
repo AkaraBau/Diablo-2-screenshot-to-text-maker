@@ -17,67 +17,27 @@ namespace DiabloItemMuleSystem
     {
         public int itemID; 
         public ItemType Name { get; set; }
-        public string Type { get; set; }
-        public string Defense { get; set; }
-        public int? DefenseAmount { get; set; }
         public string LevelRequirement { get; set; }
         public int Level { get; set; }
         public List<Stats> ListOfStats = new List<Stats>();
 
-        public Item(string[] data)
+        public Item(List<string> data)
         {
-
             itemID++; //TODO NOT WORKING 
-            Name = ItemTypeLookup.GetTypeFromDictionary(data[1]);
-            Type = data[1];
-            if (Type == "RING" || Type == "AMULET")
+            Name = ItemTypeLookup.GetTypeFromDictionary(data[0]);
+            
+            Level = Utils.ExtractIntFromString(data[1]);
+            LevelRequirement = Utils.RemoveNumbers(data[1]);
+            for (int i = 2; i < data.Count; i++)
             {
-                DefenseAmount = null;
-                Defense = null;
-                Level = Utils.ExtractIntFromString(data[2]);
-                LevelRequirement = Utils.RemoveNumbers(data[2]);
-                for (int i = 3; i < data.Length; i++)
-                {
-                    if (data[i].Contains("CHARGES") ||
-                        data[i].Contains("CTC") ||
-                        data[i].Contains("CDMG") == false)
-                    {
-                        Stats stats = new Stats(data[i]);
-                        ListOfStats.Add(stats);
-                    }
-                }
-            }
-            else if (Type == "JEWEL")
-            {
-                DefenseAmount = null;
-                Defense = null;
-                Level = Utils.ExtractIntFromString(data[3]);
-                LevelRequirement = Utils.RemoveNumbers(data[3]);
-                for (int i = 4; i < data.Length; i++)
+                if (data[i].Contains("CHARGES") ||
+                   data[i].Contains("CTC") ||
+                   data[i].Contains("CDMG") ||
+                   data[i].Contains("ATDO") ||
+                   data[i].Contains("DPL") == false)
                 {
                     Stats stats = new Stats(data[i]);
                     ListOfStats.Add(stats);
-                }
-            }
-            else
-            {
-                DefenseAmount = Utils.ExtractIntFromString(data[2]);
-                Defense = Utils.RemoveNumbers(data[2]);
-                Level = Utils.ExtractIntFromString(data[6]);
-                LevelRequirement = Utils.RemoveNumbers(data[6]);
-
-
-                for (int i = 7; i < data.Length; i++)
-                {
-                    if (data[i].Contains("CHARGES") ||
-                       data[i].Contains("CTC") ||
-                       data[i].Contains("CDMG") ||
-                       data[i].Contains("ATDO") ||
-                       data[i].Contains("DPL") == false)
-                    {
-                        Stats stats = new Stats(data[i]);
-                        ListOfStats.Add(stats);
-                    }
                 }
             }
         }
@@ -110,58 +70,29 @@ namespace DiabloItemMuleSystem
         /// </summary>
         public override string ToString()
         {
-            string result = $"{itemID}/{Name}/{Type}/{DefenseAmount}{Defense}/{Level}{LevelRequirement}\t";
+            string result = $"{itemID}/{Name}/{Level}{LevelRequirement}\t";
             var StringOfStats = Utils.StatsToString(ListOfStats);
             List<string> statNamesForPrint = new List<string>();
-            string[] statNamesBelt = new string[] { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
+            string[] statNamesItems = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
 
-            if (Type == "RING" || Type == "AMULET" || Type == "JEWEL")
+
+            for (int i = 0; i < statNamesItems.Length; i++)
             {
-                result = $"{Name}/{Level}{LevelRequirement}\t";
-                for (int i = 0; i < StringOfStats.Count; i++)
+                var stats = GetStat(statNamesItems[i]);
+                if (stats != null)
                 {
-                    if (i >= 1 && i < StringOfStats.Count)
-                    {
-                        result += "/";
-                    }
-
-                    result += $"{StringOfStats[i]}";
+                    statNamesForPrint.Add(stats.ToString());
                 }
             }
-            else if (Type == "SB" || Type == "VB")
+            for (int i = 0; i < statNamesForPrint.Count; i++)
             {
-                for (int i = 0; i < statNamesBelt.Length; i++)
+                if (i >= 1 && i < statNamesForPrint.Count)
                 {
-                    var stats = GetStat(statNamesBelt[i]);
-                    if (stats != null)
-                    {
-                        statNamesForPrint.Add(stats.ToString());
-                    }
+                    result += "/";
                 }
-                for (int i = 0; i < statNamesForPrint.Count; i++)
-                {
-                    if (i >= 1 && i < statNamesForPrint.Count)
-                    {
-                    result += "/"; 
-                    }
-                    
-                    result += statNamesForPrint[i];
-                }
+
+                result += statNamesForPrint[i];
             }
-            else
-            {
-                for (int i = 0; i < StringOfStats.Count; i++)
-                {
-                    if (i >= 1 && i < StringOfStats.Count)
-                    {
-                        result += "/";
-                    }
-
-                    result += $"{StringOfStats[i]}";
-                }
-            }
-
-
             return result;
         }
 
@@ -173,9 +104,6 @@ namespace DiabloItemMuleSystem
 
             else if (   this.itemID == other.itemID 
                 && this.Name == other.Name 
-                && this.Type == other.Type 
-                && this.Defense == other.Defense 
-                && this.DefenseAmount == other.DefenseAmount 
                 && this.LevelRequirement == other.LevelRequirement 
                 && this.Level == other.Level
                 && Utils.CheckEqualStats(this.ListOfStats,other.ListOfStats) ) 
@@ -190,7 +118,7 @@ namespace DiabloItemMuleSystem
 
         public override int GetHashCode()
         {
-            return this.itemID.GetHashCode() ^ this.Name.GetHashCode() ^ this.Type.GetHashCode() ^ this.Defense.GetHashCode() ^ this.DefenseAmount.GetHashCode() ^ this.LevelRequirement.GetHashCode() ^ this.Level.GetHashCode() ^ this.ListOfStats.GetHashCode();
+            return this.itemID.GetHashCode() ^ this.LevelRequirement.GetHashCode() ^ this.Level.GetHashCode() ^ this.ListOfStats.GetHashCode();
         }
     }
 }

@@ -25,6 +25,7 @@ namespace DiabloItemMuleSystem
                      {"SPS", ItemType.Belt},
                      {"DHS", ItemType.Belt},
                      {"BELT", ItemType.Belt},
+                     {"Belt", ItemType.Belt},
 
                      {"MC", ItemType.Belt},
                      {"MESHBELT", ItemType.Belt},

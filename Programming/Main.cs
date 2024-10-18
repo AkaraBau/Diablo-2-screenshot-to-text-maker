@@ -20,7 +20,7 @@ namespace DiabloItemMuleSystem
             string input = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
             List<string> sItems = new List<string>(); //list of <String>
             List<Item> allItems = new List<Item>(); //list of <Belt>
-            string[] beltSortParameters = new string[] { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
+            string[] beltSortParameters = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
             string filePath = null;
             string command = null;
 
@@ -41,11 +41,8 @@ namespace DiabloItemMuleSystem
             else if (command == "parse")
             {
                 string txtFile = File.ReadAllText(filePath);
-                string[] txtFileSplitOnNewline = txtFile.Split("\n");
-                for (int i = 0;  i < txtFileSplitOnNewline.Length;  i++)
-                {
-                    string[] txtFileSplitBeforeItemCreation = txtFileSplitOnNewline[i].Split('/', '\t');
-                }
+                allItems = Utils.TxtFileToListItem(txtFile);
+                sItems = Utils.ItemToString(allItems);
             }
 
 
@@ -117,32 +114,36 @@ namespace DiabloItemMuleSystem
                     int bottom = 0;
                     string statForSearch = null;
                     List<Item> searchedList = new List<Item>();
+                    List<string> stringSearchedList = new List<string>(); 
 
 
                     for (int i = 0; i < howManyStats; i++)
                     {
-
-
                         Console.WriteLine("Set a bottom range");
                         bottom = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("Set a top range");
                         top = Convert.ToInt32(Console.ReadLine());
                         Console.WriteLine("set which stat to search for");
                         statForSearch = Console.ReadLine();
-                        if (i == 1)
+                        if (i == 0)
                         {
                             searchedList = Utils.SearchForStatAndAmount(allItems, statForSearch, bottom, top);
                         }
-                        if (i >= 2)
+                        if (i >= 1)
                         {
                             searchedList = Utils.SearchForStatAndAmount(searchedList, statForSearch, bottom, top);
-                        }
-                        if (i == howManyStats)
-                        {
-                            List<string> stringSearchedList = Utils.ItemToString(searchedList);
-                            Utils.PrintList(stringSearchedList);
-                        }
+                        }                                                   
                     }
+
+                    searchedList.Sort(new GenericBeltSort(beltSortParameters)); 
+                    stringSearchedList = Utils.ItemToString(searchedList);
+                    Utils.PrintList(stringSearchedList);
+
+                    if (stringSearchedList.Count == 0) 
+                    { 
+                        Console.WriteLine("No items with those stats"); 
+                    }
+                    
 
                 }
                 else if (call == "q")

@@ -10,6 +10,7 @@ using TesseractSharp;
 using TesseractSharp.Core;
 using TesseractSharp.Hocr;
 using System.Text.RegularExpressions;
+using Microsoft.VisualBasic;
 
 namespace DiabloItemMuleSystem
 {
@@ -316,7 +317,7 @@ namespace DiabloItemMuleSystem
             string result = Regex.Replace(input, pattern, "");
             return result;
         }
-        public static string[] SingleBeltOcr(string input)
+        public static List<string> SingleBeltOcr(string input)
         {
             string item = null;
             string[] data = new string[14];
@@ -330,8 +331,9 @@ namespace DiabloItemMuleSystem
                 item = Utils.ShortenString(item);
                 data = item.Split(new[] { '\n' }, StringSplitOptions.None); //split string into array of strings 
                 data = data.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
+                List<string> listData = new List<string>(data);
                 Console.WriteLine("item added");
-                return data;
+                return listData;
             }
         }
         public static List<Item> MultiBeltOcr(string input)
@@ -359,8 +361,10 @@ namespace DiabloItemMuleSystem
 
                     splitData = massOutput[i].Split(new[] { '\n' }, StringSplitOptions.None); //splitting string into string []
                     splitData = splitData.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
+                    List <string> listSplitData = new List<string> (splitData);
+                    listSplitData = Utils.RemoveListContentBeforeObjectCreationOcr(listSplitData);
 
-                    Item belt = new Item(splitData); //Creation of belt
+                    Item belt = new Item(listSplitData); //Creation of belt
                     itemList.Add(belt); //adding belt to list 
                 }
             }
@@ -456,6 +460,44 @@ namespace DiabloItemMuleSystem
                 
             }
             return result; 
+        }
+        public static List<string> RemoveListContentBeforeObjectCreationOcr (List<string> inputList)
+        {
+            if (inputList[1] == "SB" || inputList[1] == "VB" || inputList[1] == "SPS" || inputList[1] == "MC" || inputList[1] == "DHS")
+            {
+                inputList.RemoveAt(0); // 0, 3 , 4 , 5 
+                inputList.RemoveAt(1);
+                inputList.RemoveAt(1);
+                inputList.RemoveAt(1);
+                inputList.RemoveAt(1);
+                return inputList;
+            }
+            else if (inputList[1] == "AMULET" || inputList[1] == "RING")
+            {
+                inputList.RemoveAt(0);
+            }
+            else if (inputList[1] == "JEWEL" )
+            {
+                inputList.RemoveAt(0);
+                inputList.RemoveAt(1);
+            }
+            return inputList; 
+        }
+        public static List<Item> TxtFileToListItem (string txtFile)
+        {
+            List<Item> list = new List<Item>();
+            string[] txtFileSplitOnNewline = txtFile.Split("\n");
+
+            for (int i = 0; i < txtFileSplitOnNewline.Length-1; i++)
+            {
+                string[] txtFileSplitBeforeItemCreation = txtFileSplitOnNewline[i].Split('/', '\t');
+                List<string> listData = new List<string>(txtFileSplitBeforeItemCreation);
+                listData.RemoveAt(0);
+                Item item = new Item(listData);
+                list.Add(item);
+            }
+
+            return list; 
         }
     }
 }
