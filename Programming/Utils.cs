@@ -336,7 +336,7 @@ namespace DiabloItemMuleSystem
                 return listData;
             }
         }
-        public static List<Item> MultiBeltOcr(string input)
+        public static List<Item> MultiItemOcr(string input)
         {
             List<Item> itemList = new List<Item>();
             var stringList = new List<string>(); //list of <String>

@@ -16,47 +16,47 @@ namespace sort.Tests
         [Fact]
         public void GenericSortMethodTest()
         {
-            string[] beltSortParameters = new string[] { "FCR", "FHR", "STR", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
+            string[] itemSortParameters = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG","@RES", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
 
             // belts for testing
             
-            string[] Belt2 = new string[] { " ", "SB", " ", " ", " ", " ", " ",  "7FCR" };
-            string[] Belt3 = new string[] { " ", "SB", " ", " ", " ", " ", " ", "30STR" };
-            string[] Belt4 = new string[] { " ", "SB", " ", " ", " ", " ", " ", "7FCR" };
-            string[] Belt5 = new string[] { " ", "SB", " ", " ", " ", " ", " ", "10FCR" };
-            string[] Belt6 = new string[] { " ", "SB", " ", " ", " ", " ", " ", "10FCR", "3MANA" };
-            string[] Belt7 = new string[] { " ", "SB", " ", " ", " ", " ", " ", "10FCR", "10MANA" };
-            string[] Belt8 = new string[] { "", "SB", " ", " ", " ", " ", " ", "29STR" };
-            string[] Belt9 = new string[] { " ", "SB", " ", " ", " ", " ", " ", "10FCR", "10MANA" };
-            string[] Belt10 = new string[] { " ", "SB", " ", " ", " ", " ", " ", "10FCR", "3MANA" };
-            string[] Belt11 = new string[] { " ", "SB", " ", " ", " ", " ", " ", "10FCR" };
+            List<string> Item1 = new List<string> { "SB"," ",  "7FCR" };
+            List<string> Item2 = new List<string> { "SB"," ", "30STR" };
+            List<string> Item3 = new List<string> { "SB", " ", "7FCR" };
+            List<string> Item4 = new List<string> { "SB",  " ", "10FCR" };
+            List<string> Item5 = new List<string> { "SB",  " ", "10FCR", "3MANA" };
+            List<string> Item6 = new List<string> { "SB", " ", "10FCR", "10MANA" };
+            List<string> Item7 = new List<string> {  "SB",  " ", "29STR" };
+            List<string> Item8 = new List<string> {  "SB", " ", "10FCR", "10MANA" };
+            List<string> Item9 = new List<string> { "SB", " ", "10FCR", "3MANA" };
+            List<string> Item10 = new List<string> { "SB", " ", "10FCR" };
             
             //list before sort
-            List<Item> Actual = new List<Item> {       new Item(Belt2), 
-                                                       new Item(Belt3), 
-                                                       new Item(Belt4), 
-                                                       new Item(Belt5), 
-                                                       new Item(Belt6), 
-                                                       new Item(Belt7), 
-                                                       new Item(Belt8), 
-                                                       new Item(Belt9), 
-                                                       new Item(Belt10), 
-                                                       new Item(Belt11) 
+            List<Item> Actual = new List<Item> {       new Item(Item1), 
+                                                       new Item(Item2), 
+                                                       new Item(Item3), 
+                                                       new Item(Item4), 
+                                                       new Item(Item5), 
+                                                       new Item(Item6), 
+                                                       new Item(Item7), 
+                                                       new Item(Item8), 
+                                                       new Item(Item9), 
+                                                       new Item(Item10) 
                                                         };
             //expected result of the sort
-            List<Item> Expected = new List<Item> {       new Item(Belt7), // 10fcr 10m
-                                                         new Item(Belt9), // 10fcr 10m
-                                                         new Item(Belt6), // 10fcr 3m
-                                                         new Item(Belt10), // 10fcr 3m 
-                                                         new Item(Belt5), //10fcr
-                                                         new Item(Belt11), //10fcr 
-                                                         new Item(Belt2), //7fcr
-                                                         new Item(Belt4), //7fcr
-                                                         new Item(Belt3), //30str
-                                                         new Item(Belt8) //29str                                                        
+            List<Item> Expected = new List<Item> {       new Item(Item6), // 10fcr 10m
+                                                         new Item(Item8), // 10fcr 10m
+                                                         new Item(Item5), // 10fcr 3m
+                                                         new Item(Item9), // 10fcr 3m 
+                                                         new Item(Item4), //10fcr
+                                                         new Item(Item10), //10fcr 
+                                                         new Item(Item1), //7fcr
+                                                         new Item(Item3), //7fcr
+                                                         new Item(Item2), //30str
+                                                         new Item(Item7) //29str                                                        
                                                           }; 
             //running the method
-            Actual.Sort(new GenericBeltSort(beltSortParameters));
+            Actual.Sort(new GenericItemSort(itemSortParameters));
 
             Assert.Equal(Expected, Actual); 
         }

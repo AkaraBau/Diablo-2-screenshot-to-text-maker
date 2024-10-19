@@ -34,7 +34,7 @@ namespace DiabloItemMuleSystem
 
             if (command == "ocr")
             {
-                allItems = Utils.MultiBeltOcr(filePath);
+                allItems = Utils.MultiItemOcr(filePath);
                 sItems = Utils.ItemToString(allItems);
 
             }
@@ -48,7 +48,7 @@ namespace DiabloItemMuleSystem
 
 
             Console.WriteLine("What would you like to do?");
-            Console.WriteLine("print[p], txt[t], sortby[sb], generic belt sort[gbs], add[a], add multiple[am],search for stat and specific amount [sss] quit[q]");
+            Console.WriteLine("print[p], txt[t], sortby[sb], generic belt sort[gbs], add[a], add multiple[am], add from txt [at], search for stat and specific amount [sss], remove [r], quit[q]");
             String call = null;
             while (call != "q")
             {
@@ -85,22 +85,32 @@ namespace DiabloItemMuleSystem
 
                     Item item = new Item(Utils.SingleBeltOcr(input));
                     allItems.Add(item);
-                    sItems.Add(item.ToString());
+                    sItems = Utils.ItemToString(allItems); 
                 }
                 else if (call == "am")
                 {
                     Console.WriteLine("What directory would you like to scan? Format below \n" + input);
                     input = Console.ReadLine();
 
-                    var mergeList = Utils.MultiBeltOcr(input); //multi scan method
+                    var mergeList = Utils.MultiItemOcr(input); //multi scan method
                     allItems.AddRange(mergeList); //adding output to list
-                    var mergeList2 = Utils.ItemToString(mergeList);
-                    sItems.AddRange(mergeList2);
+                    sItems = Utils.ItemToString(allItems);
+                    
+                }
+                else if (call == "at")
+                {
+                    Console.WriteLine("Input filepath to txt file.");
+                    input = Console.ReadLine();
+
+                    string txtFile = File.ReadAllText(input);
+                    var mergelist = Utils.TxtFileToListItem(txtFile);
+                    allItems.AddRange(mergelist); 
+                    sItems = Utils.ItemToString(allItems);
                 }
                 else if (call == "gbs")
                 {
 
-                    allItems.Sort(new GenericBeltSort(beltSortParameters));
+                    allItems.Sort(new GenericItemSort(beltSortParameters));
 
                     sItems = Utils.ItemToString(allItems);
 
@@ -135,7 +145,7 @@ namespace DiabloItemMuleSystem
                         }                                                   
                     }
 
-                    searchedList.Sort(new GenericBeltSort(beltSortParameters)); 
+                    searchedList.Sort(new GenericItemSort(beltSortParameters)); 
                     stringSearchedList = Utils.ItemToString(searchedList);
                     Utils.PrintList(stringSearchedList);
 
@@ -145,6 +155,14 @@ namespace DiabloItemMuleSystem
                     }
                     
 
+                }
+                else if (call == "r")
+                {
+                    Console.WriteLine("Which id would you like to remove?");
+                    int remove = Convert.ToInt32(Console.ReadLine());
+                    allItems.RemoveAll(item => item.Id == remove); 
+                    sItems = Utils.ItemToString(allItems);
+                    
                 }
                 else if (call == "q")
                 {

@@ -15,7 +15,8 @@ namespace DiabloItemMuleSystem
 {
     public class Item
     {
-        public int itemID; 
+        private static int itemIDseed = 1;
+        public int Id { get; }
         public ItemType Name { get; set; }
         public string LevelRequirement { get; set; }
         public int Level { get; set; }
@@ -23,7 +24,7 @@ namespace DiabloItemMuleSystem
 
         public Item(List<string> data)
         {
-            itemID++; //TODO NOT WORKING 
+            Id = itemIDseed++;
             Name = ItemTypeLookup.GetTypeFromDictionary(data[0]);
             
             Level = Utils.ExtractIntFromString(data[1]);
@@ -70,7 +71,7 @@ namespace DiabloItemMuleSystem
         /// </summary>
         public override string ToString()
         {
-            string result = $"{itemID}/{Name}/{Level}{LevelRequirement}\t";
+            string result = $"{Id}/{Name}/{Level}{LevelRequirement}\t";
             var StringOfStats = Utils.StatsToString(ListOfStats);
             List<string> statNamesForPrint = new List<string>();
             string[] statNamesItems = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
@@ -102,8 +103,7 @@ namespace DiabloItemMuleSystem
 
             if (other == null) return false;    
 
-            else if (   this.itemID == other.itemID 
-                && this.Name == other.Name 
+            else if ( this.Name == other.Name 
                 && this.LevelRequirement == other.LevelRequirement 
                 && this.Level == other.Level
                 && Utils.CheckEqualStats(this.ListOfStats,other.ListOfStats) ) 
@@ -118,7 +118,7 @@ namespace DiabloItemMuleSystem
 
         public override int GetHashCode()
         {
-            return this.itemID.GetHashCode() ^ this.LevelRequirement.GetHashCode() ^ this.Level.GetHashCode() ^ this.ListOfStats.GetHashCode();
+            return this.LevelRequirement.GetHashCode() ^ this.Level.GetHashCode() ^ this.ListOfStats.GetHashCode();
         }
     }
 }

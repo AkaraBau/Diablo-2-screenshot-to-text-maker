@@ -15,28 +15,28 @@ namespace DiabloItemMuleSystem
 {
   class SortByStat : IComparer<Item>
   {
-    public string sortCall { get; set; }
+    public string SortParameter { get; set; }
 
-    public SortByStat(string sortInput)
+    public SortByStat(string sortParameter)
     {
-      sortCall = sortInput;
+      SortParameter = sortParameter;
     }
 
     public int Compare(Item left, Item right)
     {
-      Stats statsLeft = left.GetStat(sortCall);
-      Stats statsRight = right.GetStat(sortCall);
+      Stats statsLeft = left.GetStat(SortParameter);
+      Stats statsRight = right.GetStat(SortParameter);
       
       return Utils.compareStat(statsLeft, statsRight);
     }
   }
-  public class GenericBeltSort : IComparer<Item>
+  public class GenericItemSort : IComparer<Item>
   {
     public string[] SortParameters { get; set; }
 
-    public GenericBeltSort(string[] inputParameters)
+    public GenericItemSort(string[] sortParameters)
     {
-    SortParameters = inputParameters; 
+    SortParameters = sortParameters; 
     }
 
     public int Compare(Item left, Item right)
