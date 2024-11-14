@@ -55,7 +55,7 @@ namespace DiabloItemMuleSystem
                 call = Console.ReadLine();
                 if (call == "p")
                 {
-                    Utils.PrintList(sItems);
+                    Utils.PrintList(allItems);
                 }
                 else if (call == "t")
                 {
@@ -67,6 +67,7 @@ namespace DiabloItemMuleSystem
                     input = Console.ReadLine();
 
                     input = Path.Combine(input, name + ".txt");
+                    sItems = Utils.ItemToString(allItems);
                     File.WriteAllLines(input, sItems);
 
                     Console.WriteLine("Txt file created"); 
@@ -75,8 +76,7 @@ namespace DiabloItemMuleSystem
                 {
                     Console.WriteLine("What stat would you like to sort by? ");
                     var sortCall = Console.ReadLine().ToUpper().Trim();
-                    allItems.Sort(new SortByStat(sortCall));
-                    sItems = Utils.ItemToString(allItems);
+                    allItems.Sort(new SortByStat(sortCall));                   
                 }
                 else if (call == "a")
                 {
@@ -85,7 +85,6 @@ namespace DiabloItemMuleSystem
 
                     Item item = new Item(Utils.SingleBeltOcr(input));
                     allItems.Add(item);
-                    sItems = Utils.ItemToString(allItems); 
                 }
                 else if (call == "am")
                 {
@@ -94,7 +93,6 @@ namespace DiabloItemMuleSystem
 
                     var mergeList = Utils.MultiItemOcr(input); //multi scan method
                     allItems.AddRange(mergeList); //adding output to list
-                    sItems = Utils.ItemToString(allItems);
                     
                 }
                 else if (call == "at")
@@ -105,15 +103,11 @@ namespace DiabloItemMuleSystem
                     string txtFile = File.ReadAllText(input);
                     var mergelist = Utils.TxtFileToListItem(txtFile);
                     allItems.AddRange(mergelist); 
-                    sItems = Utils.ItemToString(allItems);
                 }
                 else if (call == "gbs")
                 {
 
                     allItems.Sort(new GenericItemSort(beltSortParameters));
-
-                    sItems = Utils.ItemToString(allItems);
-
                     Console.WriteLine("Sorted");
                 }
                 else if (call == "sss")
@@ -123,8 +117,7 @@ namespace DiabloItemMuleSystem
                     int top = 0;
                     int bottom = 0;
                     string statForSearch = null;
-                    List<Item> searchedList = new List<Item>();
-                    List<string> stringSearchedList = new List<string>(); 
+                    List<Item> searchedList = new List<Item>();                   
 
 
                     for (int i = 0; i < howManyStats; i++)
@@ -146,10 +139,9 @@ namespace DiabloItemMuleSystem
                     }
 
                     searchedList.Sort(new GenericItemSort(beltSortParameters)); 
-                    stringSearchedList = Utils.ItemToString(searchedList);
-                    Utils.PrintList(stringSearchedList);
+                    Utils.PrintList(searchedList);
 
-                    if (stringSearchedList.Count == 0) 
+                    if (searchedList.Count == 0) 
                     { 
                         Console.WriteLine("No items with those stats"); 
                     }
@@ -161,7 +153,6 @@ namespace DiabloItemMuleSystem
                     Console.WriteLine("Which id would you like to remove?");
                     int remove = Convert.ToInt32(Console.ReadLine());
                     allItems.RemoveAll(item => item.Id == remove); 
-                    sItems = Utils.ItemToString(allItems);
                     
                 }
                 else if (call == "q")

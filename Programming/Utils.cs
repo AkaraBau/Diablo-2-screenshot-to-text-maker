@@ -267,11 +267,11 @@ namespace DiabloItemMuleSystem
                                  .Replace("°", "");
             return result;
         }
-        public static void PrintList(List<string> inputlist)
+        public static void PrintList(List<Item> inputlist)
         {
             foreach (var l in inputlist)
             {
-                Console.WriteLine(l);
+                Console.WriteLine(l.ToString());
             }
         }
         public static List<string> ItemToString(List<Item> inputlist)
