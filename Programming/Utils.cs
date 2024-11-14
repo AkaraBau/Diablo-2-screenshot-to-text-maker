@@ -380,7 +380,7 @@ namespace DiabloItemMuleSystem
             Console.Write($"{progress}/{total}");
 
         }
-        public static int compareStat(Stats inputA, Stats inputB)
+        public static int CompareStat(Stats inputA, Stats inputB)
         {
 
             if (inputA == null && inputB == null)
@@ -404,7 +404,7 @@ namespace DiabloItemMuleSystem
 
             return 0;
         }
-        public static int compareMultipleStats(Item left, Item right, string[] sortParameters)
+        public static int CompareMultipleStats(Item left, Item right, string[] sortParameters)
         {
 
 
@@ -413,7 +413,7 @@ namespace DiabloItemMuleSystem
                 Stats statLeft = left.GetStat(sortParameters[i]);
                 Stats statRight = right.GetStat(sortParameters[i]);
 
-                int result = Utils.compareStat(statLeft, statRight);
+                int result = Utils.CompareStat(statLeft, statRight);
 
                 if (result != 0)
                 {
