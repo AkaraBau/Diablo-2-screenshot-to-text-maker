@@ -31,11 +31,13 @@ namespace DiabloItemMuleSystem
             LevelRequirement = Utils.RemoveNumbers(data[1]);
             for (int i = 2; i < data.Count; i++)
             {
-                if (data[i].Contains("CHARGES") ||
-                   data[i].Contains("CTC") ||
-                   data[i].Contains("CDMG") ||
-                   data[i].Contains("ATDO") ||
-                   data[i].Contains("DPL") == false)
+                if (!data[i].Contains("CHARGES") ||
+                   !data[i].Contains("CTC") ||
+                   !data[i].Contains("CDMG") ||
+                   !data[i].Contains("ATDO") ||
+                   !data[i].Contains("DPL")||
+                   !data[i].Contains("MS") ||
+                   !data[i].Contains("LIGHTRADIUS"))
                 {
                     Stats stats = new Stats(data[i]);
                     ListOfStats.Add(stats);
@@ -74,7 +76,7 @@ namespace DiabloItemMuleSystem
             string result = $"{Id}/{Name}/{Level}{LevelRequirement}\t";
             var StringOfStats = Utils.StatsToString(ListOfStats);
             List<string> statNamesForPrint = new List<string>();
-            string[] statNamesItems = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
+            string[] statNamesItems = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "GOLD" };
 
 
             for (int i = 0; i < statNamesItems.Length; i++)
