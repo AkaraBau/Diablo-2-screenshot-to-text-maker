@@ -20,7 +20,7 @@ namespace DiabloItemMuleSystem
             string input = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
             List<string> sItems = new List<string>(); //list of <String>
             List<Item> allItems = new List<Item>(); //list of <Belt>
-            string[] beltSortParameters = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "DPL", "QDPL", "LIGHTRADIUS", "MS", "ATDO", "GOLD" };
+            string[] sortParameters = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "GOLD" };
             string filePath = null;
             string command = null;
 
@@ -107,7 +107,7 @@ namespace DiabloItemMuleSystem
                 else if (call == "gbs")
                 {
 
-                    allItems.Sort(new GenericItemSort(beltSortParameters));
+                    allItems.Sort(new GenericItemSort(sortParameters));
                     Console.WriteLine("Sorted");
                 }
                 else if (call == "sss")
@@ -138,7 +138,7 @@ namespace DiabloItemMuleSystem
                         }                                                   
                     }
 
-                    searchedList.Sort(new GenericItemSort(beltSortParameters)); 
+                    searchedList.Sort(new GenericItemSort(sortParameters)); 
                     Utils.PrintList(searchedList);
 
                     if (searchedList.Count == 0) 
