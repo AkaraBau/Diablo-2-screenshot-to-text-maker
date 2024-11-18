@@ -22,6 +22,8 @@ namespace DiabloItemMuleSystem
         public int Level { get; set; }
         public List<Stats> ListOfStats = new List<Stats>();
 
+        public int myCock = 0; 
+
         public Item(List<string> data)
         {
             Id = itemIDseed++;
@@ -74,7 +76,6 @@ namespace DiabloItemMuleSystem
         public override string ToString()
         {
             string result = $"{Id}/{Name}/{Level}{LevelRequirement}\t";
-            var StringOfStats = Utils.StatsToString(ListOfStats);
             List<string> statNamesForPrint = new List<string>();
             string[] statNamesItems = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "GOLD" };
 
