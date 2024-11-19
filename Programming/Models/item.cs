@@ -41,7 +41,7 @@ namespace DiabloItemMuleSystem
                    !data[i].Contains("MS") ||
                    !data[i].Contains("LIGHTRADIUS"))
                 {
-                    Stats stats = new Stats(data[i]);
+                    Stats stats = new Stats(Id, data[i]);
                     ListOfStats.Add(stats);
                 }
             }

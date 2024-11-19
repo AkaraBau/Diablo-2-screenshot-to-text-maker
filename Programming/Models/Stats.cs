@@ -16,10 +16,11 @@ namespace DiabloItemMuleSystem
 {
     public class Stats
     {
+        public int Id {  get; set; }
         public string Name { get; set; }
         public int? Amount { get; set; }
 
-        public Stats(string data)
+        public Stats(int ID ,string data)
         {
             Amount = Utils.ExtractIntFromString(data);
             Name = Utils.RemoveNumbers(data);
