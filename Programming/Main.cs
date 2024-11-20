@@ -157,9 +157,9 @@ namespace DiabloItemMuleSystem
                 }
                 else if (call == "db")
                 {
-                    for (int i = 0; i < allItems.Count-1; i++)
+                    foreach (var item in allItems)
                     {
-                        Utils.AddItemToDatabase(allItems[i]);
+                        Utils.AddItemToDatabase(item);
                     }
                 }
                 else if (call == "q")

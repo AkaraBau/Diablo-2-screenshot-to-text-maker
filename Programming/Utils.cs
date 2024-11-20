@@ -505,11 +505,11 @@ namespace DiabloItemMuleSystem
 
             ItemContext.ItemTable.Add(item);
 
-            for (int i = 0; i < item.ListOfStats.Count-1; i++)
+            foreach (var stats in item.ListOfStats)
             {
-                ItemContext.StatsTable.Add(item.ListOfStats[i]); 
+                ItemContext.StatsTable.Add(stats);
             }
-
+            
             ItemContext.SaveChanges(); 
         }
     }

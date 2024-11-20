@@ -22,8 +22,6 @@ namespace DiabloItemMuleSystem
         public int Level { get; set; }
         public List<Stats> ListOfStats = new List<Stats>();
 
-        public int myCock = 0; 
-
         public Item(List<string> data)
         {
             Id = itemIDseed++;
