@@ -21,16 +21,16 @@ public class ItemDbContext : DbContext
 
         modelBuilder.Entity<Item>(item =>
         {
-            item.ToTable("items"); // Explicitly maps to the "Items" table
-            item.Property(i => i.Id).HasColumnName("id");
-            item.Property(i => i.Name).HasColumnName("item_type").IsRequired();
-            item.Property(i => i.Level).HasColumnName("level_requirement").IsRequired();
-            item.Property(i => i.LevelRequirement).HasColumnName("level_string").IsRequired();
+            item.ToTable("Items"); // Explicitly maps to the "Items" table
+            item.Property(i => i.Id).HasColumnName("Id");
+            item.Property(i => i.Name).HasColumnName("Name").IsRequired();
+            item.Property(i => i.Level).HasColumnName("Level").IsRequired();
+            item.Property(i => i.LevelRequirement).HasColumnName("LevelRequirement").IsRequired();
         });
 
         modelBuilder.Entity<Stats>(stats =>
         {
-            stats.ToTable("stats"); // Explicitly maps to the "stats" table
+            stats.ToTable("Stats"); // Explicitly maps to the "stats" table
             stats.Property(s => s.Id).HasColumnName("id");
             stats.Property(s => s.Amount).HasColumnName("Amount");
             stats.Property(s => s.Name).HasColumnName("Name");
