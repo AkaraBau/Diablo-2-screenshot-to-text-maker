@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 public class ItemDbContext : DbContext
 {
     public DbSet<Item> ItemTable { get; set; } // Represents the item table.
-    public DbSet<Stats> StatsTable { get; set; } //represents the stats table 
+    public DbSet<Stats> StatsTable { get; set; } // Represents the stats table 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) //override for configuration 
     {

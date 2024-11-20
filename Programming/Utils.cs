@@ -497,7 +497,20 @@ namespace DiabloItemMuleSystem
                 list.Add(item);
             }
 
-            return list; 
+            return list;
+        }
+        public static void AddItemToDatabase(Item item)
+        {
+            var ItemContext = new ItemDbContext();
+
+            ItemContext.ItemTable.Add(item);
+
+            for (int i = 0; i < item.ListOfStats.Count-1; i++)
+            {
+                ItemContext.StatsTable.Add(item.ListOfStats[i]); 
+            }
+
+            ItemContext.SaveChanges(); 
         }
     }
 }

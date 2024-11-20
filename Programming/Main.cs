@@ -48,7 +48,7 @@ namespace DiabloItemMuleSystem
 
 
             Console.WriteLine("What would you like to do?");
-            Console.WriteLine("print[p], txt[t], sortby[sb], generic belt sort[gbs], add[a], add multiple[am], add from txt [at], search for stat and specific amount [sss], remove [r], quit[q]");
+            Console.WriteLine("print[p], txt[t], sortby[sb], generic belt sort[gbs], add[a], add multiple[am], add from txt [at], search for stat and specific amount [sss], remove [r], add all to database [db] quit[q]");
             String call = null;
             while (call != "q")
             {
@@ -154,6 +154,13 @@ namespace DiabloItemMuleSystem
                     int remove = Convert.ToInt32(Console.ReadLine());
                     allItems.RemoveAll(item => item.Id == remove); 
                     
+                }
+                else if (call == "db")
+                {
+                    for (int i = 0; i < allItems.Count-1; i++)
+                    {
+                        Utils.AddItemToDatabase(allItems[i]);
+                    }
                 }
                 else if (call == "q")
                 {
