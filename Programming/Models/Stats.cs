@@ -22,6 +22,7 @@ namespace DiabloItemMuleSystem
 
         public Stats(int ID ,string data)
         {
+            Id = ID;
             Amount = Utils.ExtractIntFromString(data);
             Name = Utils.RemoveNumbers(data);
 

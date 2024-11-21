@@ -39,7 +39,7 @@ namespace DiabloItemMuleSystem
     SortParameters = sortParameters; 
     }
 
-    public int Compare(Item left, Item right)
+        public int Compare(Item left, Item right)
     {
       return Utils.CompareMultipleStats(left, right, SortParameters);
     }
