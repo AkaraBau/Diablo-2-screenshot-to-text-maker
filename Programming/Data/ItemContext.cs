@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DiabloItemMuleSystem;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore; 
 
 namespace DiabloItemMuleSystem
 {
@@ -9,6 +10,7 @@ namespace DiabloItemMuleSystem
     {
         public DbSet<Item> ItemTable { get; set; } // Represents the item table.
         public DbSet<Stats> StatsTable { get; set; } // Represents the stats table 
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) //override for configuration 
         {
@@ -32,7 +34,9 @@ namespace DiabloItemMuleSystem
             modelBuilder.Entity<Stats>(stats =>
             {
                 stats.ToTable("Stats"); // Explicitly maps to the "stats" table
-                stats.Property(s => s.Id).HasColumnName("id");
+                // stats.HasKey(s => s.StatsId); // telling the code where the PK is comment to remember how to reverse also a reminder how to do it. 
+                stats.Property(s => s.StatsId).HasColumnName("StatsId");
+                stats.Property(s => s.ItemId).HasColumnName("ItemId");
                 stats.Property(s => s.Amount).HasColumnName("Amount");
                 stats.Property(s => s.Name).HasColumnName("Name");
 

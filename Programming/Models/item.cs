@@ -44,6 +44,11 @@ namespace DiabloItemMuleSystem
                 }
             }
         }
+        // empty constructor for the ItemContext
+        public Item()
+        {
+
+        }
         /// <summary>
         /// GetStat and GetAmount instance methods on type Item 
         /// </summary>

@@ -351,8 +351,8 @@ namespace DiabloItemMuleSystem
                     massOutput[i] = reader.ReadToEnd(); //making stream -> string []
 
                     massOutput[i] = Utils.RemoveAllWhiteSpace(massOutput[i]); // remove all whitespace
-                    massOutput[i] = Utils.ChangeLetters(massOutput[i]); //shorten method
-                    massOutput[i] = Utils.ShortenString(massOutput[i]); //shorten method
+                    massOutput[i] = Utils.ChangeLetters(massOutput[i]); //formatting, change of broken reading of letters
+                    massOutput[i] = Utils.ShortenString(massOutput[i]); //reformatting. ex "STRENGTH" to "STR" 
 
                     splitData = massOutput[i].Split(new[] { '\n' }, StringSplitOptions.None); //splitting string into string []
                     splitData = splitData.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
@@ -506,6 +506,15 @@ namespace DiabloItemMuleSystem
             }
             
             ItemContext.SaveChanges(); 
+        }
+        public static void DeleteAllInDatabase()
+        {
+            using (var ItemContext = new ItemDbContext())
+            {
+                ItemContext.ItemTable.RemoveRange(ItemContext.ItemTable);
+                ItemContext.StatsTable.RemoveRange(ItemContext.StatsTable);
+                ItemContext.SaveChanges();
+            }
         }
     }
 }
