@@ -15,7 +15,7 @@ namespace DiabloItemMuleSystem
 {
     public class Item
     {
-        private static int itemIDseed = 1;
+        private static int itemIDseed = Utils.GetHighestId("Item") + 1; 
         public int Id { get; }
         public ItemType Name { get; set; }
         public string LevelRequirement { get; set; }

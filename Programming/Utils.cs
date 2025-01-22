@@ -507,14 +507,33 @@ namespace DiabloItemMuleSystem
             
             ItemContext.SaveChanges(); 
         }
-        public static void DeleteAllInDatabase()
+        public static void DeleteAllInDatabase() //TODO
         {
             using (var ItemContext = new ItemDbContext())
             {
                 ItemContext.ItemTable.RemoveRange(ItemContext.ItemTable);
-                ItemContext.StatsTable.RemoveRange(ItemContext.StatsTable);
+                ItemContext.StatsTable.RemoveRange(ItemContext.StatsTable); // bugs out gives a cast error. 
                 ItemContext.SaveChanges();
             }
+        }
+        public static int GetHighestId(string type)
+        {
+            
+
+            ItemDbContext ItemContext = new ItemDbContext();
+
+            if (type == "Item")
+            {
+                return ItemContext.ItemTable.Max(item => item.Id);
+            }
+            else if (type == "Stats")
+            {
+                return ItemContext.StatsTable.Max(stats => stats.StatsId);
+            }
+            else
+                return 0;
+
+
         }
     }
 }

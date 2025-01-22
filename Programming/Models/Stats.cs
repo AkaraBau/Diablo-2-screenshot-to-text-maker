@@ -16,7 +16,7 @@ namespace DiabloItemMuleSystem
 {
     public class Stats
     {
-        public int GenerateStatsId = 1; 
+        private static int GenerateStatsId = Utils.GetHighestId("Stats") + 1; 
         public int StatsId { get; set; } // Id unique to every stats
         public int ItemId {  get; set; } // Shared id with the item it "belongs too"
         public string Name { get; set; }
