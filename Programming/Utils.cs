@@ -356,7 +356,7 @@ namespace DiabloItemMuleSystem
 
                     splitData = massOutput[i].Split(new[] { '\n' }, StringSplitOptions.None); //splitting string into string []
                     splitData = splitData.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
-                    List <string> listSplitData = new List<string> (splitData);
+                    List<string> listSplitData = new List<string>(splitData);
                     listSplitData = Utils.RemoveListContentBeforeObjectCreationOcr(listSplitData);
 
                     Item belt = new Item(listSplitData); //Creation of belt
@@ -438,25 +438,25 @@ namespace DiabloItemMuleSystem
             return true;
 
         }
-        public static List<Item> SearchForStatAndAmount (List<Item> items, string searchStat, int bot, int top) 
+        public static List<Item> SearchForStatAndAmount(List<Item> items, string searchStat, int bot, int top)
         {
             List<Item> result = new List<Item>();
-            Stats stat = null; 
-            for (int i = 0; i < items.Count-1; i++)
+            Stats stat = null;
+            for (int i = 0; i < items.Count - 1; i++)
             {
                 stat = items[i].GetStat(searchStat);
-                if (stat != null) 
+                if (stat != null)
                 {
-                    if (items[i].GetAmount(bot, top, stat) != null) 
-                    { 
-                    result.Add(items[i]);
+                    if (items[i].GetAmount(bot, top, stat) != null)
+                    {
+                        result.Add(items[i]);
                     }
                 }
-                
+
             }
-            return result; 
+            return result;
         }
-        public static List<string> RemoveListContentBeforeObjectCreationOcr (List<string> inputList)
+        public static List<string> RemoveListContentBeforeObjectCreationOcr(List<string> inputList)
         {
             if (inputList[1] == "SB" || inputList[1] == "VB" || inputList[1] == "SPS" || inputList[1] == "MC" || inputList[1] == "DHS")
             {
@@ -471,19 +471,19 @@ namespace DiabloItemMuleSystem
             {
                 inputList.RemoveAt(0);
             }
-            else if (inputList[1] == "JEWEL" )
+            else if (inputList[1] == "JEWEL")
             {
                 inputList.RemoveAt(0);
                 inputList.RemoveAt(1);
             }
-            return inputList; 
+            return inputList;
         }
-        public static List<Item> TxtFileToListItem (string txtFile)
+        public static List<Item> TxtFileToListItem(string txtFile)
         {
             List<Item> list = new List<Item>();
             string[] txtFileSplitOnNewline = txtFile.Split("\n");
 
-            for (int i = 0; i < txtFileSplitOnNewline.Length-1; i++)
+            for (int i = 0; i < txtFileSplitOnNewline.Length - 1; i++)
             {
                 string[] txtFileSplitBeforeItemCreation = txtFileSplitOnNewline[i].Split('/', '\t');
                 List<string> listData = new List<string>(txtFileSplitBeforeItemCreation);
@@ -496,29 +496,31 @@ namespace DiabloItemMuleSystem
         }
         public static void AddItemToDatabase(Item item)
         {
-            var ItemContext = new ItemDbContext();
-
-            ItemContext.ItemTable.Add(item);
-
-            foreach (var stats in item.ListOfStats)
+            using (var itemContext = new ItemDbContext())
             {
-                ItemContext.StatsTable.Add(stats);
+
+                itemContext.ItemTable.Add(item);
+
+                foreach (var stats in item.ListOfStats)
+                {
+                    itemContext.StatsTable.Add(stats);
+                }
+
+                itemContext.SaveChanges();
             }
-            
-            ItemContext.SaveChanges(); 
         }
         public static void DeleteAllInDatabase() //TODO
         {
-            using (var ItemContext = new ItemDbContext())
+            using (var itemContext = new ItemDbContext())
             {
-                ItemContext.ItemTable.RemoveRange(ItemContext.ItemTable);
-                ItemContext.StatsTable.RemoveRange(ItemContext.StatsTable); // bugs out gives a cast error. 
-                ItemContext.SaveChanges();
+                itemContext.ItemTable.RemoveRange(itemContext.ItemTable);
+                itemContext.StatsTable.RemoveRange(itemContext.StatsTable); // bugs out gives a cast error. 
+                itemContext.SaveChanges();
             }
         }
         public static int GetHighestId(string type)
         {
-            
+
 
             ItemDbContext ItemContext = new ItemDbContext();
 
