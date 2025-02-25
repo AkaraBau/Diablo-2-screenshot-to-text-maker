@@ -12,7 +12,7 @@ using NLog.Targets;
 using TesseractSharp;
 using TesseractSharp.Hocr;
 
-namespace DiabloItemMuleSystem
+namespace DiabloItemMuleSystem.Models
 {
     public static class ItemTypeLookup
     {

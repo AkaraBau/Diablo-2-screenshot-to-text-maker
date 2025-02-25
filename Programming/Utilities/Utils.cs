@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace DiabloItemMuleSystem
+namespace DiabloItemMuleSystem.Utilities
 {
     public class Utils
     {
@@ -321,11 +321,11 @@ namespace DiabloItemMuleSystem
                 StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
 
                 item = reader.ReadToEnd(); //making stream -> string 
-                item = Utils.RemoveAllWhiteSpace(item);
-                item = Utils.ChangeLetters(item);
-                item = Utils.ShortenString(item);
+                item = RemoveAllWhiteSpace(item);
+                item = ChangeLetters(item);
+                item = ShortenString(item);
                 data = item.Split(new[] { '\n' }, StringSplitOptions.None); //split string into array of strings 
-                data = data.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
+                data = data.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
                 List<string> listData = new List<string>(data);
                 Console.WriteLine("item added");
                 return listData;
@@ -336,7 +336,7 @@ namespace DiabloItemMuleSystem
             List<Item> itemList = new List<Item>();
             var stringList = new List<string>(); //list of <String>
             string[] splitData = new string[14];
-            string[] massInput = Utils.DetectFiles(input);
+            string[] massInput = DetectFiles(input);
             string[] massOutput = new string[massInput.Length]; //array of strings containing output from tessaract 
 
             for (int i = 0; i < massInput.Length; i++)
@@ -345,19 +345,19 @@ namespace DiabloItemMuleSystem
                 {
 
                     //loading bar
-                    Utils.ProgressBar(i + 1, massInput.Length, 10);
+                    ProgressBar(i + 1, massInput.Length, 10);
                     //ocr function
                     StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
                     massOutput[i] = reader.ReadToEnd(); //making stream -> string []
 
-                    massOutput[i] = Utils.RemoveAllWhiteSpace(massOutput[i]); // remove all whitespace
-                    massOutput[i] = Utils.ChangeLetters(massOutput[i]); //formatting, change of broken reading of letters
-                    massOutput[i] = Utils.ShortenString(massOutput[i]); //reformatting. ex "STRENGTH" to "STR" 
+                    massOutput[i] = RemoveAllWhiteSpace(massOutput[i]); // remove all whitespace
+                    massOutput[i] = ChangeLetters(massOutput[i]); //formatting, change of broken reading of letters
+                    massOutput[i] = ShortenString(massOutput[i]); //reformatting. ex "STRENGTH" to "STR" 
 
                     splitData = massOutput[i].Split(new[] { '\n' }, StringSplitOptions.None); //splitting string into string []
-                    splitData = splitData.Where(x => !String.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
+                    splitData = splitData.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
                     List<string> listSplitData = new List<string>(splitData);
-                    listSplitData = Utils.RemoveListContentBeforeObjectCreationOcr(listSplitData);
+                    listSplitData = RemoveListContentBeforeObjectCreationOcr(listSplitData);
 
                     Item belt = new Item(listSplitData); //Creation of belt
                     itemList.Add(belt); //adding belt to list 
@@ -408,7 +408,7 @@ namespace DiabloItemMuleSystem
                 Stats statLeft = left.GetStat(sortParameters[i]);
                 Stats statRight = right.GetStat(sortParameters[i]);
 
-                int result = Utils.CompareStat(statLeft, statRight);
+                int result = CompareStat(statLeft, statRight);
 
                 if (result != 0)
                 {

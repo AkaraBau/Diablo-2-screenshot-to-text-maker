@@ -6,16 +6,18 @@ using System.IO.Compression;
 using System.IO.Pipes;
 using System.Linq; //accessing case sensitive check
 using System.Runtime.InteropServices;
+using DiabloItemMuleSystem.Utilities;
+using DiabloItemMuleSystem.Services; 
 using NLog.LayoutRenderers;
 using TesseractSharp;
 using TesseractSharp.Core;
 using TesseractSharp.Hocr;
 
-namespace DiabloItemMuleSystem
+namespace DiabloItemMuleSystem.Entry
 {
     public class Main
     {
-        public static void DoIt(string[]args)
+        public static void DoIt(string[] args)
         {
             string input = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
             List<string> sItems = new List<string>(); //list of <String>
@@ -47,9 +49,10 @@ namespace DiabloItemMuleSystem
 
 
 
+
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("print[p], txt[t], sortby[sb], generic belt sort[gbs], add[a], add multiple[am], add from txt [at], search for stat and specific amount [sss], remove [r], add all to database [db], Delete content of database [DELETE] quit[q]");
-            String call = null;
+            string call = null;
             while (call != "q")
             {
                 call = Console.ReadLine();
@@ -60,7 +63,7 @@ namespace DiabloItemMuleSystem
                 else if (call == "t")
                 {
                     Console.WriteLine("What would you like to name the file?");
-                    String name = Console.ReadLine();
+                    string name = Console.ReadLine();
 
                     Console.WriteLine("What directory should the file get created in?");
                     Console.WriteLine("Format:" + @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have");
@@ -70,13 +73,13 @@ namespace DiabloItemMuleSystem
                     sItems = Utils.ItemToString(allItems);
                     File.WriteAllLines(input, sItems);
 
-                    Console.WriteLine("Txt file created"); 
+                    Console.WriteLine("Txt file created");
                 }
                 else if (call == "sb")
                 {
                     Console.WriteLine("What stat would you like to sort by? ");
                     var sortCall = Console.ReadLine().ToUpper().Trim();
-                    allItems.Sort(new SortByStat(sortCall));                   
+                    allItems.Sort(new SortByStat(sortCall));
                 }
                 else if (call == "a")
                 {
@@ -93,7 +96,7 @@ namespace DiabloItemMuleSystem
 
                     var mergeList = Utils.MultiItemOcr(input); //multi scan method
                     allItems.AddRange(mergeList); //adding output to list
-                    
+
                 }
                 else if (call == "at")
                 {
@@ -102,7 +105,7 @@ namespace DiabloItemMuleSystem
 
                     string txtFile = File.ReadAllText(input);
                     var mergelist = Utils.TxtFileToListItem(txtFile);
-                    allItems.AddRange(mergelist); 
+                    allItems.AddRange(mergelist);
                 }
                 else if (call == "gbs")
                 {
@@ -117,7 +120,7 @@ namespace DiabloItemMuleSystem
                     int top = 0;
                     int bottom = 0;
                     string statForSearch = null;
-                    List<Item> searchedList = new List<Item>();                   
+                    List<Item> searchedList = new List<Item>();
 
 
                     for (int i = 0; i < howManyStats; i++)
@@ -135,25 +138,25 @@ namespace DiabloItemMuleSystem
                         if (i >= 1)
                         {
                             searchedList = Utils.SearchForStatAndAmount(searchedList, statForSearch, bottom, top);
-                        }                                                   
+                        }
                     }
 
-                    searchedList.Sort(new GenericItemSort(sortParameters)); 
+                    searchedList.Sort(new GenericItemSort(sortParameters));
                     Utils.PrintList(searchedList);
 
-                    if (searchedList.Count == 0) 
-                    { 
-                        Console.WriteLine("No items with those stats"); 
+                    if (searchedList.Count == 0)
+                    {
+                        Console.WriteLine("No items with those stats");
                     }
-                    
+
 
                 }
                 else if (call == "r")
                 {
                     Console.WriteLine("Which id would you like to remove?");
                     int remove = Convert.ToInt32(Console.ReadLine());
-                    allItems.RemoveAll(item => item.Id == remove); 
-                    
+                    allItems.RemoveAll(item => item.Id == remove);
+
                 }
                 else if (call == "db")
                 {

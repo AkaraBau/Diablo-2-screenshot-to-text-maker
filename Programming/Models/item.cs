@@ -7,6 +7,8 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Xml.XPath;
+using DiabloItemMuleSystem.Models;
+using DiabloItemMuleSystem.Utilities;
 using NLog.LayoutRenderers;
 using TesseractSharp;
 using TesseractSharp.Hocr;

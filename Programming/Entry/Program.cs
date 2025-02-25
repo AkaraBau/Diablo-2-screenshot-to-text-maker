@@ -1,10 +1,10 @@
-﻿namespace DiabloItemMuleSystem
+﻿namespace DiabloItemMuleSystem.Entry
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            DiabloItemMuleSystem.Main.DoIt(args);
+            Entry.Main.DoIt(args);
         }
     }
 }
