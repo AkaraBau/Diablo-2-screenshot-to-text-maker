@@ -26,7 +26,7 @@ namespace DiabloItemMuleSystem
             {
                 item.ToTable("Items"); // Explicitly maps to the "Items" table
                 item.Property(i => i.Id).HasColumnName("Id");
-                item.Property(i => i.Name).HasColumnName("Name").IsRequired();
+                item.Property(i => i.Name).HasColumnName("Name").IsRequired(); //TODO is not working properly. Bugging out delete method. Need to change in sql to accept a varchar and parse enum as string 
                 item.Property(i => i.Level).HasColumnName("Level").IsRequired();
                 item.Property(i => i.LevelRequirement).HasColumnName("LevelRequirement").IsRequired();
             });

@@ -514,7 +514,7 @@ namespace DiabloItemMuleSystem.Utilities
             using (var itemContext = new ItemDbContext())
             {
                 itemContext.ItemTable.RemoveRange(itemContext.ItemTable);
-                itemContext.StatsTable.RemoveRange(itemContext.StatsTable); // bugs out gives a cast error. 
+                itemContext.StatsTable.RemoveRange(itemContext.StatsTable); // bugs out gives a cast error. issue found i'm adding a enum into a column of strings without parsing it. 
                 itemContext.SaveChanges();
             }
         }
