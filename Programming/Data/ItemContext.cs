@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DiabloItemMuleSystem;
+using DiabloItemMuleSystem.Models;
 using Microsoft.EntityFrameworkCore; 
 
 namespace DiabloItemMuleSystem
@@ -26,7 +27,7 @@ namespace DiabloItemMuleSystem
             {
                 item.ToTable("Items"); // Explicitly maps to the "Items" table
                 item.Property(i => i.Id).HasColumnName("Id");
-                item.Property(i => i.Name).HasColumnName("Name").IsRequired(); //TODO is not working properly. Bugging out delete method. Need to change in sql to accept a varchar and parse enum as string 
+                item.Property(i => i.Name).HasConversion( i => i.ToString(), x => (ItemType)Enum.Parse(typeof(ItemType),x));
                 item.Property(i => i.Level).HasColumnName("Level").IsRequired();
                 item.Property(i => i.LevelRequirement).HasColumnName("LevelRequirement").IsRequired();
             });

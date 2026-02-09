@@ -5,6 +5,7 @@ using System.Linq; //accessing case sensitive check
 using TesseractSharp;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.Design;
 
 
 namespace DiabloItemMuleSystem.Utilities
@@ -526,11 +527,20 @@ namespace DiabloItemMuleSystem.Utilities
 
             if (type == "Item")
             {
-                return ItemContext.ItemTable.Max(item => item.Id);
+                if (ItemContext.ItemTable.Count() > 0)
+                {
+                    return ItemContext.ItemTable.Max(item => item.Id);
+                }
+                else return 0; 
+                
             }
             else if (type == "Stats")
             {
-                return ItemContext.StatsTable.Max(stats => stats.StatsId);
+                if (ItemContext.StatsTable.Count() > 0)
+                {
+                    return ItemContext.StatsTable.Max(stats => stats.StatsId);
+                }
+                else return 0; 
             }
             else
                 return 0;
