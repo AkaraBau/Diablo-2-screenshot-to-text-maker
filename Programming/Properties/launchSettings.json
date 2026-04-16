@@ -8,8 +8,9 @@
       "commandName": "Project",
       "commandLineArgs": "parse C:\\Users\\fide_\\Desktop\\d2items\\Crafted\\casterbelts\\Have\\Cbelt-A\\cbelt-A.txt"
     },
-    "Profile 1": {
-      "commandName": "Project"
+    "START": {
+      "commandName": "Project",
+      "commandLineArgs": "start"
     }
   }
 }

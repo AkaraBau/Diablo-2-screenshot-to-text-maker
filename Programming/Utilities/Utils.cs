@@ -510,12 +510,12 @@ namespace DiabloItemMuleSystem.Utilities
                 itemContext.SaveChanges();
             }
         }
-        public static void DeleteAllInDatabase() //TODO
+        public static void DeleteAllInDatabase() 
         {
             using (var itemContext = new ItemDbContext())
             {
                 itemContext.ItemTable.RemoveRange(itemContext.ItemTable);
-                itemContext.StatsTable.RemoveRange(itemContext.StatsTable); // bugs out gives a cast error. issue found i'm adding a enum into a column of strings without parsing it. 
+                itemContext.StatsTable.RemoveRange(itemContext.StatsTable); 
                 itemContext.SaveChanges();
             }
         }
@@ -546,6 +546,20 @@ namespace DiabloItemMuleSystem.Utilities
                 return 0;
 
 
+        }
+        public static List<Stats> GetStats(int ID)
+        {
+           List<Stats> stats = new List<Stats>();
+           ItemDbContext ItemContext = new ItemDbContext();
+
+            foreach (var s in ItemContext.StatsTable)
+            { 
+                if (s.ItemId == ID)
+                {
+                    stats.Add(s);
+                }
+            }
+            return stats; 
         }
     }
 }

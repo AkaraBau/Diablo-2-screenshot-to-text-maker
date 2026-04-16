@@ -26,11 +26,17 @@ namespace DiabloItemMuleSystem.Entry
             string filePath = null;
             string command = null;
 
+            var penis = Utils.GetStats(1);
+
             if (args.Length == 0) return;
-            else if (args.Length <= 2)
+            else if (args.Length == 2)
             {
                 command = args[0];
                 filePath = args[1];
+            }
+            else
+            {
+                command = args[0]; 
             }
 
 
