@@ -6,6 +6,7 @@ using TesseractSharp;
 using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.Design;
+using System.Net.NetworkInformation;
 
 
 namespace DiabloItemMuleSystem.Utilities
@@ -549,17 +550,24 @@ namespace DiabloItemMuleSystem.Utilities
         }
         public static List<Stats> GetStats(int ID)
         {
-           List<Stats> stats = new List<Stats>();
+           
            ItemDbContext ItemContext = new ItemDbContext();
+            
+           return ItemContext.StatsTable.Where(s => s.ItemId == ID).ToList();
+        }
+        public static List<Item> GetItemsFromDb()
+        {
+           List<Item> itemList = new List<Item>();
+           ItemDbContext itemContext = new ItemDbContext();
 
-            foreach (var s in ItemContext.StatsTable)
-            { 
-                if (s.ItemId == ID)
-                {
-                    stats.Add(s);
-                }
-            }
-            return stats; 
+           foreach (var i in itemContext.ItemTable) 
+           {
+                List<Stats> stats = Utils.GetStats(i.Id);
+                Item item = new Item(i, stats);
+                itemList.Add(item);
+           }
+
+            return itemList;
         }
     }
 }

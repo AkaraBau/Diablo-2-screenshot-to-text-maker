@@ -46,6 +46,15 @@ namespace DiabloItemMuleSystem
                 }
             }
         }
+        // Constructor for fetching data from database to object 
+        public Item(Item item, List<Stats> listOfStats)
+        {
+            Id = item.Id;
+            Name = item.Name;
+            LevelRequirement = item.LevelRequirement;
+            Level = item.Level;
+            ListOfStats = listOfStats;
+        }
         // empty constructor for the ItemContext
         public Item()
         {
