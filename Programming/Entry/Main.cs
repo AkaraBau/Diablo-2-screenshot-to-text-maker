@@ -35,7 +35,7 @@ namespace DiabloItemMuleSystem.Entry
 
             if (command == "ocr")
             {
-                allItems = Utils.MultiItemOcr(filePath);
+                allItems = Ocr.MultiScan(filePath);
                 sItems = Utils.ItemToString(allItems);
 
             }
@@ -85,7 +85,7 @@ namespace DiabloItemMuleSystem.Entry
                     Console.WriteLine("What image would you like to add?\n" + @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new\sln.PNG");
                     input = Console.ReadLine();
 
-                    Item item = new Item(Utils.SingleBeltOcr(input));
+                    Item item = new Item(Ocr.SingleScan(input));
                     allItems.Add(item);
                 }
                 else if (call == "am")
@@ -93,7 +93,7 @@ namespace DiabloItemMuleSystem.Entry
                     Console.WriteLine("What directory would you like to scan? Format below \n" + input);
                     input = Console.ReadLine();
 
-                    var mergeList = Utils.MultiItemOcr(input); //multi scan method
+                    var mergeList = Ocr.MultiScan(input); //multi scan method
                     allItems.AddRange(mergeList); //adding output to list
 
                 }
