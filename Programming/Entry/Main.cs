@@ -1,17 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.IO.Compression;
-using System.IO.Pipes;
-using System.Linq; //accessing case sensitive check
-using System.Runtime.InteropServices;
 using DiabloItemMuleSystem.Utilities;
-using DiabloItemMuleSystem.Services; 
-using NLog.LayoutRenderers;
-using TesseractSharp;
-using TesseractSharp.Core;
-using TesseractSharp.Hocr;
+using DiabloItemMuleSystem.Services;
+using DiabloItemMuleSystem.Models;
+
 
 namespace DiabloItemMuleSystem.Entry
 {
@@ -26,7 +19,7 @@ namespace DiabloItemMuleSystem.Entry
             string filePath = null;
             string command = null;
 
-            var penis = Utils.GetStats(1);
+            
 
             if (args.Length == 0) return;
             else if (args.Length == 2)
@@ -166,19 +159,19 @@ namespace DiabloItemMuleSystem.Entry
                 }
                 else if (call == "GET")
                 {
-                    allItems = Utils.GetItemsFromDb(); 
+                    allItems = Database.GetItems(); 
 
                 }
                 else if (call == "db")
                 {
                     foreach (var item in allItems)
                     {
-                        Utils.AddItemToDatabase(item);
+                        Database.AddItem(item);
                     }
                 }
                 else if (call == "DELETE")
                 {
-                    Utils.DeleteAllInDatabase();
+                    Database.DeleteAll();
                 }
                 else if (call == "q")
                 {

@@ -11,6 +11,8 @@ using TesseractSharp.Core;
 using TesseractSharp.Hocr;
 using System.Text.RegularExpressions;
 using DiabloItemMuleSystem.Utilities;
+using DiabloItemMuleSystem.Models;
+using DiabloItemMuleSystem.Services;
 
 namespace DiabloItemMuleSystem.Services
 {

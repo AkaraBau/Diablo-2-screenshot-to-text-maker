@@ -11,13 +11,13 @@ using DiabloItemMuleSystem.Models;
 using DiabloItemMuleSystem.Utilities;
 using NLog.LayoutRenderers;
 using TesseractSharp;
-using TesseractSharp.Hocr;
+using TesseractSharp.Hocr; 
 
-namespace DiabloItemMuleSystem
+namespace DiabloItemMuleSystem.Models
 {
     public class Item
     {
-        private static int itemIDseed = Utils.GetHighestId("Item") + 1; 
+        private static int itemIDseed = Database.GetHighestId("Item") + 1;
         public int Id { get; }
         public ItemType Name { get; set; }
         public string LevelRequirement { get; set; }

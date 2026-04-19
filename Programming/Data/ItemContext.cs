@@ -5,7 +5,7 @@ using DiabloItemMuleSystem;
 using DiabloItemMuleSystem.Models;
 using Microsoft.EntityFrameworkCore; 
 
-namespace DiabloItemMuleSystem
+namespace DiabloItemMuleSystem.Data
 {
     public class ItemDbContext : DbContext
     {

@@ -13,11 +13,11 @@ using TesseractSharp;
 using TesseractSharp.Core;
 using TesseractSharp.Hocr;
 
-namespace DiabloItemMuleSystem
+namespace DiabloItemMuleSystem.Models
 {
     public class Stats
     {
-        private static int GenerateStatsId = Utils.GetHighestId("Stats") + 1; 
+        private static int GenerateStatsId = Database.GetHighestId("Stats") + 1; 
         public int StatsId { get; set; } // Id unique to every stats
         public int ItemId {  get; set; } // Shared id with the item it "belongs too"
         public string Name { get; set; }
