@@ -278,19 +278,6 @@ namespace DiabloItemMuleSystem.Utilities
             }
             return list;
         }
-        public static List<string> StatsToString(List<Stats> inputlist)
-        {
-            List<string> list = new List<string>();
-            foreach (var i in inputlist)
-            {
-                list.Add(i.ToString());
-            }
-            return list;
-        }
-        public static char GetFirstLetter(string input)
-        {
-            return input.FirstOrDefault(char.IsLetter);
-        }
         public static int ExtractIntFromString(string input)
         {
             string pattern = @"\d+";
