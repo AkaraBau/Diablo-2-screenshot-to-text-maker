@@ -20,9 +20,9 @@ namespace DiabloItemMuleSystem.Utilities
                 StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
 
                 item = reader.ReadToEnd(); //making stream -> string 
-                item = Utils.RemoveAllWhiteSpace(item);
-                item = Utils.ChangeLetters(item);
-                item = Utils.ShortenString(item);
+                item = StringUtils.RemoveAllWhiteSpace(item);
+                item = StringUtils.ChangeLetters(item);
+                item = StringUtils.ShortenString(item);
                 data = item.Split(new[] { '\n' }, StringSplitOptions.None); //split string into array of strings 
                 data = data.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
 
@@ -51,9 +51,9 @@ namespace DiabloItemMuleSystem.Utilities
                     StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
                     massOutput[i] = reader.ReadToEnd(); //making stream -> string []
 
-                    massOutput[i] = Utils.RemoveAllWhiteSpace(massOutput[i]); // remove all whitespace
-                    massOutput[i] = Utils.ChangeLetters(massOutput[i]); //formatting, change of broken reading of letters
-                    massOutput[i] = Utils.ShortenString(massOutput[i]); //reformatting. ex "STRENGTH" to "STR" 
+                    massOutput[i] = StringUtils.RemoveAllWhiteSpace(massOutput[i]); // remove all whitespace
+                    massOutput[i] = StringUtils.ChangeLetters(massOutput[i]); //formatting, change of broken reading of letters
+                    massOutput[i] = StringUtils.ShortenString(massOutput[i]); //reformatting. ex "STRENGTH" to "STR" 
 
                     splitData = massOutput[i].Split(new[] { '\n' }, StringSplitOptions.None); //splitting string into string []
                     splitData = splitData.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace

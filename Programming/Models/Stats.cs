@@ -27,8 +27,8 @@ namespace DiabloItemMuleSystem.Models
         {
             ItemId = ID;
             StatsId = GenerateStatsId++;
-            Amount = Utils.ExtractIntFromString(data);
-            Name = Utils.RemoveNumbers(data);
+            Amount = StringUtils.ExtractInt(data);
+            Name = StringUtils.RemoveNumbers(data);
 
         }
         // empty constructor for the ItemContext

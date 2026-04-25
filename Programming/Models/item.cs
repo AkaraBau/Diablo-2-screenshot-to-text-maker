@@ -29,8 +29,8 @@ namespace DiabloItemMuleSystem.Models
             Id = itemIDseed++;
             Name = ItemTypeLookup.GetTypeFromDictionary(data[0]);
             
-            Level = Utils.ExtractIntFromString(data[1]);
-            LevelRequirement = Utils.RemoveNumbers(data[1]);
+            Level = StringUtils.ExtractInt(data[1]);
+            LevelRequirement = StringUtils.RemoveNumbers(data[1]);
             for (int i = 2; i < data.Count; i++)
             {
                 if (!data[i].Contains("CHARGES") ||
