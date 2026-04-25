@@ -13,8 +13,8 @@ namespace DiabloItemMuleSystem.Entry
         public static void DoIt(string[] args)
         {
             string input = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
-            List<string> sItems = new List<string>(); //list of <String>
-            List<Item> allItems = new List<Item>(); //list of <Belt>
+            List<string> sItems = new List<string>(); 
+            List<Item> allItems = new List<Item>(); 
             string[] sortParameters = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "GOLD" };
             string filePath = null;
             string command = null;
@@ -93,8 +93,8 @@ namespace DiabloItemMuleSystem.Entry
                     Console.WriteLine("What directory would you like to scan? Format below \n" + input);
                     input = Console.ReadLine();
 
-                    var mergeList = Ocr.MultiScan(input); //multi scan method
-                    allItems.AddRange(mergeList); //adding output to list
+                    var mergeList = Ocr.MultiScan(input);
+                    allItems.AddRange(mergeList); 
 
                 }
                 else if (call == "at")

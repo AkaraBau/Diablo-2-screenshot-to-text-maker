@@ -23,8 +23,8 @@ namespace DiabloItemMuleSystem.Utilities
                 item = StringUtils.RemoveAllWhiteSpace(item);
                 item = StringUtils.ChangeLetters(item);
                 item = StringUtils.ShortenString(item);
-                data = item.Split(new[] { '\n' }, StringSplitOptions.None); //split string into array of strings 
-                data = data.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
+                data = item.Split(new[] { '\n' }, StringSplitOptions.None); 
+                data = data.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(); 
 
                 List<string> listData = new List<string>(data);
                 listData = Utils.RemoveListContentBeforeObjectCreationOcr(listData);
@@ -51,15 +51,15 @@ namespace DiabloItemMuleSystem.Utilities
                     StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
                     massOutput[i] = reader.ReadToEnd(); //making stream -> string []
 
-                    massOutput[i] = StringUtils.RemoveAllWhiteSpace(massOutput[i]); // remove all whitespace
-                    massOutput[i] = StringUtils.ChangeLetters(massOutput[i]); //formatting, change of broken reading of letters
+                    massOutput[i] = StringUtils.RemoveAllWhiteSpace(massOutput[i]);
+                    massOutput[i] = StringUtils.ChangeLetters(massOutput[i]); //formatting, here due to shitty ocr 
                     massOutput[i] = StringUtils.ShortenString(massOutput[i]); //reformatting. ex "STRENGTH" to "STR" 
 
                     splitData = massOutput[i].Split(new[] { '\n' }, StringSplitOptions.None); //splitting string into string []
-                    splitData = splitData.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace
+                    splitData = splitData.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace again due to rare occasion where all whitespace wouldnt get removed by regex
 
                     List<string> listSplitData = new List<string>(splitData);
-                    listSplitData = Utils.RemoveListContentBeforeObjectCreationOcr(listSplitData); //removing unecessary data before creating object. 
+                    listSplitData = Utils.RemoveListContentBeforeObjectCreationOcr(listSplitData); //removing unecessary data before creating object. (matching parsing and ocr) 
 
                     Item belt = new Item(listSplitData); //Creation of belt
                     itemList.Add(belt); //adding belt to list 
