@@ -18,19 +18,17 @@ namespace DiabloItemMuleSystem.Models
     public class Item
     {
         private static int itemIDseed = Database.GetHighestId("Item") + 1;
-        public int Id { get; }
-        public ItemType Name { get; set; }
-        public string LevelRequirement { get; set; }
-        public int Level { get; set; }
+        public readonly int Id;
+        public readonly ItemType Name; 
+        public readonly int Level;
         public List<Stats> ListOfStats = new List<Stats>();
 
         public Item(List<string> data)
         {
             Id = itemIDseed++;
-            Name = ItemTypeLookup.GetTypeFromDictionary(data[0]);
-            
+            Name = ItemTypeLookup.GetTypeFromDictionary(data[0]);            
             Level = StringUtils.ExtractInt(data[1]);
-            LevelRequirement = StringUtils.RemoveNumbers(data[1]);
+            
             for (int i = 2; i < data.Count; i++)
             {
                 if (!data[i].Contains("CHARGES") ||
@@ -50,8 +48,7 @@ namespace DiabloItemMuleSystem.Models
         public Item(Item item, List<Stats> listOfStats)
         {
             Id = item.Id;
-            Name = item.Name;
-            LevelRequirement = item.LevelRequirement;
+            Name = item.Name;            
             Level = item.Level;
             ListOfStats = listOfStats;
         }
@@ -89,7 +86,7 @@ namespace DiabloItemMuleSystem.Models
         /// </summary>
         public override string ToString()
         {
-            string result = $"{Id}/{Name}/{Level}{LevelRequirement}\t";
+            string result = $"{Id}/{Name}/{Level}LREQ\t";
             List<string> statNamesForPrint = new List<string>();
             string[] statNamesItems = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "GOLD" };
 
@@ -120,8 +117,7 @@ namespace DiabloItemMuleSystem.Models
 
             if (other == null) return false;    
 
-            else if ( this.Name == other.Name 
-                && this.LevelRequirement == other.LevelRequirement 
+            else if ( this.Name == other.Name  
                 && this.Level == other.Level
                 && Utils.CheckEqualStats(this.ListOfStats,other.ListOfStats) ) 
             { 
@@ -135,7 +131,7 @@ namespace DiabloItemMuleSystem.Models
 
         public override int GetHashCode()
         {
-            return this.LevelRequirement.GetHashCode() ^ this.Level.GetHashCode() ^ this.ListOfStats.GetHashCode();
+            return this.Level.GetHashCode() ^ this.ListOfStats.GetHashCode();
         }
     }
 }

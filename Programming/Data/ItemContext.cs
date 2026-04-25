@@ -29,7 +29,6 @@ namespace DiabloItemMuleSystem.Data
                 item.Property(i => i.Id).HasColumnName("Id");
                 item.Property(i => i.Name).HasConversion( i => i.ToString(), x => (ItemType)Enum.Parse(typeof(ItemType),x));
                 item.Property(i => i.Level).HasColumnName("Level").IsRequired();
-                item.Property(i => i.LevelRequirement).HasColumnName("LevelRequirement").IsRequired();
             });
 
             modelBuilder.Entity<Stats>(stats =>
