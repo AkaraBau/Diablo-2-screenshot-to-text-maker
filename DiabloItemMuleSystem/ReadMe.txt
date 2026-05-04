@@ -6,7 +6,6 @@ Main features:
 - OCR extraction from images
 - Text parsing into structured item data
 - CRUD operations for storing items (requires database)
-- Sorting 
 
 ## Running the project
 
