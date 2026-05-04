@@ -46,7 +46,7 @@ namespace DiabloItemMuleSystem.Utilities
                 {
 
                     //loading bar
-                    Utils.ProgressBar(i + 1, massInput.Length, 10);
+                    Utils.StatusOcr(i + 1, massInput.Length);
                     //ocr function
                     StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); //making stream -> string
                     massOutput[i] = reader.ReadToEnd(); //making stream -> string []

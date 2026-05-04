@@ -2,11 +2,11 @@
   "profiles": {
     "OCR": {
       "commandName": "Project",
-      "commandLineArgs": "ocr C:\\Users\\fide_\\Desktop\\d2items\\Crafted\\casterbelts\\Have\\LLD"
+      "commandLineArgs": "ocr C:\\Users\\fide_\\Desktop\\d2items\\Crafted\\casterbelts\\Have\\Cbelt-A"
     },
     "PARSE": {
       "commandName": "Project",
-      "commandLineArgs": "parse C:\\Users\\fide_\\Desktop\\d2items\\Crafted\\casterbelts\\Have\\Cbelt-A\\cbelt-A.txt"
+      "commandLineArgs": "parse C:\\Users\\fide_\\Desktop\\d2items\\Crafted\\casterbelts\\Have\\Cbelt-A\\Cbelt-A.txt"
     },
     "START": {
       "commandName": "Project",

@@ -21,7 +21,7 @@ namespace DiabloItemMuleSystem.Models
         public readonly int Id;
         public readonly ItemType Name; 
         public readonly int Level;
-        public List<Stats> ListOfStats = new List<Stats>();
+        public readonly List<Stats> ListOfStats = new List<Stats>();
 
         public Item(List<string> data)
         {

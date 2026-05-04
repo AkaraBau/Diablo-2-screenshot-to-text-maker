@@ -68,10 +68,8 @@ namespace DiabloItemMuleSystem.Utilities
             }
             return list;
         }
-        public static void ProgressBar(int progress, int total, int width)
+        public static void StatusOcr(int progress, int total) 
         {
-
-            int progressWidth = (int)((double)progress / total * width);
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, Console.CursorTop);
             Console.Write($"{progress}/{total}");

@@ -21,7 +21,7 @@ namespace DiabloItemMuleSystem.Models
         public int StatsId { get; set; } // Id unique to every stats
         public int ItemId {  get; set; } // Shared id with the item it "belongs too"
         public readonly string Name;
-        public readonly int? Amount; 
+        public readonly int Amount; 
 
         public Stats(int ID ,string data)
         {
