@@ -1,16 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Formats.Asn1;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Xml.XPath;
-using Microsoft.VisualBasic;
-using NLog.LayoutRenderers;
-using NLog.Targets;
-using TesseractSharp;
-using TesseractSharp.Hocr;
 
 namespace DiabloItemMuleSystem.Models
 {

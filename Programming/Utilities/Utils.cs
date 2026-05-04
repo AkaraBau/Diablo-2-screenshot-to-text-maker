@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq; //accessing case sensitive check
-using TesseractSharp;
-using System.Text.RegularExpressions;
+using System.Linq; 
 using DiabloItemMuleSystem.Models;
 
 
