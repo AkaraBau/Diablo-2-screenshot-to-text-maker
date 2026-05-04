@@ -1,12 +1,6 @@
-using DiabloItemMuleSystem;
-using sort.Tests; 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
 using Xunit;
+using DiabloItemMuleSystem.Models;
+using DiabloItemMuleSystem.Services;
 
 namespace sort.Tests
 {
