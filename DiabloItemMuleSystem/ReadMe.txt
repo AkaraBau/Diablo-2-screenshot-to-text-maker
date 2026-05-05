@@ -11,13 +11,14 @@ Main features:
 
 The application supports three modes:
 
-- `start` ? starts the console application without OCR or parsing input
-- `parse` ? parses data from a text file 
-- `ocr` ? extracts data from images
+- `start` starts the console application without OCR or parsing input
+- `parse`  parses data from a text file 
+- `ocr`  extracts data from images
 
 ### Example:
 dotnet run ocr <path-to-images>
 dotnet run parse <path-to-txt-file> 
+dotnet run start
 
 ## Database
 

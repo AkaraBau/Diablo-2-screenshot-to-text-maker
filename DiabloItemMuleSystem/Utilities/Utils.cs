@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq; 
 using DiabloItemMuleSystem.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 
 namespace DiabloItemMuleSystem.Utilities
@@ -191,6 +192,22 @@ namespace DiabloItemMuleSystem.Utilities
             }
 
             return list;
+        }
+        public static List<Item> Initiation(string[] args)
+        {
+            List<Item> allItems = new List<Item>();
+
+            if (args[0] == "ocr")
+            {
+                allItems = Ocr.MultiScan(args[1]);               
+            }
+            else if (args[0] == "parse")
+            {
+                string txtFile = File.ReadAllText(args[1]);
+                allItems = Utils.TxtFileToListItem(txtFile);    
+            }
+
+            return allItems; 
         }
     }
 }
