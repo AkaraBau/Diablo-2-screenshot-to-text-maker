@@ -21,81 +21,72 @@ namespace DiabloItemMuleSystem.Entry
 
 
             Console.WriteLine("What would you like to do?");
-            Console.WriteLine("print[p], " +
-                              "txt[t], " +
-                              "sortby[sb], " +
-                              "generic belt sort[gbs]," +
-                              " add[a], add multiple[am], " +
-                              "add from txt [at], " +
-                              "search for stat and specific amount [sss], " +
-                              "remove [r], " +
-                              "add all to database [db]," +
+            Console.WriteLine("print[P], " +
+                              " create txt[T], " +
+                              "sort by single stat[SB], " +
+                              "generic belt sort[GBS]," +
+                              " ocr one[OCR], " +
+                              "ocr all from folder[OCRALL], " +
+                              "add from txt [AT], " +
+                              "search for stat and specific amount [SSS], " +
+                              "remove by id [R], " +
+                              "add all to database [DB]," +
                               "get from database [GET] " +
                               "Delete content of database [DELETE] " +
-                              "quit[q]");
+                              "quit[Q]");
             string call = null;
-            while (call != "q")
+            while (call != "Q")
             {
                 string filePath = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
                 call = Console.ReadLine();
-                if (call == "p")
+                if (call == "P")
                 {
                     Utils.PrintList(allItems);
                 }
-                else if (call == "t")
+                else if (call == "T")
                 {
                     Console.WriteLine("What would you like to name the file?");
                     string name = Console.ReadLine();
-
-                    Console.WriteLine("What directory should the file get created in?");
-                    Console.WriteLine("Format: " + filePath);
-                    filePath = Console.ReadLine();
-
+                    filePath = Utils.GetFilePathFromUser(""); 
                     filePath = Path.Combine(filePath, name + ".txt");
                     sItems = Utils.ItemToString(allItems);
                     File.WriteAllLines(filePath, sItems);
 
                     Console.WriteLine("Txt file created");
                 }
-                else if (call == "sb")
+                else if (call == "SB")
                 {
                     Console.WriteLine("What stat would you like to sort by? ");
                     var sortCall = Console.ReadLine().ToUpper().Trim();
                     allItems.Sort(new SortByStat(sortCall));
                 }
-                else if (call == "a")
+                else if (call == "OCR")
                 {
-                    Console.WriteLine("What image would you like to add?\n" + "Format: " + filePath +".png" );
-                    filePath = Console.ReadLine();
-
+                    filePath = Utils.GetFilePathFromUser(".png"); 
                     Item item = new Item(Ocr.SingleScan(filePath));
                     allItems.Add(item);
                 }
-                else if (call == "am")
+                else if (call == "OCRALL")
                 {
-                    Console.WriteLine("What directory would you like to scan? Format: " + filePath);
-                    filePath = Console.ReadLine();
-
+                     
+                    filePath = Utils.GetFilePathFromUser("");
                     var mergeList = Ocr.MultiScan(filePath);
                     allItems.AddRange(mergeList); 
 
                 }
-                else if (call == "at")
+                else if (call == "AT")
                 {
-                    Console.WriteLine("Input filepath to txt file.\nFormat: " + filePath + ".txt");
-                    filePath = Console.ReadLine();
-
+                    filePath = Utils.GetFilePathFromUser(".txt"); 
                     string txtFile = File.ReadAllText(filePath);
                     var mergelist = Utils.TxtFileToListItem(txtFile);
                     allItems.AddRange(mergelist);
                 }
-                else if (call == "gbs")
+                else if (call == "GBS")
                 {
-
                     allItems.Sort(new GenericItemSort(sortParameters));
                     Console.WriteLine("Sorted");
                 }
-                else if (call == "sss")  //// TODO shit works but is cluttery, looks messy and hard to understand should be able to be optimized. 
+                else if (call == "SSS")  //// TODO shit works but is cluttery, looks messy and hard to understand should be able to be optimized. 
                 {
                     Console.WriteLine("How many different stats would you like to search for?");
                     int howManyStats = Convert.ToInt32(Console.ReadLine());
@@ -133,7 +124,7 @@ namespace DiabloItemMuleSystem.Entry
 
 
                 }
-                else if (call == "r")
+                else if (call == "R")
                 {
                     Console.WriteLine("Which id would you like to remove?");
                     int remove = Convert.ToInt32(Console.ReadLine());
@@ -145,7 +136,7 @@ namespace DiabloItemMuleSystem.Entry
                     allItems = Database.GetItems(); 
 
                 }
-                else if (call == "db")
+                else if (call == "DB")
                 {
                     foreach (var item in allItems)
                     {
@@ -155,10 +146,6 @@ namespace DiabloItemMuleSystem.Entry
                 else if (call == "DELETE")
                 {
                     Database.DeleteAll();
-                }
-                else if (call == "q")
-                {
-                    return;
                 }
                 else
                 {

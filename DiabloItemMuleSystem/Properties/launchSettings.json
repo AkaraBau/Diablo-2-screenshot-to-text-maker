@@ -1,5 +1,9 @@
 {
   "profiles": {
+    "START": {
+      "commandName": "Project",
+      "commandLineArgs": "start"
+    },
     "OCR": {
       "commandName": "Project",
       "commandLineArgs": "ocr C:\\Users\\fide_\\Desktop\\d2items\\Crafted\\casterbelts\\Have\\Cbelt-A"
@@ -7,10 +11,7 @@
     "PARSE": {
       "commandName": "Project",
       "commandLineArgs": "parse C:\\Users\\fide_\\Desktop\\d2items\\Crafted\\casterbelts\\Have\\Cbelt-A\\Cbelt-A.txt"
-    },
-    "START": {
-      "commandName": "Project",
-      "commandLineArgs": "start"
     }
+
   }
 }
