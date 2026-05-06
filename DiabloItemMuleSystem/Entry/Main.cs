@@ -14,7 +14,7 @@ namespace DiabloItemMuleSystem.Entry
         public static void DoIt(string[] args)
         {
 
-            string[] sortParameters = ["FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "GOLD"];
+            string[] sortParameters = ["FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "GOLD"]; //I should probably not be repeating this at many places in my code FKN TODO
 
             List<Item> allItems = Utils.Initiation(args);
             List<string> sItems = Utils.ItemToString(allItems); 
@@ -29,7 +29,7 @@ namespace DiabloItemMuleSystem.Entry
             string call = null;
             while (call != UserAction.Quit.ToString())
             {
-                string filePath = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
+                string filePath = null;
                 call = Console.ReadLine();
                 if (call == UserAction.Print.ToString())
                 {
@@ -77,7 +77,7 @@ namespace DiabloItemMuleSystem.Entry
                     allItems.Sort(new GenericItemSort(sortParameters));
                     Console.WriteLine("Sorted");
                 }
-                else if (call == UserAction.SearchByStats.ToString())   
+                else if (call == UserAction.SearchByStats.ToString())   // TODO still think this looks ugly 
                 {
                     int howManyStats = UserUtils.GetNumber("amount of stats");
                     int top = 0;

@@ -38,7 +38,7 @@ namespace DiabloItemMuleSystem.Utilities
         }
         public static string GetStat()
         {
-            string[] statNamesItems = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "GOLD" };
+            string[] statNamesItems = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "GOLD" }; //I should probably not be repeating this at many places in my code FKN TODO
             Console.WriteLine("Which stat?"); 
             while (true)
             {
