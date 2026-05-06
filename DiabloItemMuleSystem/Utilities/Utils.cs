@@ -209,16 +209,5 @@ namespace DiabloItemMuleSystem.Utilities
 
             return allItems; 
         }
-        public static string GetFilePathFromUser(string Type)
-        {
-            string filePath = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
-
-            Console.WriteLine("Pick a directory: \n"); 
-            Console.WriteLine("Format: " + filePath + Type);
-
-            filePath = Console.ReadLine();
-
-            return filePath;
-        }
     }
 }
