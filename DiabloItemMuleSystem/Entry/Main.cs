@@ -17,7 +17,7 @@ namespace DiabloItemMuleSystem.Entry
             string[] sortParameters = ["FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "GOLD"]; //I should probably not be repeating this at many places in my code FKN TODO
 
             List<Item> allItems = Utils.Initiation(args);
-            List<string> sItems = Utils.ItemToString(allItems); 
+            List<string> sItems = Utils.ItemToString(allItems);
 
 
             Console.WriteLine("[Commands]");
@@ -26,121 +26,128 @@ namespace DiabloItemMuleSystem.Entry
             {
                 Console.WriteLine(g.ToString());
             }
-            string call = null;
-            while (call != UserAction.Quit.ToString())
+            
+            while (true)
             {
                 string filePath = null;
-                call = Console.ReadLine();
-                if (call == UserAction.Print.ToString())
+                if (UserAction.TryParse(Console.ReadLine(), out UserAction result))
                 {
-                    Utils.PrintList(allItems);
-                }
-                else if (call == UserAction.CreateTxt.ToString())
-                {
-                    Console.WriteLine("What would you like to name the file?");
-                    string name = Console.ReadLine();
-                    filePath = UserUtils.GetFilePath(""); 
-                    filePath = Path.Combine(filePath, name + ".txt");
-                    sItems = Utils.ItemToString(allItems);
-                    File.WriteAllLines(filePath, sItems);
-
-                    Console.WriteLine("Txt file created");
-                }
-                else if (call == UserAction.OrderByStat.ToString())
-                {
-                    string sortCall = UserUtils.GetStat();
-                    allItems.Sort(new SortByStat(sortCall));
-                }
-                else if (call == UserAction.Ocr.ToString())
-                {
-                    filePath = UserUtils.GetFilePath(".png"); 
-                    Item item = new Item(Ocr.SingleScan(filePath));
-                    allItems.Add(item);
-                }
-                else if (call == UserAction.OcrAll.ToString())
-                {
-                     
-                    filePath = UserUtils.GetFilePath("");
-                    var mergeList = Ocr.MultiScan(filePath);
-                    allItems.AddRange(mergeList); 
-
-                }
-                else if (call == UserAction.ParseTxt.ToString())
-                {
-                    filePath = UserUtils.GetFilePath(".txt"); 
-                    string txtFile = File.ReadAllText(filePath);
-                    var mergelist = Utils.TxtFileToListItem(txtFile);
-                    allItems.AddRange(mergelist);
-                }
-                else if (call == UserAction.GenericItemSort.ToString())
-                {
-                    allItems.Sort(new GenericItemSort(sortParameters));
-                    Console.WriteLine("Sorted");
-                }
-                else if (call == UserAction.SearchByStats.ToString())   // TODO still think this looks ugly 
-                {
-                    int howManyStats = UserUtils.GetNumber("amount of stats");
-                    int top = 0;
-                    int bottom = 0;
-                    string statForSearch = null;
-                    List<Item> searchedList = new List<Item>();
-
-
-                    for (int i = 0; i < howManyStats; i++)
+                    if (result == UserAction.Print) 
                     {
-                        statForSearch = UserUtils.GetStat();
-                        top = UserUtils.GetNumber("top range");
-                        bottom = UserUtils.GetNumber("bottom range"); 
+                        Utils.PrintList(allItems);
+                    }
+                    else if (result == UserAction.CreateTxt)
+                    {
+                        Console.WriteLine("What would you like to name the file?");
+                        string name = Console.ReadLine();
+                        filePath = UserUtils.GetFilePath("");
+                        filePath = Path.Combine(filePath, name + ".txt");
+                        sItems = Utils.ItemToString(allItems);
+                        File.WriteAllLines(filePath, sItems);
 
-                        if (i == 0)
+                        Console.WriteLine("Txt file created");
+                    }
+                    else if (result == UserAction.OrderByStat)
+                    {
+                        string sortCall = UserUtils.GetStat();
+                        allItems.Sort(new SortByStat(sortCall));
+                    }
+                    else if (result == UserAction.Ocr)
+                    {
+                        filePath = UserUtils.GetFilePath(".png");
+                        Item item = new Item(Ocr.SingleScan(filePath));
+                        allItems.Add(item);
+                    }
+                    else if (result == UserAction.OcrAll)
+                    {
+
+                        filePath = UserUtils.GetFilePath("");
+                        var mergeList = Ocr.MultiScan(filePath);
+                        allItems.AddRange(mergeList);
+
+                    }
+                    else if (result == UserAction.ParseTxt)
+                    {
+                        filePath = UserUtils.GetFilePath(".txt");
+                        string txtFile = File.ReadAllText(filePath);
+                        var mergelist = Utils.TxtFileToListItem(txtFile);
+                        allItems.AddRange(mergelist);
+                    }
+                    else if (result == UserAction.GenericItemSort)
+                    {
+                        allItems.Sort(new GenericItemSort(sortParameters));
+                        Console.WriteLine("Sorted");
+                    }
+                    else if (result == UserAction.SearchByStats)   // TODO still think this looks ugly 
+                    {
+                        int howManyStats = UserUtils.GetNumber("amount of stats");
+                        int top = 0;
+                        int bottom = 0;
+                        string statForSearch = null;
+                        List<Item> searchedList = new List<Item>();
+
+
+                        for (int i = 0; i < howManyStats; i++)
                         {
-                            searchedList = Utils.SearchForStatAndAmount(allItems, statForSearch, bottom, top);
+                            statForSearch = UserUtils.GetStat();
+                            top = UserUtils.GetNumber("top range");
+                            bottom = UserUtils.GetNumber("bottom range");
+
+                            if (i == 0)
+                            {
+                                searchedList = Utils.SearchForStatAndAmount(allItems, statForSearch, bottom, top);
+                            }
+                            if (i >= 1)
+                            {
+                                searchedList = Utils.SearchForStatAndAmount(searchedList, statForSearch, bottom, top);
+                            }
                         }
-                        if (i >= 1)
+
+                        searchedList.Sort(new GenericItemSort(sortParameters));
+                        Utils.PrintList(searchedList);
+
+                        if (searchedList.Count == 0)
                         {
-                            searchedList = Utils.SearchForStatAndAmount(searchedList, statForSearch, bottom, top);
+                            Console.WriteLine("No items with those stats");
+                        }
+
+
+                    }
+                    else if (result == UserAction.RemoveById)
+                    {
+
+                        int remove = UserUtils.GetNumber("Id");
+                        allItems.RemoveAll(item => item.Id == remove);
+
+                    }
+                    else if (result == UserAction.GetAllFromDatabase)
+                    {
+                        allItems = Database.GetItems();
+
+                    }
+                    else if (result == UserAction.AddAllToDatabase)
+                    {
+                        foreach (var item in allItems)
+                        {
+                            Database.AddItem(item);
                         }
                     }
-
-                    searchedList.Sort(new GenericItemSort(sortParameters));
-                    Utils.PrintList(searchedList);
-
-                    if (searchedList.Count == 0)
+                    else if (result == UserAction.DeleteAllFromDatabase)
                     {
-                        Console.WriteLine("No items with those stats");
+                        Database.DeleteAll();
+                    }
+                    else if (result == UserAction.Quit)
+                    {
+                        return;
                     }
 
-
-                }
-                else if (call == UserAction.RemoveById.ToString())
-                {
-
-                    int remove = UserUtils.GetNumber("Id"); 
-                    allItems.RemoveAll(item => item.Id == remove);
-
-                }
-                else if (call == UserAction.GetAllFromDatabase.ToString())
-                {
-                    allItems = Database.GetItems(); 
-
-                }
-                else if (call == UserAction.AddAllToDatabase.ToString())
-                {
-                    foreach (var item in allItems)
-                    {
-                        Database.AddItem(item);
-                    }
-                }
-                else if (call == UserAction.DeleteAllFromDatabase.ToString())
-                {
-                    Database.DeleteAll();
                 }
                 else
                 {
                     Console.WriteLine("wrong input try again");
                 }
+
             }
-            Console.ReadLine();
         }
     }
 }

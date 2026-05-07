@@ -60,8 +60,8 @@ namespace DiabloItemMuleSystem.Utilities
                     List<string> listSplitData = new List<string>(splitData);
                     listSplitData = Utils.RemoveListContentBeforeObjectCreationOcr(listSplitData); //removing unecessary data before creating object. (matching parsing and ocr) 
 
-                    Item belt = new Item(listSplitData); //Creation of belt
-                    itemList.Add(belt); //adding belt to list 
+                    Item item = new Item(listSplitData); //Creation of belt
+                    itemList.Add(item); //adding belt to list 
                 }
             }
             Console.WriteLine("\nDone.");

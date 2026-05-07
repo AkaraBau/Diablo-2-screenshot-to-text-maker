@@ -32,7 +32,7 @@ namespace DiabloItemMuleSystem.Utilities
                     else
                     {
                         Console.WriteLine("No valid files found. Please enter a directory with .PNG, .JPEG, or .JPG files.");
-                        input = Console.ReadLine(); // Prompt user for new input
+                        input = Console.ReadLine();
                         continue;
                     }
 
@@ -41,7 +41,7 @@ namespace DiabloItemMuleSystem.Utilities
                 catch (DirectoryNotFoundException)
                 {
                     Console.WriteLine("Can't find the directory, try again.");
-                    input = Console.ReadLine(); // Prompt user for new input
+                    input = Console.ReadLine(); 
                 }
                 catch (Exception ex)
                 {
@@ -159,7 +159,7 @@ namespace DiabloItemMuleSystem.Utilities
         {
             if (inputList[1] == "SB" || inputList[1] == "VB" || inputList[1] == "SPS" || inputList[1] == "MC" || inputList[1] == "DHS")
             {
-                inputList.RemoveAt(0); // 0, 3 , 4 , 5 
+                inputList.RemoveAt(0); // 0, 3 , 4 , 5 (index removed)
                 inputList.RemoveAt(1);
                 inputList.RemoveAt(1);
                 inputList.RemoveAt(1);
