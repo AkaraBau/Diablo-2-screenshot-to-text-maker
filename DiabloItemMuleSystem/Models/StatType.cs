@@ -8,5 +8,23 @@ namespace DiabloItemMuleSystem.Models
 {
     public enum StatType
     {
+        FCR,
+        FHR,
+        STR, 
+        DEX, 
+        LL, 
+        VITA, 
+        ENERGY, 
+        ML, 
+        LIFE, 
+        REP, 
+        MANA, 
+        MREG, 
+        PR, 
+        LR, 
+        FR, 
+        PLR, 
+        ED, 
+        GOLD
     }
 }
