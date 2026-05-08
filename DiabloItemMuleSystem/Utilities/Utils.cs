@@ -30,18 +30,12 @@ namespace DiabloItemMuleSystem.Utilities
                     {
                         Console.WriteLine("Loading input. Please wait.");
                     }
-                    else
-                    {
-                        Console.WriteLine("No valid files found. Please enter a directory with .PNG, .JPEG, or .JPG files.");
-                        input = Console.ReadLine();
-                        continue;
-                    }
 
                     directoryExists = true; // Exit the loop if the directory exists and contains valid files
                 }
                 catch (DirectoryNotFoundException)
                 {
-                    Console.WriteLine("Can't find the directory, try again.");
+                    Console.WriteLine("Can't find the directory.");
                     input = Console.ReadLine(); 
                 }
                 catch (Exception ex)
@@ -93,7 +87,7 @@ namespace DiabloItemMuleSystem.Utilities
             }
             return result;
         }
-        public static List<string> RemoveListContentBeforeObjectCreationOcr(List<string> inputList)
+        public static List<string> RemoveListContentBeforeObjectCreationOcr(List<string> inputList) //here to match parsing to ocr so i can use same constructor for both. 
         {
             if (inputList[1] == "SB" || inputList[1] == "VB" || inputList[1] == "SPS" || inputList[1] == "MC" || inputList[1] == "DHS")
             {
