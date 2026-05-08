@@ -28,6 +28,7 @@ namespace DiabloItemMuleSystem.Models
             {"energy" , StatType.ENERGY },
             {"manaleech" , StatType.ML },
             {"mana leech" , StatType.ML },
+            {"ml" , StatType.ML },
             {"life" , StatType.LIFE },
             {"rep" , StatType.REP },
             {"replenish" , StatType.REP },
@@ -52,12 +53,13 @@ namespace DiabloItemMuleSystem.Models
             {"ed" , StatType.ED },
             {"Enhanced defense" , StatType.ED },
             {"enhanceddefense" , StatType.ED },
+            {"oed", StatType.ED },
             {"gold" , StatType.GOLD },
             {"extra gold" , StatType.GOLD },
             {"extra gold find" , StatType.GOLD },
             {"extragold" , StatType.GOLD },
             {"eg" , StatType.GOLD },
-            {"extragoldfind" , StatType.GOLD },
+            {"extragoldfind" , StatType.GOLD }
 
         };
         public static StatType GetStatType(string input)
@@ -66,7 +68,12 @@ namespace DiabloItemMuleSystem.Models
             {
                 output = _ConvertStatName[input];
             }
+            else 
+            { 
+                output = StatType.NULL;
+            }
             return output;
+            
         }
     }
 }

@@ -35,7 +35,7 @@ namespace DiabloItemMuleSystem.Data
                 stats.Property(s => s.StatsId).HasColumnName("StatsId");
                 stats.Property(s => s.ItemId).HasColumnName("ItemId");
                 stats.Property(s => s.Amount).HasColumnName("Amount");
-                stats.Property(s => s.Name).HasColumnName("Name");
+                stats.Property(s => s.Name).HasConversion(s => s.ToString(), x => (StatType)Enum.Parse(typeof(StatType), x));
 
             });
 

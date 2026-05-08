@@ -16,7 +16,8 @@ namespace DiabloItemMuleSystem.Models
         Boots,
         Gloves,
         Helm,
-        Orb
+        Orb,
+        Null
 
     }
 }

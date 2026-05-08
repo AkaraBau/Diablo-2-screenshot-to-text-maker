@@ -7,16 +7,15 @@ namespace DiabloItemMuleSystem.Models
         private static int GenerateStatsId = Database.GetHighestId("Stats") + 1; 
         public int StatsId { get; set; } // Id unique to every stats
         public int ItemId {  get; set; } // Shared id with the item it "belongs too"
-        public readonly string Name;
+        public readonly StatType Name;
         public readonly int Amount; 
 
-        public Stats(int ID ,string data)
+        public Stats(int ID ,string data, StatType stat)
         {
             ItemId = ID;
             StatsId = GenerateStatsId++;
             Amount = StringUtils.ExtractInt(data);
-            Name = StringUtils.RemoveNumbers(data);
-
+            Name = stat; 
         }
         // empty constructor for the ItemContext
         public Stats()

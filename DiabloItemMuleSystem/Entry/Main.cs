@@ -14,9 +14,9 @@ namespace DiabloItemMuleSystem.Entry
         public static void DoIt(string[] args)
         {
 
-            string[] sortParameters = ["FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "GOLD"]; //I should probably not be repeating this at many places in my code FKN TODO
+            var getAllStats = Enum.GetValues<StatType>();  
 
-            List<Item> allItems = Utils.Initiation(args);
+            List <Item> allItems = Utils.Initiation(args);
             List<string> sItems = Utils.ItemToString(allItems);
 
 
@@ -49,7 +49,7 @@ namespace DiabloItemMuleSystem.Entry
                     }
                     else if (result == UserAction.OrderByStat)
                     {
-                        string sortCall = UserUtils.GetStat();
+                        StatType sortCall = UserUtils.GetStat();
                         allItems.Sort(new SortByStat(sortCall));
                     }
                     else if (result == UserAction.Ocr)
@@ -75,7 +75,7 @@ namespace DiabloItemMuleSystem.Entry
                     }
                     else if (result == UserAction.GenericItemSort)
                     {
-                        allItems.Sort(new GenericItemSort(sortParameters));
+                        allItems.Sort(new GenericItemSort(getAllStats));
                         Console.WriteLine("Sorted");
                     }
                     else if (result == UserAction.SearchByStats)   // TODO still think this looks ugly 
@@ -83,13 +83,13 @@ namespace DiabloItemMuleSystem.Entry
                         int howManyStats = UserUtils.GetNumber("amount of stats");
                         int top = 0;
                         int bottom = 0;
-                        string statForSearch = null;
+                        
                         List<Item> searchedList = new List<Item>();
 
 
                         for (int i = 0; i < howManyStats; i++)
                         {
-                            statForSearch = UserUtils.GetStat();
+                            StatType statForSearch = UserUtils.GetStat();
                             top = UserUtils.GetNumber("top range");
                             bottom = UserUtils.GetNumber("bottom range");
 
@@ -103,7 +103,7 @@ namespace DiabloItemMuleSystem.Entry
                             }
                         }
 
-                        searchedList.Sort(new GenericItemSort(sortParameters));
+                        searchedList.Sort(new GenericItemSort(getAllStats));
                         Utils.PrintList(searchedList);
 
                         if (searchedList.Count == 0)

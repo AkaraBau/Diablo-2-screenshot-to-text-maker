@@ -96,6 +96,10 @@ namespace DiabloItemMuleSystem.Models
             {
                 output = _ConvertItemName[input];
             }
+            else
+            {
+                output = ItemType.Null;
+            }
             return output;
         }
     }

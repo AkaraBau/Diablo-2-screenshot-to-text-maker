@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq; 
 using DiabloItemMuleSystem.Models;
+using System.Text.RegularExpressions;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 
@@ -98,7 +99,7 @@ namespace DiabloItemMuleSystem.Utilities
 
             return 0;
         }
-        public static int CompareMultipleStats(Item left, Item right, string[] sortParameters)
+        public static int CompareMultipleStats(Item left, Item right, StatType[] sortParameters)
         {
 
 
@@ -137,7 +138,7 @@ namespace DiabloItemMuleSystem.Utilities
             return true;
 
         }
-        public static List<Item> SearchForStatAndAmount(List<Item> items, string searchStat, int bot, int top)
+        public static List<Item> SearchForStatAndAmount(List<Item> items, StatType searchStat, int bot, int top)
         {
             List<Item> result = new List<Item>();
             Stats stat = null;
@@ -177,21 +178,26 @@ namespace DiabloItemMuleSystem.Utilities
             }
             return inputList;
         }
-        public static List<Item> TxtFileToListItem(string txtFile)
+        public static List<Item> TxtFileToListItem(string txtFileData)
         {
-            List<Item> list = new List<Item>();
-            string[] txtFileSplitOnNewline = txtFile.Split("\n");
+            List<Item> itemList = new List<Item>();
+            string[] txtFileSplitOnNewline = txtFileData.Split("\n");
+            var listData = new List<string>();
+            
 
             for (int i = 0; i < txtFileSplitOnNewline.Length - 1; i++)
             {
-                string[] txtFileSplitBeforeItemCreation = txtFileSplitOnNewline[i].Split('/', '\t');
-                List<string> listData = new List<string>(txtFileSplitBeforeItemCreation);
+                string[] txtFileSplitBeforeItemCreation = txtFileSplitOnNewline[i].Trim().Split('/', '\t');
+                listData = new List<string>(txtFileSplitBeforeItemCreation);
                 listData.RemoveAt(0);
+                
+                
                 Item item = new Item(listData);
-                list.Add(item);
+                itemList.Add(item);
             }
+           
 
-            return list;
+            return itemList;
         }
         public static List<Item> Initiation(string[] args)
         {

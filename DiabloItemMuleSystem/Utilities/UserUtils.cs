@@ -1,4 +1,5 @@
-﻿using NLog.Targets;
+﻿using DiabloItemMuleSystem.Models;
+using NLog.Targets;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -36,20 +37,22 @@ namespace DiabloItemMuleSystem.Utilities
                 Console.WriteLine("Invalid input, try again.");
             }
         }
-        public static string GetStat()
+        public static StatType GetStat()
         {
-            string[] statNamesItems = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "GOLD" }; //I should probably not be repeating this at many places in my code FKN TODO
+            var allStatTypes = Enum.GetValues<StatType>();
             Console.WriteLine("Which stat?"); 
             while (true)
             {
-                var result = Console.ReadLine();
-                foreach(var s in statNamesItems)
+                foreach(var s in allStatTypes)
                 {
-                    if (s == result)
-                    return result; 
+                    if (StatType.TryParse(Console.ReadLine(), out StatType result))
+                    {
+                        return result;
+                    }
+                     
                 }
                 Console.WriteLine("Invalid input. Valid inputs:");
-                foreach (var s in statNamesItems)
+                foreach (var s in allStatTypes)
                 {
                     Console.WriteLine(s);
                 }

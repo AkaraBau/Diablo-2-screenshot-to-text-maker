@@ -10,14 +10,14 @@ namespace DiabloItemMuleSystem.Models
     {
         FCR,
         FHR,
-        STR, 
+        STR,
+        LIFE,
+        REP,
         DEX, 
         LL, 
         VITA, 
         ENERGY, 
-        ML, 
-        LIFE, 
-        REP, 
+        ML,   
         MANA, 
         MREG, 
         PR, 
@@ -25,6 +25,7 @@ namespace DiabloItemMuleSystem.Models
         FR, 
         PLR, 
         ED, 
-        GOLD
+        GOLD,
+        NULL
     }
 }

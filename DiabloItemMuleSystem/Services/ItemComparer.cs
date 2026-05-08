@@ -7,9 +7,9 @@ namespace DiabloItemMuleSystem.Services
 {
     class SortByStat : IComparer<Item>
     {
-        public string SortParameter { get; set; }
+        public StatType SortParameter { get; set; }
 
-        public SortByStat(string sortParameter)
+        public SortByStat(StatType sortParameter)
         {
             SortParameter = sortParameter;
         }
@@ -24,9 +24,9 @@ namespace DiabloItemMuleSystem.Services
     }
     public class GenericItemSort : IComparer<Item>
     {
-        public string[] SortParameters { get; set; }
+        public StatType[] SortParameters { get; set; }
 
-        public GenericItemSort(string[] sortParameters)
+        public GenericItemSort(StatType[] sortParameters)
         {
             SortParameters = sortParameters;
         }

@@ -10,10 +10,10 @@ namespace sort.Tests
         [Fact]
         public void GenericSortMethodTest()
         {
-            string[] itemSortParameters = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG","@RES", "PR", "LR", "FR", "PLR", "ED", "GOLD" };
+            var getAllStats = Enum.GetValues<StatType>();
 
             // belts for testing
-            
+
             List<string> item1 = new List<string> { "SB"," ",  "7FCR" };
             List<string> item2 = new List<string> { "SB"," ", "30STR" };
             List<string> item3 = new List<string> { "SB", " ", "7FCR" };
@@ -50,7 +50,7 @@ namespace sort.Tests
                                                          new Item(item7) //29str                                                        
                                                           }; 
             //running the method
-            Actual.Sort(new GenericItemSort(itemSortParameters));
+            Actual.Sort(new GenericItemSort(getAllStats));
 
             Assert.Equal(Expected, Actual); 
         }

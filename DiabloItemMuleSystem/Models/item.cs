@@ -1,5 +1,6 @@
+using System;
 using System.Collections.Generic;
-using DiabloItemMuleSystem.Utilities; 
+using DiabloItemMuleSystem.Utilities;
 
 namespace DiabloItemMuleSystem.Models
 {
@@ -14,24 +15,22 @@ namespace DiabloItemMuleSystem.Models
         public Item(List<string> data)
         {
             Id = itemIDseed++;
-            Name = ItemTypeLookup.GetTypeFromDictionary(data[0]);            
+            Name = ItemTypeLookup.GetTypeFromDictionary(data[0]);
             Level = StringUtils.ExtractInt(data[1]);
-            
+
             for (int i = 2; i < data.Count; i++)
             {
-                if (!data[i].Contains("CHARGES") ||
-                   !data[i].Contains("CTC") ||
-                   !data[i].Contains("CDMG") ||
-                   !data[i].Contains("ATDO") ||
-                   !data[i].Contains("DPL")||
-                   !data[i].Contains("MS") ||
-                   !data[i].Contains("LIGHTRADIUS"))
+                var trimmedData = StringUtils.RemoveNumbers(data[i]);
+                StatType stat = StatTypeLookup.GetStatType(trimmedData);
+
+                if (stat != StatType.NULL)
                 {
-                    Stats stats = new Stats(Id, data[i]);
+                    Stats stats = new Stats(Id, data[i], stat);
                     ListOfStats.Add(stats);
                 }
             }
         }
+    
         // Constructor for fetching data from database to object 
         public Item(Item item, List<Stats> listOfStats)
         {
@@ -48,12 +47,12 @@ namespace DiabloItemMuleSystem.Models
         /// <summary>
         /// GetStat and GetAmount instance methods on type Item 
         /// </summary>
-        public Stats GetStat(string inputString)
+        public Stats GetStat(StatType inputStat)
         {
             Stats result = null;
             for (int i = 0; i < ListOfStats.Count; i++)
             {
-                if (ListOfStats[i].Name.Contains(inputString))
+                if (ListOfStats[i].Name == inputStat)
                 {
                     result = ListOfStats[i];
                 }
@@ -76,12 +75,12 @@ namespace DiabloItemMuleSystem.Models
         {
             string result = $"{Id}/{Name}/{Level}LREQ\t";
             List<string> statNamesForPrint = new List<string>();
-            string[] statNamesItems = new string[] { "FCR", "FHR", "STR", "DEX", "LL", "VITA", "ENERGY", "ML", "LIFE", "REP", "MANA", "MREG", "PR", "LR", "FR", "PLR", "ED", "GOLD" }; //I should probably not be repeating this at many places in my code FKN TODO
+            var allStatTypes = Enum.GetValues<StatType>(); 
 
 
-            for (int i = 0; i < statNamesItems.Length; i++)
+            for (int i = 0; i < allStatTypes.Length; i++)
             {
-                var stats = GetStat(statNamesItems[i]);
+                var stats = GetStat(allStatTypes[i]);
                 if (stats != null)
                 {
                     statNamesForPrint.Add(stats.ToString());
