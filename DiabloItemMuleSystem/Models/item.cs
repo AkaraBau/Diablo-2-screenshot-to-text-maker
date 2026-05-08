@@ -106,7 +106,7 @@ namespace DiabloItemMuleSystem.Models
 
             else if ( this.Name == other.Name  
                 && this.Level == other.Level
-                && Utils.CheckEqualStats(this.ListOfStats,other.ListOfStats) ) 
+                && StatComparer.CheckIfEqual(this.ListOfStats,other.ListOfStats) ) 
             { 
                 return true; 
             }

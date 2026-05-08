@@ -19,7 +19,7 @@ namespace DiabloItemMuleSystem.Services
             Stats statsLeft = left.GetStat(SortParameter);
             Stats statsRight = right.GetStat(SortParameter);
 
-            return Utils.CompareStat(statsLeft, statsRight);
+            return StatComparer.Single(statsLeft, statsRight);
         }
     }
     public class GenericItemSort : IComparer<Item>
@@ -33,7 +33,7 @@ namespace DiabloItemMuleSystem.Services
 
         public int Compare(Item left, Item right)
         {
-            return Utils.CompareMultipleStats(left, right, SortParameters);
+            return StatComparer.Multiple(left, right, SortParameters);
         }
 
     }

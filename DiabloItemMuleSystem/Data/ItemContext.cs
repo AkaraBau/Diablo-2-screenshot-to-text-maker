@@ -10,10 +10,10 @@ namespace DiabloItemMuleSystem.Data
         public DbSet<Stats> StatsTable { get; set; } 
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) //override for configuration 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)  
         {
             optionsBuilder.UseMySql(
-                "Server=localhost;Database=itemdb;User=root;Password=To7opxv9!;", // sql server string
+                "Server=localhost;Database=itemdb;User=root;Password=To7opxv9!;", 
                 new MySqlServerVersion(new Version(8, 0, 40))
             );
         }
