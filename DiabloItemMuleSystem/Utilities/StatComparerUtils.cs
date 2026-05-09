@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DiabloItemMuleSystem.Utilities
 {
-    public static class StatComparer
+    public static class StatComparerUtils
     {
         public static int Single(Stats inputA, Stats inputB)
         {
