@@ -14,15 +14,15 @@ namespace DiabloItemMuleSystem.Entry
         public static void DoIt(string[] args)
         {
 
-            var getAllStats = Enum.GetValues<StatType>();  
+            var allStatTypes = Enum.GetValues<StatType>();  
 
             List <Item> allItems = Utils.Initiation(args);
             List<string> sItems = Utils.ItemToString(allItems);
 
 
             Console.WriteLine("[Commands]");
-            var getAllEnums = Enum.GetValues<UserAction>();
-            foreach (var g in getAllEnums)
+            var allUserActions = Enum.GetValues<UserAction>();
+            foreach (var g in allUserActions)
             {
                 Console.WriteLine(g.ToString());
             }
@@ -41,14 +41,7 @@ namespace DiabloItemMuleSystem.Entry
                 }
                 else if (result == UserAction.CreateTxt)
                 {
-                    Console.WriteLine("What would you like to name the file?");
-                    string name = Console.ReadLine();
-                    filePath = UserUtils.GetFilePath("");
-                    filePath = Path.Combine(filePath, name + ".txt");
-                    sItems = Utils.ItemToString(allItems);
-                    File.WriteAllLines(filePath, sItems);
-
-                    Console.WriteLine("Txt file created");
+                    Utils.ExportItemsToTxt(allItems); 
                 }
                 else if (result == UserAction.OrderByStat)
                 {
@@ -57,13 +50,10 @@ namespace DiabloItemMuleSystem.Entry
                 }
                 else if (result == UserAction.Ocr)
                 {
-                    filePath = UserUtils.GetFilePath(".png");
-                    Item item = new Item(Ocr.SingleScan(filePath));
-                    allItems.Add(item);
+                    allItems = Ocr.SingleScan(allItems);
                 }
                 else if (result == UserAction.OcrAll)
                 {
-
                     filePath = UserUtils.GetFilePath("");
                     var mergeList = Ocr.MultiScan(filePath);
                     allItems.AddRange(mergeList);
@@ -78,7 +68,7 @@ namespace DiabloItemMuleSystem.Entry
                 }
                 else if (result == UserAction.GenericItemSort)
                 {
-                    allItems.Sort(new GenericItemSort(getAllStats));
+                    allItems.Sort(new GenericItemSort(allStatTypes));
                     Console.WriteLine("Sorted");
                 }
                 else if (result == UserAction.SearchByStats)   // TODO still think this looks ugly 
@@ -106,7 +96,7 @@ namespace DiabloItemMuleSystem.Entry
                         }
                     }
 
-                    searchedList.Sort(new GenericItemSort(getAllStats));
+                    searchedList.Sort(new GenericItemSort(allStatTypes));
                     Utils.PrintList(searchedList);
 
                     if (searchedList.Count == 0)

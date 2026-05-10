@@ -146,5 +146,37 @@ namespace DiabloItemMuleSystem.Utilities
 
             return allItems; 
         }
+        public static void ExportItemsToTxt(List<Item> allItems)
+        {
+            Console.WriteLine("What would you like to name the file?");
+            string name = Console.ReadLine();
+            var filePath = UserUtils.GetFilePath("");
+            bool txtFileFound = false;
+            while (!txtFileFound)
+            {
+                try
+                {
+                    filePath = Path.Combine(filePath, name + ".txt");
+                    var sItems = Utils.ItemToString(allItems);
+                    File.WriteAllLines(filePath, sItems);
+
+                    Console.WriteLine("Txt file created");
+                    txtFileFound = true;
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    Console.WriteLine("Can't find the .txt");
+                    filePath = UserUtils.GetFilePath(".txt");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex + "error occured");
+                    break; 
+                }
+                 
+                
+            }
+            
+        }
     }
 }

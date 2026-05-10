@@ -43,19 +43,16 @@ namespace DiabloItemMuleSystem.Utilities
             Console.WriteLine("Which stat?"); 
             while (true)
             {
-                foreach(var s in allStatTypes)
+                if (!StatType.TryParse(Console.ReadLine().ToUpper(), out StatType result)) 
                 {
-                    if (StatType.TryParse(Console.ReadLine(), out StatType result))
-                    {
-                        return result;
-                    }
-                     
+                    Console.WriteLine("Wrong input "); 
                 }
-                Console.WriteLine("Invalid input. Valid inputs:");
-                foreach (var s in allStatTypes)
+                else
                 {
-                    Console.WriteLine(s);
+                    return result;
                 }
+                 
+                
             }
         }
     }
