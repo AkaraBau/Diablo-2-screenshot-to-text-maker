@@ -79,33 +79,10 @@ namespace DiabloItemMuleSystem.Entry
 
                     case UserAction.SearchByStats:
 
-                        int howManyStats = UserUtils.GetNumber("amount of stats");
-                        int top = 0;
-                        int bottom = 0;
-
                         List<Item> searchedList = new List<Item>();
-
-
-                        for (int i = 0; i < howManyStats; i++)
-                        {
-                            StatType statForSearch = UserUtils.GetStat();
-                            top = UserUtils.GetNumber("top range");
-                            bottom = UserUtils.GetNumber("bottom range");
-
-                            if (i == 0)
-                            {
-                                searchedList = Utils.SearchForStatAndAmount(allItems, statForSearch, bottom, top);
-                            }
-                            if (i >= 1)
-                            {
-                                searchedList = Utils.SearchForStatAndAmount(searchedList, statForSearch, bottom, top);
-                            }
-                        }
-
-                        searchedList.Sort(new GenericItemSort(allStatTypes));
+                        searchedList = Utils.SearchByStats(allItems); 
                         Utils.PrintList(searchedList);
-
-                        if (searchedList.Count == 0)
+                        if (searchedList.Count == 0) 
                         {
                             Console.WriteLine("No items with those stats");
                         }

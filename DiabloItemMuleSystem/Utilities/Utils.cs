@@ -6,6 +6,7 @@ using DiabloItemMuleSystem.Models;
 using System.Text.RegularExpressions;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Security.Cryptography.X509Certificates;
+using DiabloItemMuleSystem.Services;
 
 
 namespace DiabloItemMuleSystem.Utilities
@@ -209,6 +210,30 @@ namespace DiabloItemMuleSystem.Utilities
                 }
             }
 
+        }
+        public static List<Item> SearchByStats(List<Item> allItems) 
+        {
+            int howManyStats = UserUtils.GetNumber("amount of stats");
+            var searchedList = new List<Item>();
+
+
+            for (int i = 0; i < howManyStats; i++)
+            {
+                StatType statForSearch = UserUtils.GetStat();
+                int top = UserUtils.GetNumber("top range");
+                int bottom = UserUtils.GetNumber("bottom range");
+
+                if (i == 0)
+                {
+                    searchedList = Utils.SearchForStatAndAmount(allItems, statForSearch, bottom, top);
+                }
+                if (i >= 1)
+                {
+                    searchedList = Utils.SearchForStatAndAmount(searchedList, statForSearch, bottom, top);
+                }
+            }
+            Utils.PrintList(searchedList);
+            return searchedList;
         }
     }
 }
