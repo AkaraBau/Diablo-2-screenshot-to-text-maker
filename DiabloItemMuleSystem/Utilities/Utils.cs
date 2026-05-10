@@ -140,8 +140,15 @@ namespace DiabloItemMuleSystem.Utilities
             }
             else if (args[0] == "parse")
             {
-                string txtFile = File.ReadAllText(args[1]);
-                allItems = Utils.TxtFileToListItem(txtFile);    
+                try
+                {
+                    string txtFile = File.ReadAllText(args[1]);
+                    allItems = Utils.TxtFileToListItem(txtFile);
+                }
+                catch (FileNotFoundException) 
+                {
+                    Console.WriteLine("Couldnt find txt. Program initiated in normal mode."); 
+                }
             }
 
             return allItems; 

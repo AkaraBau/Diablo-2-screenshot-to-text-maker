@@ -30,8 +30,7 @@ namespace DiabloItemMuleSystem.Data
 
             modelBuilder.Entity<Stats>(stats =>
             {
-                stats.ToTable("Stats"); 
-                // stats.HasKey(s => s.StatsId); 
+                stats.ToTable("Stats");  
                 stats.Property(s => s.StatsId).HasColumnName("StatsId");
                 stats.Property(s => s.ItemId).HasColumnName("ItemId");
                 stats.Property(s => s.Amount).HasColumnName("Amount");
