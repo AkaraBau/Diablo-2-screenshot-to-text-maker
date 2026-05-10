@@ -67,10 +67,8 @@ namespace DiabloItemMuleSystem.Entry
 
                     case UserAction.ParseTxt:
 
-                        filePath = UserUtils.GetFilePath(".txt");
-                        string txtFile = File.ReadAllText(filePath);
-                        var mergelist = Utils.TxtFileToListItem(txtFile);
-                        allItems.AddRange(mergelist);
+                        allItems = Utils.ParseTxtFileToItem(allItems);
+                        
                         break;
 
                     case UserAction.GenericItemSort:

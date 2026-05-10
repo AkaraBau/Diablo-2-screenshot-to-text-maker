@@ -10,7 +10,7 @@
     },
     "PARSE": {
       "commandName": "Project",
-      "commandLineArgs": "parse C:\\Users\\fide_\\Desktop\\d2items\\Crafted\\casterbelts\\Have\\Cbelt-A\\Cbelt-AAAA.txt"
+      "commandLineArgs": "parse C:\\Users\\fide_\\Desktop\\d2items\\Crafted\\casterbelts\\Have\\Cbelt-A\\Cbelt-A.txt"
     }
 
   }

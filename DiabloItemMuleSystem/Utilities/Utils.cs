@@ -5,6 +5,7 @@ using System.Linq;
 using DiabloItemMuleSystem.Models;
 using System.Text.RegularExpressions;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Security.Cryptography.X509Certificates;
 
 
 namespace DiabloItemMuleSystem.Utilities
@@ -35,7 +36,7 @@ namespace DiabloItemMuleSystem.Utilities
                 }
                 catch (DirectoryNotFoundException)
                 {
-                    Console.WriteLine("Can't find the directory.");
+                    Console.WriteLine("Can't find the directory.\n Try again.");
                     input = Console.ReadLine(); 
                 }
                 catch (Exception ex)
@@ -182,8 +183,32 @@ namespace DiabloItemMuleSystem.Utilities
                 }
                  
                 
+            }                    
+        }
+        public static List<Item>  ParseTxtFileToItem (List<Item>allItems) 
+        {
+            string filePath = UserUtils.GetFilePath(".txt"); 
+            while (true)
+            { 
+                try
+                {
+                    string txtFile = File.ReadAllText(filePath); 
+                    var mergelist = Utils.TxtFileToListItem(txtFile);
+                    allItems.AddRange(mergelist);
+                    return allItems;
+                }
+                catch (FileNotFoundException)
+                {
+                    Console.WriteLine("wrong input");
+                    filePath = UserUtils.GetFilePath(".txt");
+                }
+                catch (DirectoryNotFoundException)
+                {
+                    Console.WriteLine("wrong input");
+                    filePath = UserUtils.GetFilePath(".txt");
+                }
             }
-            
+
         }
     }
 }

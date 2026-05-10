@@ -36,8 +36,11 @@ namespace DiabloItemMuleSystem.Utilities
                         listData = Utils.RemoveListContentBeforeObjectCreationOcr(listData);
                         Item Item = new Item(listData);
                         allItems.Add(Item);
-                         
+
+                        Console.WriteLine("Done");
+
                         return allItems;
+                         
                     }
                 }
                 catch (TesseractException ex)
