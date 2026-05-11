@@ -11,7 +11,7 @@ namespace DiabloItemMuleSystem.Utilities
 {
     public class Ocr 
     {
-        public static List<Item> SingleScan(List<Item> allItems) //this will blow up on not functioning filepath 
+        public static List<Item> SingleScan(List<Item> allItems) 
         {
             string item = null;
             string[] data = new string[14];
@@ -72,34 +72,43 @@ namespace DiabloItemMuleSystem.Utilities
             string[] splitData = new string[14];
             
             string[] massInput = Utils.DetectFiles(filePath);
-            string[] massOutput = new string[massInput.Length]; 
+            string[] massOutput = new string[massInput.Length];
 
-            for (int i = 0; i < massInput.Length; i++)
+            try
             {
-                using (var stream = Tesseract.ImageToTxt(massInput[i], languages: new[] { Language.English, Language.French }))
+                for (int i = 0; i < massInput.Length; i++)
                 {
+                    using (var stream = Tesseract.ImageToTxt(massInput[i], languages: new[] { Language.English, Language.French }))
+                    {
 
-                    
-                    Utils.StatusOcr(i + 1, massInput.Length);
-                    
-                    StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8); 
-                    massOutput[i] = reader.ReadToEnd();
 
-                    massOutput[i] = StringUtils.RemoveAllWhiteSpace(massOutput[i]);
-                    massOutput[i] = StringUtils.ChangeLetters(massOutput[i]); 
-                    massOutput[i] = StringUtils.ShortenString(massOutput[i]); 
-                    splitData = massOutput[i].Split(new[] { '\n' }, StringSplitOptions.None); //splitting string into string []
-                    splitData = splitData.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace again due to rare occasion where all whitespace wouldnt get removed by regex
+                        Utils.StatusOcr(i + 1, massInput.Length);
 
-                    List<string> listSplitData = new List<string>(splitData);
-                    listSplitData = Utils.RemoveListContentBeforeObjectCreationOcr(listSplitData); //removing unecessary data before creating object. (matching parsing and ocr) 
+                        StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+                        massOutput[i] = reader.ReadToEnd();
 
-                    Item item = new Item(listSplitData);
-                    itemList.Add(item);  
+                        massOutput[i] = StringUtils.RemoveAllWhiteSpace(massOutput[i]);
+                        massOutput[i] = StringUtils.ChangeLetters(massOutput[i]);
+                        massOutput[i] = StringUtils.ShortenString(massOutput[i]);
+                        splitData = massOutput[i].Split(new[] { '\n' }, StringSplitOptions.None); //splitting string into string []
+                        splitData = splitData.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray(); // removing whitespace again due to rare occasion where all whitespace wouldnt get removed by regex
+
+                        List<string> listSplitData = new List<string>(splitData);
+                        listSplitData = Utils.RemoveListContentBeforeObjectCreationOcr(listSplitData); //removing unecessary data before creating object. (matching parsing and ocr) 
+
+                        Item item = new Item(listSplitData);
+                        itemList.Add(item);
+                    }
                 }
+                Console.WriteLine("\nDone.");
+                return itemList;
             }
-            Console.WriteLine("\nDone.");
-            return itemList;
+            catch (TesseractException ex) 
+            {
+                Console.WriteLine(ex + "\n" + "Something went wrong with Ocr");
+                return itemList;
+            }
+            
         }
     }
 
