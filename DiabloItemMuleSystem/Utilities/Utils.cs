@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Security.Cryptography.X509Certificates;
 using DiabloItemMuleSystem.Services;
+using System.Text.Json;
 
 
 namespace DiabloItemMuleSystem.Utilities
@@ -16,9 +17,8 @@ namespace DiabloItemMuleSystem.Utilities
         public static string[] DetectFiles(string input)
         {
             string[] allPaths = null;
-            bool directoryExists = false;
 
-            while (!directoryExists)
+            while (true)
             {
                 try
                 {
@@ -33,7 +33,7 @@ namespace DiabloItemMuleSystem.Utilities
                         Console.WriteLine("Loading input. Please wait.");
                     }
 
-                    directoryExists = true; // Exit the loop if the directory exists and contains valid files
+                    return allPaths;
                 }
                 catch (DirectoryNotFoundException)
                 {
@@ -47,6 +47,7 @@ namespace DiabloItemMuleSystem.Utilities
                 }
             }
             return allPaths;
+
         }
         public static void PrintList(List<Item> inputlist)
         {
@@ -186,7 +187,7 @@ namespace DiabloItemMuleSystem.Utilities
                 
             }                    
         }
-        public static List<Item>  ParseTxtFileToItem (List<Item>allItems) 
+        public static List<Item>  PromptAndImportItemsFromTxtFile (List<Item>allItems) 
         {
             string filePath = UserUtils.GetFilePath(".txt"); 
             while (true)

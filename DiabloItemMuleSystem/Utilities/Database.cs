@@ -14,11 +14,11 @@ namespace DiabloItemMuleSystem.Utilities
             using (var itemContext = new ItemDbContext())
             {
 
-                itemContext.ItemTable.Add(item);
+                itemContext.Items.Add(item);
 
                 foreach (var stats in item.ListOfStats)
                 {
-                    itemContext.StatsTable.Add(stats);
+                    itemContext.Stats.Add(stats);
                 }
 
                 itemContext.SaveChanges();
@@ -28,8 +28,8 @@ namespace DiabloItemMuleSystem.Utilities
         {
             using (var itemContext = new ItemDbContext())
             {
-                itemContext.ItemTable.RemoveRange(itemContext.ItemTable);
-                itemContext.StatsTable.RemoveRange(itemContext.StatsTable);
+                itemContext.Items.RemoveRange(itemContext.Items);
+                itemContext.Stats.RemoveRange(itemContext.Stats);
                 itemContext.SaveChanges();
             }
         }
@@ -41,18 +41,18 @@ namespace DiabloItemMuleSystem.Utilities
 
             if (type == "Item")
             {
-                if (ItemContext.ItemTable.Count() > 0)
+                if (ItemContext.Items.Count() > 0)
                 {
-                    return ItemContext.ItemTable.Max(item => item.Id);
+                    return ItemContext.Items.Max(item => item.Id);
                 }
                 else return 0;
 
             }
             else if (type == "Stats")
             {
-                if (ItemContext.StatsTable.Count() > 0)
+                if (ItemContext.Stats.Count() > 0)
                 {
-                    return ItemContext.StatsTable.Max(stats => stats.StatsId);
+                    return ItemContext.Stats.Max(stats => stats.StatsId);
                 }
                 else return 0;
             }
@@ -66,14 +66,14 @@ namespace DiabloItemMuleSystem.Utilities
 
             ItemDbContext ItemContext = new ItemDbContext();
 
-            return ItemContext.StatsTable.Where(s => s.ItemId == ID).ToList();
+            return ItemContext.Stats.Where(s => s.ItemId == ID).ToList();
         }
         public static List<Item> GetItems()
         {
             List<Item> itemList = new List<Item>();
             ItemDbContext itemContext = new ItemDbContext();
 
-            foreach (var i in itemContext.ItemTable)
+            foreach (var i in itemContext.Items)
             {
                 List<Stats> stats = Database.GetStats(i.Id);
                 Item item = new Item(i, stats);

@@ -14,8 +14,9 @@ namespace DiabloItemMuleSystem.Entry
         public static void DoIt(string[] args)
         {
             string filePath = null;
-            var allStatTypes = Enum.GetValues<StatType>();  
-
+            var allStatTypes = Enum.GetValues<StatType>();
+            
+            
             List <Item> allItems = Utils.Initiation(args);
             List<string> sItems = Utils.ItemToString(allItems);
 
@@ -67,8 +68,7 @@ namespace DiabloItemMuleSystem.Entry
 
                     case UserAction.ParseTxt:
 
-                        allItems = Utils.ParseTxtFileToItem(allItems);
-                        
+                        allItems = Utils.PromptAndImportItemsFromTxtFile(allItems);
                         break;
 
                     case UserAction.GenericItemSort:

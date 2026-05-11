@@ -1,19 +1,25 @@
 ﻿using System;
 using DiabloItemMuleSystem.Models;
-using Microsoft.EntityFrameworkCore; 
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
+using System.Data.Common;
+using System.IO;
+using System.Diagnostics.Metrics;
+using DiabloItemMuleSystem.Utilities;
 
 namespace DiabloItemMuleSystem.Data
 {
     public class ItemDbContext : DbContext
     {
-        public DbSet<Item> ItemTable { get; set; } 
-        public DbSet<Stats> StatsTable { get; set; } 
+        public DbSet<Item> Items { get; set; } 
+        public DbSet<Stats> Stats { get; set; }
 
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)  
+        readonly string ConnectionString = AppConfig.GetConString();
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            
             optionsBuilder.UseMySql(
-                "Server=localhost;Database=itemdb;User=root;Password=To7opxv9!;", 
+            ConnectionString, 
                 new MySqlServerVersion(new Version(8, 0, 40))
             );
         }

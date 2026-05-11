@@ -14,7 +14,7 @@ namespace DiabloItemMuleSystem.Utilities
     {
         public static string GetFilePath(string Type)
         {
-            string filePath = @"C:\Users\fide_\Desktop\d2 items\Crafted\caster belts\Have\new";
+            string filePath = AppConfig.GetFilePath();
 
             Console.WriteLine("Pick a directory: \n");
             Console.WriteLine("Format: " + filePath + Type);
@@ -39,7 +39,7 @@ namespace DiabloItemMuleSystem.Utilities
         }
         public static StatType GetStat()
         {
-            var allStatTypes = Enum.GetValues<StatType>();
+            
             Console.WriteLine("Which stat?"); 
             while (true)
             {
