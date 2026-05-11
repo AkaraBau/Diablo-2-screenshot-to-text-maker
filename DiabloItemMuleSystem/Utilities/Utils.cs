@@ -156,7 +156,7 @@ namespace DiabloItemMuleSystem.Utilities
 
             return allItems; 
         }
-        public static void ExportItemsToTxt(List<Item> allItems)
+        public static void PromptAndExportItemsToTxt(List<Item> allItems)
         {
             Console.WriteLine("What would you like to name the file?");
             string name = Console.ReadLine();
@@ -212,7 +212,7 @@ namespace DiabloItemMuleSystem.Utilities
             }
 
         }
-        public static List<Item> SearchByStats(List<Item> allItems) 
+        public static List<Item> PromptUserAndSearchByStats(List<Item> allItems) 
         {
             int howManyStats = UserUtils.GetNumber("amount of stats");
             var searchedList = new List<Item>();

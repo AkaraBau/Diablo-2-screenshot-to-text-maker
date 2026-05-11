@@ -42,7 +42,7 @@ namespace DiabloItemMuleSystem.Entry
 
                     case UserAction.CreateTxt:
 
-                        Utils.ExportItemsToTxt(allItems);
+                        Utils.PromptAndExportItemsToTxt(allItems);
                         break;
 
                     case UserAction.OrderByStat:
@@ -77,7 +77,7 @@ namespace DiabloItemMuleSystem.Entry
                     case UserAction.SearchByStats:
 
                         List<Item> searchedList = new List<Item>();
-                        searchedList = Utils.SearchByStats(allItems);
+                        searchedList = Utils.PromptUserAndSearchByStats(allItems);
                         Utils.PrintList(searchedList);
                         if (searchedList.Count == 0)
                         {
