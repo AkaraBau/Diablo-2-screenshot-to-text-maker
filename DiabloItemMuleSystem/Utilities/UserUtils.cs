@@ -14,7 +14,7 @@ namespace DiabloItemMuleSystem.Utilities
     {
         public static string GetFilePath(string Type)
         {
-            string filePath = AppConfig.GetFilePath();
+            string filePath = AppConfig.GetConfigurationFromJson().FilePath;
 
             Console.WriteLine("Pick a directory: \n");
             Console.WriteLine("Format: " + filePath + Type);

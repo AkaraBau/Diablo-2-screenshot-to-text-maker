@@ -13,21 +13,13 @@ namespace DiabloItemMuleSystem.Models
         public string ConnectionString { get; set; }
         public string FilePath { get; set; }
 
-        public static string GetConString()
+        public static AppConfig GetConfigurationFromJson()
         {
             string json = File.ReadAllText("config.json");
 
             AppConfig config = JsonSerializer.Deserialize<AppConfig>(json);
 
-            return config.ConnectionString;
-        }
-        public static string GetFilePath()
-        {
-            string json = File.ReadAllText("config.json");
-
-            AppConfig config = JsonSerializer.Deserialize<AppConfig>(json);
-
-            return config.FilePath; 
+            return config;
         }
     }
 }

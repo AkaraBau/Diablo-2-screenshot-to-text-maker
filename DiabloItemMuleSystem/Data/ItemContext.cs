@@ -14,7 +14,7 @@ namespace DiabloItemMuleSystem.Data
         public DbSet<Item> Items { get; set; } 
         public DbSet<Stats> Stats { get; set; }
 
-        readonly string ConnectionString = AppConfig.GetConString();
+        readonly string ConnectionString = AppConfig.GetConfigurationFromJson().ConnectionString;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             
