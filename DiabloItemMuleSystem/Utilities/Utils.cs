@@ -212,7 +212,7 @@ namespace DiabloItemMuleSystem.Utilities
             }
 
         }
-        public static List<Item> PromptUserAndSearchByStats(List<Item> allItems) 
+        public static List<Item> PromptAndSearchByStats(List<Item> allItems) 
         {
             int howManyStats = UserUtils.GetNumber("amount of stats");
             var searchedList = new List<Item>();

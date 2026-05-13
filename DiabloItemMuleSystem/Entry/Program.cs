@@ -77,7 +77,7 @@ namespace DiabloItemMuleSystem.Entry
                     case UserAction.SearchByStats:
 
                         List<Item> searchedList = new List<Item>();
-                        searchedList = Utils.PromptUserAndSearchByStats(allItems);
+                        searchedList = Utils.PromptAndSearchByStats(allItems);
                         Utils.PrintList(searchedList);
                         if (searchedList.Count == 0)
                         {
@@ -114,6 +114,8 @@ namespace DiabloItemMuleSystem.Entry
 
 
                 }
+
+
 
             }
         }
