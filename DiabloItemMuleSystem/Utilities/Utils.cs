@@ -51,9 +51,11 @@ namespace DiabloItemMuleSystem.Utilities
         }
         public static void PrintList(List<Item> inputlist)
         {
+            int index = 0; 
             foreach (var l in inputlist)
             {
-                Console.WriteLine(l.ToString());
+                Console.WriteLine(index+ "/" + l.ToString());
+                index++;
             }
         }
         public static List<string> ItemToString(List<Item> inputlist)
@@ -123,7 +125,6 @@ namespace DiabloItemMuleSystem.Utilities
             {
                 string[] txtFileSplitBeforeItemCreation = txtFileSplitOnNewline[i].Trim().Split('/', '\t');
                 listData = new List<string>(txtFileSplitBeforeItemCreation);
-                listData.RemoveAt(0);
                 
                 
                 Item item = new Item(listData);
@@ -235,6 +236,25 @@ namespace DiabloItemMuleSystem.Utilities
             }
             Utils.PrintList(searchedList);
             return searchedList;
+        }
+        public static List<Item> PromptAndRemoveByIndex(List<Item> allItems) 
+        {
+            
+            while (true)
+            {
+                int remove = UserUtils.GetNumber("index");
+                try
+                {
+                    allItems.RemoveAt(remove);
+                    Console.WriteLine("Index removed " + remove);
+                    return allItems;
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    Console.WriteLine($"IndexOutOfRange: {remove} try another index");
+                }
+
+            }
         }
     }
 }

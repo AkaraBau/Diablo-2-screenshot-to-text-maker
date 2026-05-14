@@ -10,7 +10,7 @@ namespace DiabloItemMuleSystem.Models
         ParseTxt,
         CreateTxt,
         SearchByStats,
-        RemoveById,
+        RemoveByIndex,
         AddAllToDatabase,
         GetAllFromDatabase,
         DeleteAllFromDatabase, 

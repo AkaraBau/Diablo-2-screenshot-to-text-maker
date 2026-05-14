@@ -1,19 +1,19 @@
 using DiabloItemMuleSystem.Utilities;
+using System;
 
 namespace DiabloItemMuleSystem.Models
 {
     public class Stats
     {
-        private static int GenerateStatsId = Database.GetHighestId("Stats") + 1; 
-        public int StatsId { get; set; } // Id unique to every stats
-        public int ItemId {  get; set; } // Shared id with the item it "belongs too"
+        public Guid Id { get; set; }
+        public Guid ItemId {  get; set; } 
         public readonly StatType Name;
         public readonly int Amount; 
 
-        public Stats(int ID ,string data, StatType stat)
+        public Stats(Guid ID ,string data, StatType stat)
         {
+            Id = Guid.NewGuid();
             ItemId = ID;
-            StatsId = GenerateStatsId++;
             Amount = StringUtils.ExtractInt(data);
             Name = stat; 
         }

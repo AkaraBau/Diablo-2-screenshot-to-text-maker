@@ -85,10 +85,10 @@ namespace DiabloItemMuleSystem.Entry
                         }
                         break;
 
-                    case UserAction.RemoveById:
+                    case UserAction.RemoveByIndex:
 
-                        int remove = UserUtils.GetNumber("Id");
-                        allItems.RemoveAll(item => item.Id == remove);
+                        allItems = Utils.PromptAndRemoveByIndex(allItems);
+
                         break;
 
                     case UserAction.GetAllFromDatabase:

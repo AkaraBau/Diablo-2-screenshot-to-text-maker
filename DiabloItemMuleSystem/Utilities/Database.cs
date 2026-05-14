@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DiabloItemMuleSystem.Data;
 using DiabloItemMuleSystem.Models;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace DiabloItemMuleSystem.Utilities
@@ -28,59 +29,34 @@ namespace DiabloItemMuleSystem.Utilities
         {
             using (var itemContext = new ItemDbContext())
             {
-                itemContext.Items.RemoveRange(itemContext.Items);
-                itemContext.Stats.RemoveRange(itemContext.Stats);
+                itemContext.Database.ExecuteSqlRaw("DELETE FROM stats");
+                itemContext.Database.ExecuteSqlRaw("DELETE FROM items");
+
                 itemContext.SaveChanges();
             }
         }
-        public static int GetHighestId(string type)
+        public static List<Stats> GetStatsById(Guid ID)
         {
 
-
-            ItemDbContext ItemContext = new ItemDbContext();
-
-            if (type == "Item")
+            using (ItemDbContext ItemContext = new ItemDbContext())
             {
-                if (ItemContext.Items.Count() > 0)
-                {
-                    return ItemContext.Items.Max(item => item.Id);
-                }
-                else return 0;
-
+                return ItemContext.Stats.Where(s => s.ItemId == ID).ToList();
             }
-            else if (type == "Stats")
-            {
-                if (ItemContext.Stats.Count() > 0)
-                {
-                    return ItemContext.Stats.Max(stats => stats.StatsId);
-                }
-                else return 0;
-            }
-            else
-                return 0;
-
-
-        }
-        public static List<Stats> GetStats(int ID)
-        {
-
-            ItemDbContext ItemContext = new ItemDbContext();
-
-            return ItemContext.Stats.Where(s => s.ItemId == ID).ToList();
         }
         public static List<Item> GetItems()
         {
             List<Item> itemList = new List<Item>();
-            ItemDbContext itemContext = new ItemDbContext();
-
-            foreach (var i in itemContext.Items)
+            using (ItemDbContext itemContext = new ItemDbContext())
             {
-                List<Stats> stats = Database.GetStats(i.Id);
-                Item item = new Item(i, stats);
-                itemList.Add(item);
-            }
+                foreach (var i in itemContext.Items)
+                {
+                    List<Stats> stats = Database.GetStatsById(i.Id);
+                    Item item = new Item(i, stats);
+                    itemList.Add(item);
+                }
 
-            return itemList;
+                return itemList;
+            }
         }
     }
 

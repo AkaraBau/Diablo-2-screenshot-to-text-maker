@@ -29,7 +29,7 @@ namespace DiabloItemMuleSystem.Data
 
             modelBuilder.Entity<Item>(item =>
             {
-                item.ToTable("Items"); 
+                item.ToTable("items"); 
                 item.Property(i => i.Id).HasColumnName("Id");
                 item.Property(i => i.Name).HasConversion( i => i.ToString(), x => (ItemType)Enum.Parse(typeof(ItemType),x));
                 item.Property(i => i.Level).HasColumnName("Level").IsRequired();
@@ -37,8 +37,8 @@ namespace DiabloItemMuleSystem.Data
 
             modelBuilder.Entity<Stats>(stats =>
             {
-                stats.ToTable("Stats");  
-                stats.Property(s => s.StatsId).HasColumnName("StatsId");
+                stats.ToTable("stats");  
+                stats.Property(s => s.Id).HasColumnName("Id");
                 stats.Property(s => s.ItemId).HasColumnName("ItemId");
                 stats.Property(s => s.Amount).HasColumnName("Amount");
                 stats.Property(s => s.Name).HasConversion(s => s.ToString(), x => (StatType)Enum.Parse(typeof(StatType), x));

@@ -6,15 +6,15 @@ namespace DiabloItemMuleSystem.Models
 {
     public class Item
     {
-        private static int itemIDseed = Database.GetHighestId("Item") + 1;
-        public readonly int Id;
+        
+        public  Guid Id {  get; set; }
         public readonly ItemType Name; 
         public readonly int Level;
         public readonly List<Stats> ListOfStats = new List<Stats>();
 
         public Item(List<string> data)
         {
-            Id = itemIDseed++;
+            Id = Guid.NewGuid();
             Name = ItemTypeLookup.GetTypeFromDictionary(data[0]);
             Level = StringUtils.ExtractInt(data[1]);
 
@@ -73,7 +73,7 @@ namespace DiabloItemMuleSystem.Models
         /// </summary>
         public override string ToString()
         {
-            string result = $"{Id}/{Name}/{Level}LREQ\t";
+            string result = $"{Name}/{Level}LREQ\t";
             List<string> statNamesForPrint = new List<string>();
             var allStatTypes = Enum.GetValues<StatType>(); 
 
