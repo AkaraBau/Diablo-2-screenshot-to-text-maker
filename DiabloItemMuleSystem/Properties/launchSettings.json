@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "START": {
+      "commandName": "Project",
+      "commandLineArgs": "start"
+    },
+    "OCR": {
+      "commandName": "Project",
+      "commandLineArgs": "ocr C:\\Users\\fide_\\source\\repos\\AkaraBau\\Diablo-2-screenshot-to-text-maker\\ItemScreenshots"
+    },
+    "PARSE": {
+      "commandName": "Project",
+      "commandLineArgs": "parse C:\\Users\\fide_\\source\\repos\\AkaraBau\\Diablo-2-screenshot-to-text-maker\\Items.txt"
+    }
+    
+    
+  }
+}

@@ -1,0 +1,59 @@
+﻿using DiabloItemMuleSystem.Models;
+using NLog.Targets;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Transactions;
+
+namespace DiabloItemMuleSystem.Utilities
+{
+    public static class UserUtils
+    {
+        public static string GetFilePath(string Type)
+        {
+            string filePath = AppConfig.GetConfigurationFromJson().FilePath;
+
+            Console.WriteLine("Pick a directory: \n");
+            Console.WriteLine("Format: " + filePath + Type);
+
+            filePath = Console.ReadLine();
+
+            return filePath;
+        }
+        public static int GetNumber(string args)
+        {
+            Console.WriteLine("Which " + args + "?");
+
+            while (true)
+            {
+                if (int.TryParse(Console.ReadLine(), out int result))
+                {
+                    return result;
+                }
+
+                Console.WriteLine("Invalid input, try again.");
+            }
+        }
+        public static StatType GetStat()
+        {
+            
+            Console.WriteLine("Which stat?"); 
+            while (true)
+            {
+                if (!StatType.TryParse(Console.ReadLine().ToUpper(), out StatType result)) 
+                {
+                    Console.WriteLine("Wrong input "); 
+                }
+                else
+                {
+                    return result;
+                }
+                 
+                
+            }
+        }
+    }
+}
