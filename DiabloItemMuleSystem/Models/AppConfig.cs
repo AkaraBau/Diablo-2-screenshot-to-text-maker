@@ -23,7 +23,7 @@ namespace DiabloItemMuleSystem.Models
 
                 if (appConfig.ConnectionString == null || appConfig.FilePath == null)
                 {
-                    throw new Exception("Failed to deserialize"); 
+                    throw new Exception("Failed to deserialize config.json"); 
                 }
 
                 return appConfig;
