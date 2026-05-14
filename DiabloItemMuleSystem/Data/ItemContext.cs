@@ -42,6 +42,7 @@ namespace DiabloItemMuleSystem.Data
                 stats.Property(s => s.ItemId).HasColumnName("ItemId");
                 stats.Property(s => s.Amount).HasColumnName("Amount");
                 stats.Property(s => s.Name).HasConversion(s => s.ToString(), x => (StatType)Enum.Parse(typeof(StatType), x));
+                stats.HasOne<Item>().WithMany(i => i.ListOfStats).HasForeignKey(s => s.ItemId).OnDelete(DeleteBehavior.Cascade);
 
             });
 

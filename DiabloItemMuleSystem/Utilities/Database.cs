@@ -25,12 +25,12 @@ namespace DiabloItemMuleSystem.Utilities
                 itemContext.SaveChanges();
             }
         }
-        public static void DeleteAll()
+        public static void DeleteAll() //TODO WHY DOESNT REMOVE RANGE WORK, MAPPING? 
         {
             using (var itemContext = new ItemDbContext())
             {
-                itemContext.Database.ExecuteSqlRaw("DELETE FROM stats");
-                itemContext.Database.ExecuteSqlRaw("DELETE FROM items");
+                itemContext.Stats.RemoveRange(itemContext.Stats);
+                itemContext.Items.RemoveRange(itemContext.Items);
 
                 itemContext.SaveChanges();
             }
