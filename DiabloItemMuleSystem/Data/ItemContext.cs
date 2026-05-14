@@ -11,10 +11,11 @@ namespace DiabloItemMuleSystem.Data
 {
     public class ItemDbContext : DbContext
     {
+        readonly string ConnectionString = AppConfig.GetConfigurationFromJson().ConnectionString;
         public DbSet<Item> Items { get; set; } 
         public DbSet<Stats> Stats { get; set; }
 
-        readonly string ConnectionString = AppConfig.GetConfigurationFromJson().ConnectionString;
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             

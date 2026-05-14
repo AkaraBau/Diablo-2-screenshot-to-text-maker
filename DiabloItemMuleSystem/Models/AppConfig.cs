@@ -15,11 +15,23 @@ namespace DiabloItemMuleSystem.Models
 
         public static AppConfig GetConfigurationFromJson()
         {
-            string json = File.ReadAllText("config.json");
+            try
+            {
+                string json = File.ReadAllText("config.json");
 
-            AppConfig config = JsonSerializer.Deserialize<AppConfig>(json);
+                AppConfig appConfig = JsonSerializer.Deserialize<AppConfig>(json);
 
-            return config;
+                if (appConfig.ConnectionString == null || appConfig.FilePath == null)
+                {
+                    throw new Exception("Failed to deserialize"); 
+                }
+
+                return appConfig;
+            }
+            catch (FileNotFoundException)
+            {
+                throw new Exception("Cant find config.json");
+            }
         }
     }
 }
